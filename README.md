@@ -11,6 +11,7 @@ Tasks to Complete:
 - Create a search function using switch statements to search the Database
 - Improve UI and format
 - Allow for multiple inputs on the index page
+- Add update functionality so that if the user deletes an image then the corresponding image    file and entry in the database is removed.
 
 Completed Tasks:
 
