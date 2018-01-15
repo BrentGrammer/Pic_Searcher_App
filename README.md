@@ -12,6 +12,7 @@ Tasks to Complete:
 - Improve UI and format
 - Allow for multiple inputs on the index page
 - Add update functionality so that if the user deletes an image then the corresponding image    file and entry in the database is removed.
+- Refactoring and putting PHP/MySQL functions into a separate file
 
 Completed Tasks:
 
