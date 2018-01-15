@@ -40,7 +40,7 @@
                          //select the current file destination and move it to the destination made above with move_uploaded_file()
                          move_uploaded_file($picTmpName, $picDestination);
                          //go back to the index page and modify the url for succussful upload with header()
-                         //header("Location: index.php?uploadsuccess");
+                         header("Location: page2.php");
                       } else {
                         echo "Your file is too big.";  //if $picSize exceeds 1000000
                         }
@@ -68,7 +68,7 @@ $query .= "VALUES ('$picName','$picDestination','$description','$picNameNew');";
     if ($result) {
         echo "Database Updated!";
     } else {
-      die ("Database failed to update!");
+      die ("Database failed to update!" . mysqli_error($conn));
     }
 
 } //closing curly brace for the original if isset statement.
