@@ -7,8 +7,6 @@ The purpose of this application is to create a searchable library of image files
 Languages Used: PHP, SQL, HTML
 
 Tasks to Complete:
-
-
 - Create a search function using switch statements to search the Database
 - Style UI and forms
 - Style the gallery with CSS
@@ -17,7 +15,8 @@ Tasks to Complete:
 - Refactoring and putting PHP/MySQL functions into a separate file
 
 Completed Tasks:
-
+- User description successfully inserted into alt attribute of image in the anchor column of 'pics' table on the database
+- Added Gallery: Images uploaded to the database now are echoed onto gallery.php
 - Anchor column created in the database to store the anchor text to be echoed into the gallery page with each submission.  
 - Database structure for storing image files, paths and descriptions is set up
 - Connection to the database is completed

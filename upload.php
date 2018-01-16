@@ -69,6 +69,8 @@ if (isset($_POST['submit'])) {
     //   <div class="desc">$description</div>
     // </div>
 
+    //FINAL Note: The anchor column in the pics table now has all of the information needed to insert the image html data into gallery.php;
+
 //----------------END OF MOVING IMG FILES TO UPLOADS----------------------//
 
 //---------FOLLOWING CODE INSERTS THE IMAGE AND DESCRIPTION DATA INTO THE DATABASE-----//
@@ -95,7 +97,7 @@ if (isset($_POST['submit'])) {
 
 
 
-//---------------OUTPUT ANCHOR FROM DB ONTO GALLERY PAGE TO DISPLAY USER PIC----------//
+//--OUTPUT(GET FROM DB AND ECHO) ANCHOR FROM DB ONTO GALLERY PAGE TO DISPLAY USER PIC----------//
 
 //Note this code is outside of the isset($_POST['submit']) if statement, as this code just needs to draw from the submitted saved data in the database.
 
