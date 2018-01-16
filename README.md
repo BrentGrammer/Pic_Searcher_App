@@ -8,7 +8,7 @@ Languages Used: PHP, SQL, HTML
 
 Tasks to Complete:
 
-- Make a column in the database to store the anchor text to be echoed into the gallery page with each submission
+
 - Create a search function using switch statements to search the Database
 - Style UI and forms
 - Style the gallery with CSS
@@ -18,6 +18,7 @@ Tasks to Complete:
 
 Completed Tasks:
 
+- Anchor column created in the database to store the anchor text to be echoed into the gallery page with each submission.  
 - Database structure for storing image files, paths and descriptions is set up
 - Connection to the database is completed
 - Image files successfully upload to a specified directory (/uploads)

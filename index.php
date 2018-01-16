@@ -20,6 +20,8 @@ include "includes/dbconn.php";
 
 </form>
 
+<a href="gallery.php">VIEW IMAGE GALLERY</a>
+
 </body>
 
 </html>
