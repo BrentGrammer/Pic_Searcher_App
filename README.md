@@ -8,8 +8,10 @@ Languages Used: PHP, SQL, HTML
 
 Tasks to Complete:
 
+- Make a column in the database to store the anchor text to be echoed into the gallery page with each submission
 - Create a search function using switch statements to search the Database
-- Improve UI and format
+- Style UI and forms
+- Style the gallery with CSS
 - Allow for multiple inputs on the index page
 - Add update functionality so that if the user deletes an image then the corresponding image    file and entry in the database is removed.
 - Refactoring and putting PHP/MySQL functions into a separate file
