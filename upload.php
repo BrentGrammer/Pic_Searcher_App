@@ -2,7 +2,8 @@
 //this includes the code that sets the variables for connecting to the database from dbh.inc.php in the includes folder
 include 'includes/dbconn.php';
 
-//the following code runs when the user hits the 'UPLOAD' submit button on index.php:
+//the following code runs when the user hits the 'UPLOAD' submit button on index.php
+//All of the code is inserting user submitted data into the db for pulling to search and display:
 if (isset($_POST['submit'])) {
       //assign variables to each piece of data in the submitted file and form array
 
@@ -88,10 +89,11 @@ if (isset($_POST['submit'])) {
     } else {
       die ("Database failed to update!" . mysqli_error($conn));
     }
+} //<----closing curly brace for the original if isset statement.
 
 //---------------------END OF DATABASE INSERTION OF USER DATA----------------//
 
-} //closing curly brace for the original if isset statement.
+
 
 //---------------OUTPUT ANCHOR FROM DB ONTO GALLERY PAGE TO DISPLAY USER PIC----------//
 
