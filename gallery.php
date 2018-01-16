@@ -28,8 +28,9 @@ if (!$result) {
 
     <div>
 
-    <?php
 
+    <?php
+   //This code echoes the anchor column data containing html code for the image onto the page;
     while ($row = mysqli_fetch_assoc($result)) {
       //insert the html image data from anchor column into the body followed by a break;
       $imgAnchor = $row['anchor'];
