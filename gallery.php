@@ -1,19 +1,8 @@
-<?php
-include 'includes/dbconn.php'; //($conn is connection var to db)
-?>
-<?php
-//query to the database to grab anchor column data:
-$query = "SELECT anchor FROM pics";
-$result = mysqli_query($conn, $query);
-
-//return error message if $result is empty:
-if (!$result) {
-  die("Database Query Failed!" . mysqli_error());
-}
-?>
+<?php include 'includes/dbconn.php'; //($conn is connection var to db) ?>
+<?php include 'includes/functions.php'; ?>
+<?php //selectIdDescriptionAnchor(); //queries the id, description and anchor columns in database table from functions.php; ?>
 
 <!--User is directed to this page when they click "VIEW GALLERY" on index.php-->
-
 <!DOCTYPE html>
 <html>
 
@@ -29,14 +18,8 @@ if (!$result) {
     <div>
 
     <?php
-   //This code echoes the anchor column data containing html code for the image onto the page;
-    while ($row = mysqli_fetch_assoc($result)) {
-      //insert the html image data from anchor column into the body followed by a break;
-      $imgAnchor = $row['anchor'];
-
-      echo $imgAnchor . '<br>';
-    }
-    ?>
+   displayImageGallery(); //from functions.php -echos anchor column and includes form for updating description;
+     ?>
 
     </div>
 
