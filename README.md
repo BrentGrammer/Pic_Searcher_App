@@ -2,7 +2,7 @@ PIC SEARCHER APP
 
 Note: this project is under construction.
 
-The purpose of this application is to create a searchable library of image files uploaded by the user.  The goal is to allow the user to enter a description which is inserted into the 'alt' attribute of the corresponding image file and then allow the user to search for pics using text that matches the description in some way.  
+The purpose of this application is to create a searchable library of image files uploaded by the user.  The goal is to allow the user to enter a description which is inserted into the 'alt' attribute of the corresponding image file and then allow the user to search for pics using text that matches the description in some way.  An alternative method is incorporating FULLTEXT searching in the description column and matching user queries.
 
 The way this was accomplished was by concatenating the html img tag code to the inputed description by the user and assigning it to a variable to be inserted into a column on the database (this is done in upload.php which runs after the use clicks the submit button on index.php).  This column data is then pulled from the database with PHP and echoed onto an image gallery page (gallery.php) where the alt attribute is filled in with the user description.
 
@@ -11,7 +11,7 @@ Search functionality will allow the user to search for a pic using descriptive t
 Languages Used: PHP, SQL, HTML
 
 Tasks/Goals to Complete:
-- Add functionality to update the anchor alt attribute to the new user updated descriptions
+- Add functionality to update the anchor alt attribute to the new user updated descriptions (may be abandoned in favor of matching user queries with description column in the pics table)
 - Create search functionality to search the 'description' column of the database table and display the matching image
 - Use FULLTEXT() searching in the database description column to match user input query.
 - Style UI and forms
