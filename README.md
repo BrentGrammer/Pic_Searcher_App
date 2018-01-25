@@ -10,9 +10,10 @@ Search functionality will allow the user to search for a pic using descriptive t
 
 Languages Used: PHP, SQL, HTML
 
-Tasks to Complete:
+Tasks/Goals to Complete:
 - Add functionality to update the anchor alt attribute to the new user updated descriptions
-- Create a search function using switch statements to search the 'description' column of the database table
+- Create search functionality to search the 'description' column of the database table and display the matching image
+- Use FULLTEXT() searching in the database description column to match user input query.
 - Style UI and forms
 - Style the gallery with CSS-create and add external style sheet
 - Allow for multiple inputs on the index page
@@ -29,3 +30,6 @@ Completed Tasks:
 - Connection to the database is completed
 - Image files successfully upload to a specified directory (/uploads)
 - The Database is updated successfully after user submits data
+
+Note: The structure of the database columns is: id,name,path,description,unique_id,anchor
+The database name is 'picsearcherapp'.  the table name is 'pics'

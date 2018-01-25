@@ -14,6 +14,11 @@
   <body>
 
     <p>This is the gallery page!</p>
+    <div>
+
+      <input type="text" id="searchinput" placeholder="Enter Search Terms Here...">
+
+    </div>
 
     <div>
 

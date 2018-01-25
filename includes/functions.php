@@ -38,7 +38,9 @@ function selectIdDescriptionAnchor() {
     }
 }
 
-//-----------------QUERY ALL DATA------------------------//
+
+//-----------------------------------------------------------//
+
 
 //This function is called on gallery.php and gets necessary data from the database to echo the anchor information for the uploaded images;
 function displayImageGallery() {
@@ -56,8 +58,9 @@ function displayImageGallery() {
     $imgId = $row['id'];
 
     echo $imgAnchor;
+
 //the following code echoes html for the Modify Description button.  It concatenates the corresponding id number of the
-//image to the value property for storing in $_POST on picupdate.php - this can then be used to match the modification with the
+//image to the value property for storing in $_POST on updatepic.php - this can then be used to match the modification with the
 //image id. this was included in the function to have access to the scope of $imgId;
     echo '<form action="updatepic.php" method="POST">
               <button type="submit" name="submit" value="' . $imgId . '"' . '>Modify Description</button>
