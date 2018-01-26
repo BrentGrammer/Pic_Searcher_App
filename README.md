@@ -13,6 +13,8 @@ The way this was accomplished was by concatenating the html img tag code to the 
 Languages Used: PHP, SQL, HTML
 
 ## Tasks/Goals to Complete:
+- Check if user input upload fields are empty on index.php and prevent database entry.
+- Fix styling on the gallery page to make the Change Description button show below the image.
 - Add functionality to update the anchor alt attribute to the new user updated descriptions (may be abandoned in favor of matching user queries with description column in the pics table)
 - Use FULLTEXT() searching in the database description column to match user input query?
 - Style UI and forms

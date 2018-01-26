@@ -7,14 +7,17 @@ include "includes/dbconn.php";
 
 <html>
 <head>
+
 </head>
 
 <body>
 
 <form action="upload.php" method="POST" enctype="multipart/form-data">
+  STEP ONE: Choose your Image:
       <input type="file" name="userpic">
       <br/>
-      <input type="text" name="description" placeholder="Enter searchable description here.">
+  STEP TWO: Enter a description that you can search for later:
+      <input type="text" name="description" placeholder="Enter Description Here...">
       <br/>
       <button type="submit" name="submit">UPLOAD</button>
 
