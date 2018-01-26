@@ -14,10 +14,13 @@
   <body>
 
     <p>This is the gallery page!</p>
+
     <div>
-
-      <input type="text" id="searchinput" placeholder="Enter Search Terms Here...">
-
+      <!-- SEARCH BAR Note: GET method is better for searches in case user wants to copy URL to save the search-->
+       <form action="searchinput.php" method="GET">
+          <input type="text" name='searchinput' placeholder="Enter Search Terms Here...">
+          <button type='submit' name='submit'>SEARCH IMAGES</button>
+       </form>
     </div>
 
     <div>

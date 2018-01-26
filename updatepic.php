@@ -58,7 +58,6 @@ if (isset($_POST['submit'])) {
 
     <form action="updatepic.php" method="POST">
           <!--description is echoed from querying the current img desc -->
-
           <textarea name="newDesc"><?php echo "$currentDesc"; ?></textarea>
           <button type="submit" name="updateDesc" value="<?php echo $idNum ?>">UPDATE</button>
     </form>

@@ -10,9 +10,12 @@ function selectAnchor() {
 
 //return error message if $result is empty:
     if (!$result) {
-       die("Database Query Failed!" . mysqli_error());
+       die("Database Query Failed!" . mysqli_error($conn));
     }
 }
+
+
+
 
 //-----------QUERY ID AND ANCHOR COLUMN---------------------//
 function selectIdAnchor() {
@@ -22,7 +25,7 @@ function selectIdAnchor() {
 
 //return error message if result is empty:
     if (!$result) {
-       die("Database Query Failed!" . mysqli_error());
+       die("Database Query Failed!" . mysqli_error($conn));
     }
 }
 
@@ -34,10 +37,21 @@ function selectIdDescriptionAnchor() {
 
 //return error message if $result is empty:
     if (!$result) {
-       die("Database Query Failed!" . mysqli_error());
+       die("Database Query Failed!" . mysqli_error($conn));
     }
 }
 
+//------------QUERY NAME, DESCRIPTION, ANCHOR (used in searchinput.php)--------------------//
+function selectNameDescriptionAnchor() {
+    global $conn; //declare the $conn db connection variable as global since it is outside of function scope.
+    $query = "SELECT name, description, anchor FROM pics;";
+    $result = mysqli_query($conn, $query);
+
+//return error message if $result is empty:
+    if (!$result) {
+       die("Database Query Failed!" . mysqli_error($conn));
+    }
+}
 
 //-----------------------------------------------------------//
 
@@ -50,14 +64,14 @@ function displayImageGallery() {
     $result = mysqli_query($conn, $query);
 //return error message if $result is empty:
     if (!$result) {
-       die("Database Query Failed!" . mysqli_error());
+       die("Database Query Failed!" . mysqli_error($conn));
     }
 //grabs anchor column data and echoes it onto the gallery.php page (the html code that displays the image followed by a <br>);
   while ($row = mysqli_fetch_assoc($result)) {
     $imgAnchor = $row['anchor'];
     $imgId = $row['id'];
 
-    echo $imgAnchor;
+    echo $imgAnchor; //echoes the anchor html code stored in the database;
 
 //the following code echoes html for the Modify Description button.  It concatenates the corresponding id number of the
 //image to the value property for storing in $_POST on updatepic.php - this can then be used to match the modification with the
@@ -65,5 +79,7 @@ function displayImageGallery() {
     echo '<form action="updatepic.php" method="POST">
               <button type="submit" name="submit" value="' . $imgId . '"' . '>Modify Description</button>
           </form>';
+
+
   }
 }

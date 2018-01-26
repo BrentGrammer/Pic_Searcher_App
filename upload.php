@@ -89,6 +89,7 @@ if (isset($_POST['submit'])) {
     //tests if the query went through:
     if ($result) {
         echo "Database Updated! <br>";
+        header('Location: index.php?imageupload=success');  //goes back to index page and updates url.
     } else {
       die ("Database failed to update!" . mysqli_error($conn));
     }
