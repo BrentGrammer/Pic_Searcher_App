@@ -55,11 +55,17 @@ if (isset($_POST['submit'])) {
 
     //following $anchor variable holds html code inserted into anchor column in db, which will be echoed into gallery.php for
     //image display gallery.
-    //note: concatenation had to be used to include the " " marks around the variable values:
-    //the technique used is enclosing the html code that contains double quotes with single quotes and concatenating the variable name in between;
-  $anchor = '<div class="gallery"><a href=' . '"' . $picDestination . '"><img class="searchable" src="' . $picDestination . '" alt="';
+      $anchor = "<div class=\"gallery\">
+                    <a href=\"$picDestination\">
+                    <img class=\"searchable\" src=\"$picDestination\" alt=\"$description\" width=\"300\" height=\"200\">
+                    </a>
+                    <div class=\"desc\">$description</div>
+                 </div>";
+
+
+  //$anchor = '<div class="gallery"><a href=' . '"' . $picDestination . '"><img class="searchable" src="' . $picDestination . '" alt="';
   //variable data continued and concatenated for readability:
-  $anchor .= $description . '" width="300" height="200"></a><div class="desc">' . $description . '</div></div>';
+  //$anchor .= $description . '" width="300" height="200"></a><div class="desc">' . $description . '</div></div>';
     //Note: the images are all given a class of "searchable" in case it is needed for future reference to grab elements by class for searching
     //the above variable $anchor should contain a string result similar to this:
 

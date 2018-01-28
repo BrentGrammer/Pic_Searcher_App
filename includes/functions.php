@@ -72,7 +72,6 @@ function displayImageGallery() {
     $imgId = $row['id'];
 
     echo $imgAnchor; //echoes the anchor html code stored in the database;
-    
 
 //the following code echoes html for the Modify Description button.  It concatenates the corresponding id number of the
 //image to the value property for storing in $_POST on updatepic.php - this can then be used to match the modification with the
@@ -80,7 +79,5 @@ function displayImageGallery() {
     echo '<form action="updatepic.php" method="POST">
               <button type="submit" name="submit" value="' . $imgId . '"' . '>Change Description</button>
           </form>';
-
-
   }
 }

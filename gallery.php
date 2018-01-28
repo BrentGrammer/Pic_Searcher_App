@@ -11,28 +11,32 @@
     <title>Pic Gallery</title>
 
     <link rel='stylesheet' href='gallerystyle.css' type='text/css' />
-    
+
   </head>
 
   <body>
 
-    <p>This is the gallery page.</p>
+      <p>This is the gallery page.</p>
 
-    <div>
-      <!-- SEARCH BAR Note: GET method is better for searches in case user wants to copy URL to save the search-->
-       <form action="searchinput.php" method="GET">
-          <input type="text" name='searchinput' placeholder="Enter Search Terms Here...">
-          <button type='submit' name='submit'>SEARCH IMAGES</button>
-       </form>
-    </div>
+      <div id="searchBar">
+        <!-- SEARCH BAR Note: GET method is better for searches in case user wants to copy URL to save the search-->
+         <form action="searchinput.php" method="GET">
+            <input type="text" name='searchinput' placeholder="Enter Search Terms Here...">
+            <button type='submit' name='submit'>SEARCH IMAGES</button>
+         </form>
+      </div>
 
-    <div>
+      <div id="newUpload">
+          <a href="index.php">UPLOAD ANOTHER IMAGE</a>
+      </div>
 
-    <?php
-   displayImageGallery(); //from functions.php -echos anchor column and includes form for updating description;
-     ?>
+      <div>
 
-    </div>
+      <?php
+     displayImageGallery(); //from functions.php -echos anchor column and includes form for updating description;
+       ?>
+
+      </div>
 
   </body>
 
