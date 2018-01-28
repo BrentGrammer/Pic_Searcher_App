@@ -13,6 +13,8 @@ The way this was accomplished was by concatenating the html img tag code to the 
 Languages Used: PHP, SQL, HTML
 
 ## Tasks/Goals to Complete:
+- Sanitize and validate user inputs on index.php and throughout searches; (') throws an error.
+- Add no match found message if no matches are found for the image search on searchinput.php
 - Check if user input upload fields are empty (user doesn't input anything) on index.php and prevent database entry.
 - Fix styling on the gallery page to make the Change Description button show below the image.
 - Add functionality to update the anchor alt attribute to the new user updated descriptions (may be abandoned in favor of matching user queries with description column in the pics table)

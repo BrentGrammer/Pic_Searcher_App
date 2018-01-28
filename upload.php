@@ -59,22 +59,13 @@ if (isset($_POST['submit'])) {
                     <a href=\"$picDestination\">
                     <img class=\"searchable\" src=\"$picDestination\" alt=\"$description\" width=\"300\" height=\"200\">
                     </a>
-                    <div class=\"desc\">$description</div>
+                    <div class=\"desc\">($description)</div>
                  </div>";
 
-
-  //$anchor = '<div class="gallery"><a href=' . '"' . $picDestination . '"><img class="searchable" src="' . $picDestination . '" alt="';
-  //variable data continued and concatenated for readability:
-  //$anchor .= $description . '" width="300" height="200"></a><div class="desc">' . $description . '</div></div>';
     //Note: the images are all given a class of "searchable" in case it is needed for future reference to grab elements by class for searching
     //the above variable $anchor should contain a string result similar to this:
 
-    //<div class="gallery">
-    //   <a href="$picDestination">
-    //     <img class="searchable" src="$picDestination" alt="$description" width="300" height="200">
-    //   </a>
-    //   <div class="desc">$description</div>
-    // </div>
+
 
     //FINAL Note: The anchor column in the pics table now has all of the information needed to insert the image html data into gallery.php;
 
