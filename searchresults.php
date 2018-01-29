@@ -4,7 +4,12 @@
 
 <?php
 //This file (searchinput.php) holds the user search query sent from the form on gallery.php(the button name='searchinput');
+//-------------------WHEN USER PRESSES DELETE BUTTON ON AN IMG----------------------//
+  if (isset($_POST['submitDelete'])) {
+    deleteImg();
+  }
 
+  //--------------------------DISPLAYS SEARCH RESULTS IF SEARCH HAS BEEN INPUTTED ON GALLERY.PHP---------------------------//
 if (isset($_GET['searchinput'])) {
    //TODO - make an if statement to check if search bar is empty and display enter terms message;
 
@@ -22,16 +27,16 @@ if (isset($_GET['searchinput'])) {
        $query = "SELECT name, description, anchor FROM pics WHERE name LIKE '%$i%' OR description LIKE '%$i%' ";
        $result = mysqli_query($conn, $query);
      }
-       //TODO return error message if $result is empty (may not be necessary or needs to be modified to return no results found message to user):
+
        if (!$result) {
          die("Database Query Failed!" . mysqli_error($conn));
-       }
-
-     //get the rows returned in an associative array and echo the anchor field from each row to display the image:
-     while ($row = mysqli_fetch_assoc($result)) {
-         $searchResult = $row['anchor'];
-         echo $searchResult;
-      }
+       } else {
+         //get the rows returned in an associative array and echo the anchor field from each row to display the image:
+           while ($row = mysqli_fetch_assoc($result)) {
+               $searchResult = $row['anchor'];
+               echo $searchResult; //Echoes the anchor column data for the image from the database.
+            }
+          }
 }
 ?>
 
@@ -41,8 +46,11 @@ if (isset($_GET['searchinput'])) {
     <meta charset="utf-8">
     <title>Search Results</title>
     <link rel='stylesheet' href='gallerystyle.css' type='text/css' />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   </head>
       <body>
+        <a href='gallery.php'>BACK TO GALLERY</a>
            <!--This page displays the search results which are echoed in the PHP code above -->
       </body>
 

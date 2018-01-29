@@ -24,9 +24,9 @@
 
       <div id="searchBar">
         <!-- SEARCH BAR Note: GET method is better for searches in case user wants to copy URL to save the search-->
-         <form action="searchinput.php" method="GET">
+         <form action="searchresults.php" method="GET">
               <i class="fa fa-search" aria-hidden="true"></i>
-              <input type="text" name='searchinput' placeholder="Enter Search Terms Here...">
+              <input type="text" name='searchinput' placeholder="Enter Search Terms Here..." required />
               <button type='submit' name='submit'>SEARCH IMAGES</button>
          </form>
       </div>
@@ -37,9 +37,21 @@
 
       <div id="galleryWrapper">
            <?php
+          //-------------------WHEN USER PRESSES DELETE BUTTON ON AN IMG----------------------//
+            if (isset($_POST['submitDelete'])) {
+              deleteImg();
+            }
+
+           //------------------DISPLAYS CURRENT IMAGE LIBRARY FROM DATABASE----------------//
+            displayImageGallery(); //Echos anchor column w/delete icon and form for updating description from functions.php;
            /*echoes:
             <div class='imgContainer'>
                  <div class="gallery">
+
+                 <form action=deletepic.php method="POST">
+                      <button type="submit" name="submit" class="deleteSubmit" value="$picNameNew"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+                 </form>
+
                      <a href="$picDestination">
                          <img class="searchable" src="$picDestination" alt="$description" width="300" height="200">
                      </a>
@@ -55,7 +67,7 @@
         </div>;
             */
 
-           displayImageGallery(); //Echos anchor column and form for updating description from functions.php;
+
           ?>
       </div>
 

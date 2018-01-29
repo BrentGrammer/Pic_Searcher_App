@@ -13,23 +13,26 @@ The way this was accomplished was by concatenating the html img tag code to the 
 Languages Used: PHP, SQL, HTML
 
 ## Tasks/Goals to Complete:
+- Add ability to change description on searchresults.php page
 - Sanitize and validate user inputs on index.php and throughout searches; (') throws an error.
 - Add no match found message if no matches are found for the image search on searchinput.php
 - Fix styling on the gallery page to make the Change Description button show below the image.
 - Remove alt attribute (no longer needed as description column is queried for searches)
-- Use FULLTEXT() searching in the database description column to match user input query?
+- Security precautions against SQL injections and XSS.
 - Style UI and forms
-- Style the gallery with CSS-create and add external style sheet
 - Allow for multiple inputs on the index page
 - Add update functionality so that if the user deletes an image then the corresponding image    file and entry in the database is removed.
 - Refactoring and putting PHP/MySQL functions into a separate file
 - Sanitize user search inputs in searchinput.php
-- Remove the $description (maybe alt attribute as well) from the $anchor in upload.php.  Incorporate dynamic updating and displaying of the description under the image in the gallery (gallery.php)
--Figure out why selectNameDescriptionAnchor() doesn't work on searchinput.php when trying to refactor.
+- Figure out why selectNameDescriptionAnchor() doesn't work on searchinput.php when trying to refactor.
+- Delete unecessary/unused query functions in functions.php
+- Put gallery on the index page to combine it with the upload and description buttons.
 
 ## Completed Tasks:
+
+- Working Delete Icon Buttons in the gallery and search results page.
 - Added required attribute to file upload input to protect against empty db entries.
-- Styled the Gallery page with Flexbox layout in CSS.
+- Styled the Gallery page with Flexbox layout in CSS and Font Awesome icons from Bootstrap.
 - Added search functionality where the description and name fields are queried with standard WHERE/LIKE statements in searchinput.php
 - Added update description functionality the user can now update the description gallery.php and updatepic.php and it is updated in the database.
 - Refactoring with some of the query code blocks into functions (put in functions.php) to clean up code format

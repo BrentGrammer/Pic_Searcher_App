@@ -56,8 +56,12 @@ if (isset($_POST['submit'])) {
     //following $anchor variable holds html code inserted into anchor column in db, which will be echoed into gallery.php for
     //image display gallery.
       $anchor = "<div class=\"gallery\">
+                    <form action=\"?=deletedpic\" method=\"POST\">
+                         <button type=\"submit\" name=\"submitDelete\" class=\"submitDelete\" value=\"$picNameNew\"><i class=\"fa fa-window-close\" aria-hidden=\"true\"></i></button>
+                    </form>
+
                     <a href=\"$picDestination\">
-                    <img class=\"searchable\" src=\"$picDestination\" alt=\"$description\" width=\"300\" height=\"200\">
+                       <img class=\"searchable\" src=\"$picDestination\" alt=\"$description\" width=\"300\" height=\"200\">
                     </a>
                     <div class=\"desc\">($description)</div>
                  </div>";
