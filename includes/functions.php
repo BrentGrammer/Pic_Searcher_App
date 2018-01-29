@@ -71,13 +71,27 @@ function displayImageGallery() {
     $imgAnchor = $row['anchor'];
     $imgId = $row['id'];
 
-    echo $imgAnchor; //echoes the anchor html code stored in the database;
+//Echoes the anchor html to display pic and change description form inside a <div> for styling:
+    echo "<div class='imgContainer'>";
+        echo $imgAnchor; //echoes the anchor html code stored in the database;
 
+/*$imgAnchor echoes:
+              <div class="gallery">
+                  <a href="$picDestination">
+                  <img class="searchable" src="$picDestination" alt="$description" width="300" height="200">
+                  </a>
+                  <div class="desc">($description)</div>
+               </div>
+*/
 //the following code echoes html for the Modify Description button.  It concatenates the corresponding id number of the
 //image to the value property for storing in $_POST on updatepic.php - this can then be used to match the modification with the
 //image id. this was included in the function to have access to the scope of $imgId;
-    echo '<form action="updatepic.php" method="POST">
-              <button type="submit" name="submit" value="' . $imgId . '"' . '>Change Description</button>
-          </form>';
+        echo '
+                  <div class="updateDesc">
+                  <form action="updatepic.php" method="POST">
+                            <button id="updateButton" type="submit" name="submit" value="' . $imgId . '"' . '>Change Description</button>
+                        </form>
+                    </div>
+            </div>';
   }
 }

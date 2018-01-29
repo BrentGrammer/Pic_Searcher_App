@@ -15,9 +15,8 @@ Languages Used: PHP, SQL, HTML
 ## Tasks/Goals to Complete:
 - Sanitize and validate user inputs on index.php and throughout searches; (') throws an error.
 - Add no match found message if no matches are found for the image search on searchinput.php
-- Check if user input upload fields are empty (user doesn't input anything) on index.php and prevent database entry.
 - Fix styling on the gallery page to make the Change Description button show below the image.
-- Add functionality to update the anchor alt attribute to the new user updated descriptions (may be abandoned in favor of matching user queries with description column in the pics table)
+- Remove alt attribute (no longer needed as description column is queried for searches)
 - Use FULLTEXT() searching in the database description column to match user input query?
 - Style UI and forms
 - Style the gallery with CSS-create and add external style sheet
@@ -29,6 +28,8 @@ Languages Used: PHP, SQL, HTML
 -Figure out why selectNameDescriptionAnchor() doesn't work on searchinput.php when trying to refactor.
 
 ## Completed Tasks:
+- Added required attribute to file upload input to protect against empty db entries.
+- Styled the Gallery page with Flexbox layout in CSS.
 - Added search functionality where the description and name fields are queried with standard WHERE/LIKE statements in searchinput.php
 - Added update description functionality the user can now update the description gallery.php and updatepic.php and it is updated in the database.
 - Refactoring with some of the query code blocks into functions (put in functions.php) to clean up code format

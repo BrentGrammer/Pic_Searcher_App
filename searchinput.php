@@ -34,3 +34,16 @@ if (isset($_GET['searchinput'])) {
       }
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Search Results</title>
+    <link rel='stylesheet' href='gallerystyle.css' type='text/css' />
+  </head>
+      <body>
+           <!--This page displays the search results which are echoed in the PHP code above -->
+      </body>
+
+</html>

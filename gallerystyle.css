@@ -1,32 +1,75 @@
+
+* {
+   /*This uses an automatic sizing of the element boxes feature*/
+    box-sizing: border-box;
+}
+
+/* Div row containing all the images and description button elements.  display:flex arranges all child elements in flex layout */
+#galleryWrapper {
+      display: flex;
+      flex-flow: row wrap;
+      border: 3px solid black;
+}
+
+div.imgContainer {
+      display: flex;
+      flex-direction: column;
+      border: 3px solid orange;
+}
+
+/* Change Description button on gallery.php (html in functions.php under displayImageGallery())  */
+div.updateDesc {
+    border: 5px solid blue;
+    display: inline-block;
+    width: 100%;
+}
+
+#updateButton {
+    width: 100%;
+}
+
+/* Images in the gallery (img and description div): */
 div.gallery {
     margin: 5px;
-    border: 1px solid #ccc;
+    border: 5px solid #ccc; /* grey */
     float: left;
     width: 180px;
-    display: inline;
+    transition: all 0.2s ease-in-out;
+}
+
+/*Apply border change when mouse hovers over image */
+div.gallery img {
+    width: 100%;
+    height: 180px;
+    border: 3px solid red;
+    transition: all 0.2s ease-in-out;
+
 }
 
 div.gallery:hover {
-    border: 1px solid #777;
-}
-
-div.gallery img {
-    width: 100%;
-    height: auto;
+  border: 1px solid #777;
+  width: 200px;
+  height: 200px;
+} & img:hover {
+  border: 1px solid #777;
+  width: 200px;
+  height: 200px;
 }
 
 div.desc {
     padding: 15px;
     text-align: center;
+    border: 3px solid yellow;
 }
 
 #searchBar {
   border: 5px solid red;
   width: 20%;
-  float: left;
+  display: inline-block;
 }
 
 #newUpload {
+     display:inline;
      border: 5px solid green;
      height: 100px;
 }
