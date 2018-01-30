@@ -13,10 +13,7 @@ $dbName = "picsearcherapp"; //Insert the name of the database to be connected to
 $conn = mysqli_connect($dbServername,$dbUsername,$dbPassword,$dbName);
 
 //testing the connection:
-if ($conn) {
-      echo "connected! <br>"; //this shows connected at the top of the page when db is connected
-    } else {
-      die("Database Not Connected!" . mysqli_error($conn));
+if (!$conn) {
+   die("Database Not Connected!" . mysqli_error($conn));
 }
-
 ?>

@@ -43,7 +43,6 @@ function displayImageGallery() {
             </div>';
     }
 }
-
 //---------------------------------DELETE FUNCTION (used on index.php)------------------------------//
 
 function deleteImg() {
@@ -78,7 +77,6 @@ function deleteImg() {
          echo $successMsg;
        }
 }
-
 //---------------------------------SEARCH IMAGES FUNCTION--------------------------------------------------//
 //Called when the user hits the Search Images button from the form on index.php(the button name='searchinput');
 function imgSearch() {

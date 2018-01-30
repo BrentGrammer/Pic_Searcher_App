@@ -34,7 +34,7 @@ include "includes/dbconn.php"; ?>
                     <input type="text" name='searchinput' placeholder="Enter Search Terms Here..." required />
                     <!--Displays a styled link to view full gallery if Search has been made -->
                     <?php if (isset($_GET['submit'])) {
-                                  echo "<a href='index.php' class='buttonlink'>BACK TO GALLERY</a>";
+                                  echo "<a href='index.php' class='buttonlink'>VIEW ALL</a>";
                           } ?>
                     <button type='submit' name='submit' id="searchInput">SEARCH IMAGES</button>
                </form>
