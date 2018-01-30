@@ -58,13 +58,12 @@ include "includes/dbconn.php"; ?>
                      //Calls function to display the image library onto the page:
                       displayImageGallery(); //Echos anchor column w/delete icon and form for updating description from functions.php;
                      }
-                     /*displayImageGallery() echoes:
+                  /*displayImageGallery() echoes the following onto the page:
                       <div class='imgContainer'>
                            <div class="gallery">
-
-                           <form action="?=deletedpic" method="POST">
-                                <button type="submit" name="submit" class="deleteSubmit" value="$picNameNew"><i class="fa fa-window-close" aria-hidden="true"></i></button>
-                           </form>
+                               <form action="?=deletedpic" method="POST">
+                                    <button type="submit" name="submit" class="deleteSubmit" value="$picNameNew"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+                               </form>
 
                                <a href="$picDestination">
                                    <img class="searchable" src="$picDestination" alt="$description" width="300" height="200">
