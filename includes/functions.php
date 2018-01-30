@@ -1,6 +1,6 @@
 <?php
 
-//This function is called on gallery.php and gets necessary data from the database to echo the anchor information for the uploaded images;
+//This function displays the image library in a gallery format and is called on index.php and gets necessary data from the database to echo the anchor information for the uploaded images;
 function displayImageGallery() {
     global $conn; //declare the $conn db connection variable as global since it is outside of function scope.
 
@@ -10,14 +10,14 @@ function displayImageGallery() {
     if (!$result) {
        die("Database Query Failed!" . mysqli_error($conn));
     }
-//grabs anchor column (data originally inserted on upload.php in the $anchor variable) data and echoes it onto the gallery.php page (the html code that displays the image followed by a <br>);
-  while ($row = mysqli_fetch_assoc($result)) {
-    $imgAnchor = $row['anchor'];
-    $imgId = $row['id'];
+//grabs anchor column (data originally inserted on upload.php in the $anchor variable) data and echoes it onto the index.php page (the html code that displays the image followed by a <br>);
+    while ($row = mysqli_fetch_assoc($result)) {
+      $imgAnchor = $row['anchor'];
+      $imgId = $row['id'];
 
 //Echoes the anchor html to display pic and change description form inside a <div> for styling:
-    echo "<div class='imgContainer'>";
-        echo $imgAnchor; //echoes the anchor html code stored in the database;
+      echo "<div class='imgContainer'>";
+          echo $imgAnchor; //echoes the anchor html code stored in the database;
 
 /*$imgAnchor echoes:
               <div class="gallery">
@@ -41,13 +41,13 @@ function displayImageGallery() {
                         </form>
                     </div>
             </div>';
-  }
+    }
 }
 
-//---------------------------------DELETE FUNCTION (used on gallery.php and searchresults.php)------------------------------//
+//---------------------------------DELETE FUNCTION (used on index.php)------------------------------//
 
 function deleteImg() {
-  //------------------------WHEN USER PRESSES DELETE BUTTON ON AN IMG (gallery.php and searchresult.php)-------------------//
+  //------------------------WHEN USER PRESSES DELETE BUTTON ON AN IMG (index.php)-------------------//
              //------------CHECK IF DELETE BUTTON ISSET (ON THIS PAGE)----------------//
                global $conn;
               //This gets the unique name for the img to use for grabbing corr. path data from the db:
@@ -81,18 +81,15 @@ function deleteImg() {
                  }
 }
 
-//-----------------------------------------------------------------------------------------------------//
-//This function is for user search query sent from the form on index.php(the button name='searchinput');
-
-
-
+//---------------------------------SEARCH IMAGES FUNCTION--------------------------------------------------//
+//Called when the user hits the Search Images button from the form on index.php(the button name='searchinput');
 function imgSearch() {
 //-------------------WHEN USER PRESSES DELETE BUTTON ON AN IMG----------------------//
       global $conn;
+      //Calls the Delete Image function (from functions.php) if the user presses the delete button on the retrieved images:
       if (isset($_POST['submitDelete'])) {
               deleteImg();
       }
-
   //--------------------------DISPLAYS SEARCH RESULTS IF SEARCH HAS BEEN INPUTTED---------------------------//
        if (isset($_GET['searchinput'])) {
          //TODO - make an if statement to check if search bar is empty and display enter terms message;
@@ -103,12 +100,9 @@ function imgSearch() {
            //explode $searchInput by spaces to separate words and put them in an array ($searchTerms) to compare for a match in description field:
            $searchTerms = explode(" ", $searchInput);
           // debugging: print_r($searchTerms);
-
-          //TODO Why doesn't selectNameDescriptionAnchor() from functions.php work?? can't refactor..
-
           // loop through $searchTerms to search for each in name/description fields and grabs anchor for echoing the matching image(s):
           foreach ($searchTerms as $i) {
-             $query = "SELECT name, description, anchor FROM pics WHERE name LIKE '%$i%' OR description LIKE '%$i%' ";
+             $query = "SELECT id, name, description, anchor FROM pics WHERE name LIKE '%$i%' OR description LIKE '%$i%' ";
              $result = mysqli_query($conn, $query);
            }
 
@@ -116,14 +110,21 @@ function imgSearch() {
                die("Database Query Failed!" . mysqli_error($conn));
              } else {
                //get the rows returned in an associative array and echo the anchor field from each row to display the image:
-                 while ($row = mysqli_fetch_assoc($result)) {
-                     $searchResult = $row['anchor'];
-
-                     echo $searchResult; //Echoes the anchor column data for the image from the database.
-                  }
+                   while ($row = mysqli_fetch_assoc($result)) {
+                       $imgId = $row['id']; //pulls id to pass into update description button.
+                       $searchResult = $row['anchor'];
+                       //echoes the img container around the matching anchor to include update description function:
+                       echo "<div class='imgContainer'>";
+                           echo $searchResult; //Echoes the anchor column data for the image from the database.
+                       echo '
+                             <div class="updateDesc">
+                             <form action="updatepic.php" method="POST">
+                                       <button id="updateButton" type="submit" name="submit" value="' . $imgId . '"' . '>Change Description</button>
+                                   </form>
+                               </div>
+                       </div>';
+                    }
                 }
           }
-
 }
-
 ?>

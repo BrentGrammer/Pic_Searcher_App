@@ -17,68 +17,82 @@
 #galleryWrapper {
       display: flex;
       flex-flow: row wrap;
-
 }
 
+/* Contains the image, delete icon, desscription and change description button */
 div.imgContainer {
       display: flex;
       flex-direction: column;
-
-}
-
-/* Change Description button on gallery.php (html in functions.php under displayImageGallery())  */
-div.updateDesc {
-
-    display: inline-block;
-    width: 100%;
-}
-
-/*Change Description button on Index gallery*/
-#updateButton {
-    width: 100%;
-    margin-top: 0px;
 }
 
 /* Images in the gallery (img and description div): */
 div.gallery {
     margin: 5px;
-    border: 5px solid #ccc; /* grey */
+    border: none;
     float: left;
     width: 180px;
-
 }
 
 /*Apply border change when mouse hovers over image */
 div.gallery img {
     width: 100%;
     height: 180px;
-
-
-
 }
 
 div.gallery:hover {
   border: 1px solid #777;
 } & img:hover {
   border: 1px solid #777;
-
 }
 
 div.desc {
     padding: 15px;
     text-align: center;
     word-wrap: break-word;
+}
 
+/* Change Description button   */
+div.updateDesc {
+    width: 100%;
+}
+
+/*Change Description button on Index gallery*/
+#updateButton {
+    width: 95%;
+    margin-left: 5px;
+    text-align: center;
 }
 
 #searchBar {
-  border: 5px solid red;
-  width: 20%;
+  width: auto;
   display: inline-block;
 }
 
-#newUpload {
-     display:inline;
-     border: 5px solid green;
-     height: 100px;
+/* Delete Button */
+.submitDelete {
+opacity: 0;
+display: inline-block;
+position: relative;
+background-color: transparent;
+border: none;
+top: 50px;
+left: 75%;
+}
+
+/*This reveals the Delete button on mouseover of the gallery div*/
+div.gallery:hover .submitDelete {
+  opacity: 1;
+}
+
+/* X icon inside delete button (.submitDelete)*/
+.fa-window-close {
+  display: inline-block;
+  font-size: 1.7rem;
+  color: buttonface;
+  background: none;
+}
+
+i.fa-window-close:hover{
+  border: 1px solid #777;
+
 }

@@ -15,10 +15,10 @@ include "includes/dbconn.php"; ?>
     <body>
 
             <form action="upload.php" method="POST" enctype="multipart/form-data">
-              STEP ONE: Choose your Image:
+               UPLOAD IMAGE:
                   <input type="file" name="userpic" required>
                   <br/>
-              STEP TWO: Enter a description that you can search for later:
+                Enter Searchable Description:
                   <input type="text" name="description" placeholder="Enter Description Here...">
                   <br/>
                   <button type="submit" name="submit">UPLOAD</button>
@@ -30,13 +30,13 @@ include "includes/dbconn.php"; ?>
             <div id="searchBar">
               <!-- SEARCH BAR Note: GET method is better for searches in case user wants to copy URL to save the search-->
                <form action="?=searchresults" method="GET">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <label for="searchInput"><i  class="fa fa-search" aria-hidden="true"></i></label>
                     <input type="text" name='searchinput' placeholder="Enter Search Terms Here..." required />
                     <!--Displays a styled link to view full gallery if Search has been made -->
                     <?php if (isset($_GET['submit'])) {
                                   echo "<a href='index.php' class='buttonlink'>BACK TO GALLERY</a>";
                           } ?>
-                    <button type='submit' name='submit'>SEARCH IMAGES</button>
+                    <button type='submit' name='submit' id="searchInput">SEARCH IMAGES</button>
                </form>
             </div>
 

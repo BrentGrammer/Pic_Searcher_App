@@ -8,7 +8,11 @@ if (isset($_POST['submit'])) {
       //assign variables to each piece of data in the submitted file and form array
 
     //text description input:
-    $description = $_POST['description']; //make a text input with this name
+    $description = $_POST['description'];
+    //Checks if the user did not enter a description and replaces empty string with default text:
+    if ($description === "") {
+      $description = "No Caption";
+    }
     //variable assigned to file array (the image uploaded) in superglobal $_FILES:
     $userpic = $_FILES['userpic']; //'userpic' is the name of the file/img input in index.php
     //print_r($userpic); //<--used to display info in file array and check variable
@@ -56,12 +60,12 @@ if (isset($_POST['submit'])) {
     //following $anchor variable holds html code inserted into anchor column in db, which will be echoed into gallery.php for
     //image display gallery.
       $anchor = "<div class=\"gallery\">
-                    <form action=\"?=deletedpic\" method=\"POST\">
-                         <button type=\"submit\" name=\"submitDelete\" class=\"submitDelete\" value=\"$picNameNew\"><i class=\"fa fa-window-close\" aria-hidden=\"true\"></i></button>
+                    <form class=\"deleteForm\" action=\"?=deletedpic\" method=\"POST\">
+                         <button type=\"submit\" name=\"submitDelete\" class=\"submitDelete\" value=\"$picNameNew\" title=\"Delete\"><i class=\"fa fa-window-close\" aria-hidden=\"true\"></i></button>
                     </form>
 
                     <a href=\"$picDestination\">
-                       <img class=\"searchable\" src=\"$picDestination\" alt=\"$description\" width=\"300\" height=\"200\">
+                       <img class=\"searchable\" src=\"$picDestination\" width=\"300\" height=\"200\">
                     </a>
                     <div class=\"desc\">($description)</div>
                  </div>";
