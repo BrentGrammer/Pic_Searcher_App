@@ -51,11 +51,11 @@ include "includes/dbconn.php"; ?>
                  //Image gallery does not display if a Search has been submitted:
                  if (!isset($_GET['submit'])){
 
-      //-------------------WHEN USER PRESSES DELETE BUTTON ON AN IMG----------------------//
+                     //Calls function to delete the image if the delete button is pressed by user:
                      if (isset($_POST['submitDelete'])) {
                        deleteImg();
                      }
-
+                     //Calls function to display the image library onto the page:
                       displayImageGallery(); //Echos anchor column w/delete icon and form for updating description from functions.php;
                      }
                      /*displayImageGallery() echoes:
