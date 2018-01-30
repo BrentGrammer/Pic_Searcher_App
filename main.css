@@ -84,7 +84,7 @@ div.gallery:hover .submitDelete {
     opacity: 1;
 }
 
-/* X icon inside delete button (.submitDelete)*/
+/* X icon inside delete button (parent is .submitDelete)*/
 .fa-window-close {
     display: inline-block;
     font-size: 1.7rem;
