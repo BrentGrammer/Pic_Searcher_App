@@ -3,7 +3,7 @@
 **Note:** *This project is well under way to completion.  Most functionality is complete; the focus is now on styling and UI improvements*
 
 ### Current version:
-The purpose of this application is to create a searchable library of image files uploaded by the user. This is accomplished by the user uploading images on the home page to a library which is stored in a database managed with SQL/MySQL and accessed using PHP.  The user can then input search terms on the Gallery page (gallery.php), which will be queried to compare with full or partial matches (by word) in the database (under the description and name fields).  When a match is found, html code for the anchor contents of the image (also stored in the database to be echoed onto the Gallery page) will be retrieved and echoed onto a results page (currently searchinput.php).  Please see list of Tasks to complete for further development.
+The purpose of this application is to create a searchable library of image files uploaded by the user. This is accomplished by the user uploading images on the home page to a library which is stored in a database managed with SQL/MySQL and accessed using PHP.  The user can then input search terms on the Gallery page (loacted on index.php), which will be queried to compare with full or partial matches (by word) in the database (under the description and name fields).  When a match is found, html code for the anchor contents of the image (also stored in the database to be echoed onto the Gallery page) will be retrieved and echoed onto the page (index.php - the results are shown after hiding the image library).  Please see list of Tasks to complete for further development.
 
 Languages Used: PHP, SQL, HTML
 
