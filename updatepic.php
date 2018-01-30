@@ -3,7 +3,7 @@
 
 <?php
 
-//Checks the submit button from gallery.php to get the img id number;
+//Checks the submit button from index.php to get the img id number;
 if (isset($_POST['submit'])) {
 //following code assigns the id# of the image being modified from the submit value from gallery.php to a variable;
    $imgId = $_POST['submit'];
@@ -20,6 +20,7 @@ if (isset($_POST['submit'])) {
      }
    }
  }
+
 ?>
 
 <!-- Note: the id number of the image being modified is stored in $_POST['submit']; -->
@@ -29,15 +30,23 @@ if (isset($_POST['submit'])) {
   <head>
     <meta charset="utf-8">
     <title>Update Description</title>
+    <!--Font Awesome from Bootstrap CDN  -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel='stylesheet' href='main.css' type='text/css' />
   </head>
-  <body>
-    <h1>Update Image Description</h1>
+    <body>
+      <h1>Update Image Description</h1>
 
-    <form action="updated_description.php" method="POST">
-          <!--description is echoed from querying the current img desc -->
-          <textarea name="newDesc"><?php echo "$currentDesc";?></textarea>
-          <button type="submit" name="updateDesc" value="<?php echo $idNum ?>">UPDATE</button>
-    </form>
 
-  </body>
+
+
+       <form action="updated_description.php" method="POST">
+            <!--description is echoed from querying the current img desc -->
+            <textarea name="newDesc"><?php echo $currentDesc ?></textarea>
+            <button type="submit" name="updateDesc" value="<?php echo $idNum ?>">UPDATE</button>
+      </form>;
+
+
+      <a href="index.php" class="buttonlink">BACK TO GALLERY</a>
+    </body>
 </html>

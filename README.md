@@ -22,14 +22,14 @@ Languages Used: PHP, SQL, HTML
 - Style UI and forms
 - Allow for multiple inputs on the index page
 - Add update functionality so that if the user deletes an image then the corresponding image    file and entry in the database is removed.
-- Refactoring and putting PHP/MySQL functions into a separate file
 - Sanitize user search inputs in searchinput.php
-- Figure out why selectNameDescriptionAnchor() doesn't work on searchinput.php when trying to refactor.
-- Delete unecessary/unused query functions in functions.php
-- Put gallery on the index page to combine it with the upload and description buttons.
+
 
 ## Completed Tasks:
 
+- Refactoring of major functions in the app - (search, delete, gallery display functions).
+- Consolidated image gallery with the index page.
+- Configured Search functionality to display results dynamically on the index page instead of on a separate search page.
 - Working Delete Icon Buttons in the gallery and search results page.
 - Added required attribute to file upload input to protect against empty db entries.
 - Styled the Gallery page with Flexbox layout in CSS and Font Awesome icons from Bootstrap.
