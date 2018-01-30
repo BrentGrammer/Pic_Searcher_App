@@ -48,12 +48,10 @@ function displayImageGallery() {
 
 function deleteImg() {
   //------------------------WHEN USER PRESSES DELETE BUTTON ON AN IMG (index.php)-------------------//
-   //------------CHECK IF DELETE BUTTON ISSET (ON THIS PAGE)----------------//
      global $conn;
     //This gets the unique name for the img to use for grabbing corr. path data from the db:
      $uniquePicName = $_POST['submitDelete'];
     //print_r($uniquePicName); //debugging
-
   //----------------------------DELETING THE FILE FROM /UPLOADS----------------------------------//
      //Gets the real path for the img file from the database for the file:
      $queryPath = "SELECT path FROM pics WHERE unique_id='$uniquePicName'";
@@ -96,13 +94,11 @@ function imgSearch() {
          $searchInput = $_GET['searchinput'];
          //explode $searchInput by spaces to separate words and put them in an array ($searchTerms) to compare for a match in description field:
          $searchTerms = explode(" ", $searchInput);
-
         // loop through $searchTerms to search for each in name/description fields and grabs anchor for echoing the matching image(s):
         foreach ($searchTerms as $i) {
            $query = "SELECT id, name, description, anchor FROM pics WHERE name LIKE '%$i%' OR description LIKE '%$i%' ";
            $result = mysqli_query($conn, $query);
          }
-
          if (!$result) {
            die("Database Query Failed!" . mysqli_error($conn));
          } else {
@@ -114,7 +110,7 @@ function imgSearch() {
                    //If match found, then get the rows returned in an associative array and echo the anchor field from each row to display the image:
                    while ($row = mysqli_fetch_assoc($result)) {
                        $imgId = $row['id']; //pulls id to pass into update description button.
-                       $searchResult = $row['anchor'];                  
+                       $searchResult = $row['anchor'];
                        //echoes the img container around the matching anchor to include update description function:
                        echo "<div class='imgContainer'>";
                            echo $searchResult; //Echoes the anchor column data for the image from the database.
