@@ -6,23 +6,23 @@
 
 /*Styling to make anchor links look like buttons: */
 .buttonlink {
-  border: 2px outset buttonface;
-  background-color: buttonface;
-  color: buttontext;
-  text-decoration: none;
-  -webkit-appearance: button;
+    border: 2px outset buttonface;
+    background-color: buttonface;
+    color: buttontext;
+    text-decoration: none;
+    -webkit-appearance: button;
 }
 
 /* Div row containing all the images and description button elements.  display:flex arranges all child elements in flex layout */
 #galleryWrapper {
-      display: flex;
-      flex-flow: row wrap;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 /* Contains the image, delete icon, desscription and change description button */
 div.imgContainer {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Images in the gallery (img and description div): */
@@ -40,10 +40,10 @@ div.gallery img {
 }
 
 div.gallery:hover {
-  border: 1px solid #777;
-} & img:hover {
-  border: 1px solid #777;
-}
+    border: 1px solid #777;
+  } & img:hover {
+    border: 1px solid #777;
+  }
 
 div.desc {
     padding: 15px;
@@ -64,35 +64,34 @@ div.updateDesc {
 }
 
 #searchBar {
-  width: auto;
-  display: inline-block;
+    width: auto;
+    display: inline-block;
 }
 
 /* Delete Button */
 .submitDelete {
-opacity: 0;
-display: inline-block;
-position: relative;
-background-color: transparent;
-border: none;
-top: 50px;
-left: 75%;
+    opacity: 0;
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    border: none;
+    top: 50px;
+    left: 75%;
 }
 
 /*This reveals the Delete button on mouseover of the gallery div*/
 div.gallery:hover .submitDelete {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* X icon inside delete button (.submitDelete)*/
 .fa-window-close {
-  display: inline-block;
-  font-size: 1.7rem;
-  color: buttonface;
-  background: none;
+    display: inline-block;
+    font-size: 1.7rem;
+    color: buttonface;
+    background: none;
 }
 
-i.fa-window-close:hover{
-  border: 1px solid #777;
-
+i.fa-window-close:hover {
+    border: 1px solid #777;
 }
