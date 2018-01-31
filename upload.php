@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
       //make sure file error = 0 in the superglobal ($picError is the corr. variable):
        if ($picError === 0) {
          //then check file size in bytes:
-          if ($picSize < 1000000) {
+          if ($picSize < 2000000) {
             //assign filename a unique name with uniqid function and true parameter - means true time in milliseconds-always unique
              $picNameNew = uniqid('',true).".".$picActualExt;
              //point to the destination to put the file starting from host root and concatenate the $picNameNew to it
@@ -48,13 +48,19 @@ if (isset($_POST['submit'])) {
              echo "Image Uploaded! <br>";
              //header("Location: page2.php");
           } else {
-                echo "Your file is too big.";  //if $picSize exceeds 1000000
+                echo "<h2>Your file is too big.</2>";  //if $picSize exceeds 1000000
+                echo "<a href='index.php' class='buttonlink'>BACK TO GALLERY</a>";
+                exit(); //Stops rest of script from running.
             }
         } else {
               echo "There was an error uploading."; //if $picError is not === 0
+              echo "<a href='index.php' class='buttonlink'>BACK TO GALLERY</a>";
+              exit();
           }
     } else {
           echo "You cannot upload files of this type."; //if picActualExt is not in $allowed
+          echo "<a href='index.php' class='buttonlink'>BACK TO GALLERY</a>";
+          exit(); //Stops script.
       }
 
     //following $anchor variable holds html code inserted into anchor column in db, which will be echoed into gallery.php for
@@ -85,18 +91,18 @@ if (isset($_POST['submit'])) {
 //variables: $picName=the original name of the image uploaded, $picDestination=the folder location and name of where the image was moved to(uploads folder)
 //$description=the text description the user put in the input on index.php, $picNameNew=the unique id generated to prevent overwriting.
 
-    $query = "INSERT INTO pics(name,path,description,unique_id,anchor) ";
+    $sql = "INSERT INTO pics(name,path,description,unique_id,anchor) ";
     //values to be inserted into db columns are represented by the variables $(query is concatenated to follow best practices and for future editing ease):
-    $query .= "VALUES ('$picName','$picDestination','$description','$picNameNew','$anchor');";
+    $sql .= "VALUES (?,?,?,?,?);";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute([$picName,$picDestination,$description,$picNameNew,$anchor]);
 
-    //executes the query:
-    $result = mysqli_query($conn,$query);
     //tests if the query went through:
     if ($result) {
         echo "Database Updated! <br>";
         header('Location: index.php?imageupload=success');  //goes back to index page and updates url.
     } else {
-      die ("Database failed to update!" . mysqli_error($conn));
+      die ("Database failed to update!");
     }
 } //<----closing curly brace for the original if isset statement.
 

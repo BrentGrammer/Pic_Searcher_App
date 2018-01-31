@@ -8,17 +8,19 @@ The purpose of this application is to create a searchable library of image files
 Languages Used: PHP, SQL, HTML
 
 ## Tasks/Goals to Complete:
+- Fix prepared statement in updated_description.php line 14.  The placeholder is not binding to $newDesc (probably because of quotation marks?)
 - consider parring down anchor column and just storing user inputs which can be inserted into echo statements to create the html code on the fly.
-- Convert mysqli code to PDO and use prepared statements to protect against SQL injections.
+- Add a user prompt to confirm delete image function
 - Sanitize and validate user inputs on index.php and user searches; (') throws an error.
 - Add no match found message if no matches are found for the image search on searchinput.php
 - Security precautions against SQL injections and XSS.
 - Style UI and forms
 - Allow for multiple inputs in the index page?
+- Remove debugging code
 
 
 ## Completed Tasks:
-
+- Converted mysqli to PDO extension.  All queries handling user input now use prepared statements to prevent SQL injection.
 - Delete icon buttons appear on the images on mouse hover
 - Added functionality for description updates on search results
 - Refactoring of major functions in the app - (search, delete, gallery display functions).

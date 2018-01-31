@@ -44,7 +44,7 @@ include "includes/dbconn.php"; ?>
                  <?php
 
                  if (isset($_GET['submit'])){
-                 imgSearch();
+                 imgSearch($pdo);
                  }
 
                  //------------------DISPLAYS CURRENT IMAGE LIBRARY FROM DATABASE----------------//
@@ -53,10 +53,10 @@ include "includes/dbconn.php"; ?>
 
                      //Calls function to delete the image if the delete button is pressed by user:
                      if (isset($_POST['submitDelete'])) {
-                       deleteImg();
+                       deleteImg($pdo);
                      }
-                     //Calls function to display the image library onto the page:
-                      displayImageGallery(); //Echos anchor column w/delete icon and form for updating description from functions.php;
+                     //Calls function to display the image library onto the page ($pdo object passed in):
+                      displayImageGallery($pdo); //Echos anchor column w/delete icon and form for updating description from functions.php;
                      }
                   /*displayImageGallery() echoes the following onto the page:
                       <div class='imgContainer'>

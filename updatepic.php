@@ -10,12 +10,12 @@ if (isset($_POST['submit'])) {
    $idNum = $imgId;  //fixed a bug where $imgId was being reassigned an empty value from $_POST['submit'] when the updateDesc button was set;
    //print_r($idNum); //debugging
   //then this grabs the current description for the id to input into the textarea for editing;
-   $query = "SELECT description FROM pics WHERE id='$imgId';";
-   $result = mysqli_query($conn, $query);
-
+   $sql = "SELECT description FROM pics WHERE id=? ;";
+   $stmt = $pdo->prepare($sql);
+   $result = $stmt->execute([$imgId]);
 //this assigns the current description in the database to $currentDesc for echoing onto the update page in textarea;
    if ($result) {
-       while ($row = mysqli_fetch_row($result)){
+       while ($row = $stmt->fetch(PDO::FETCH_NUM)){
           $currentDesc = $row[0];  //fetch functions needed to get the data converted to a string (you can't just assign $currentDesc to $result);
      }
    }
@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
             <!--description is echoed from querying the current img desc -->
             <textarea name="newDesc"><?php echo $currentDesc ?></textarea>
             <button type="submit" name="updateDesc" value="<?php echo $idNum ?>">UPDATE</button>
-      </form>;
+      </form>
 
 
       <a href="index.php" class="buttonlink">BACK TO GALLERY</a>

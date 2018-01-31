@@ -1,19 +1,29 @@
 <?php
 //This code (connects to the database) is included in all php files requiring access to the database.
-
+//Using PDO Extension.
 //database being connected to is 'picsearcherapp' and the name of the table is 'pics'.
 
 //the server name is localhost when using xampp on computer, otherwise it is your website host (ip address)
-$dbServername = "localhost"; //Insert the name of the server.
-$dbUsername = "root"; //Insert the Database username.
-$dbPassword = ""; //Insert the password for the Database.
+$host = "localhost"; //Insert the name of the server.
+$user = "root"; //Insert the Database username.
+$password = ""; //Insert the password for the Database.
 $dbName = "picsearcherapp"; //Insert the name of the database to be connected to.
+$charset = 'utf8mb4'; //Define charset - use utf8mb4 ofer utf8.
 
-//variable set to connect to the database:
-$conn = mysqli_connect($dbServername,$dbUsername,$dbPassword,$dbName);
+$dsn = "mysql:host=$host;dbname=$dbName;charset=$charset";
+$opt = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,      //sets default fetch mode to fetch_assoc;
+    PDO::ATTR_EMULATE_PREPARES   => false,                 //Allows for use of Limit and turns off Emulation mode;
+];
+$pdo = new PDO($dsn, $user, $password, $opt);
 
-//testing the connection:
-if (!$conn) {
-   die("Database Not Connected!" . mysqli_error($conn));
-}
+//Uncomment the following to test the connection:
+// try{
+//     $pdo = new PDO($dsn, $user, $password, $opt);
+//     die(json_encode(array('outcome' => true)));
+// }
+// catch(PDOException $ex){
+//     die(json_encode(array('outcome' => false, 'message' => 'Unable to connect')));
+// }
 ?>

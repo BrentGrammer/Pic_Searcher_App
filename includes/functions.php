@@ -1,17 +1,14 @@
 <?php
 
-//This function displays the image library in a gallery format and is called on index.php and gets necessary data from the database to echo the anchor information for the uploaded images;
-function displayImageGallery() {
-    global $conn; //declare the $conn db connection variable as global since it is outside of function scope.
 
-    $query = "SELECT id, description, anchor FROM pics;";
-    $result = mysqli_query($conn, $query);
-//return error message if $result is empty:
-    if (!$result) {
-       die("Database Query Failed!" . mysqli_error($conn));
-    }
+//This function displays the image library in a gallery format and is called on index.php and gets necessary data from the database to echo the anchor information for the uploaded images;
+
+//NOTE: After converting the app to use PDO, the $pdo object from dbconn.php needs to be passed in each time a function on this page is called.
+function displayImageGallery($pdo) {
+    $sql = "SELECT id, description, anchor FROM pics;";
+    $stmt = $pdo->query($sql);
 //grabs anchor column (data originally inserted on upload.php in the $anchor variable) data and echoes it onto the index.php page (the html code that displays the image followed by a <br>);
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($row = $stmt->fetch()) {
       $imgAnchor = $row['anchor'];
       $imgId = $row['id'];
 
@@ -45,18 +42,19 @@ function displayImageGallery() {
 }
 //---------------------------------DELETE FUNCTION (used on index.php)------------------------------//
 
-function deleteImg() {
-  //------------------------WHEN USER PRESSES DELETE BUTTON ON AN IMG (index.php)-------------------//
-     global $conn;
+function deleteImg($pdo) {
+  //CALLED WHEN USER PRESSES DELETE BUTTON ON AN IMG (index.php)//
+
     //This gets the unique name for the img to use for grabbing corr. path data from the db:
      $uniquePicName = $_POST['submitDelete'];
     //print_r($uniquePicName); //debugging
   //----------------------------DELETING THE FILE FROM /UPLOADS----------------------------------//
      //Gets the real path for the img file from the database for the file:
-     $queryPath = "SELECT path FROM pics WHERE unique_id='$uniquePicName'";
-     $picPath = mysqli_query($conn, $queryPath);
-     //Gets the real path data into an array to convert it to a string:
-     while ($row = mysqli_fetch_assoc($picPath)) {
+     $sqlPath = 'SELECT `path` FROM pics WHERE unique_id=?';
+     $stmt = $pdo->prepare($sqlPath);
+     $stmt->execute([$uniquePicName]);
+     //Path field fetched in assoc array (default method set in dbconn.php)
+     while($row = $stmt->fetch()) {
          $realPath = $row['path'];
          //Checks if the file exists and then deletes it from uploads folder:
          if (file_exists($realPath)) {
@@ -65,13 +63,14 @@ function deleteImg() {
               echo "File does not exist and could not be deleted!";
             }
       }
-  //---------------------------------DELETING THE DATABASE ENTRY-----------------------------------//
-     //This executes the delete database entry query and assigns it to $result:
-     $queryDelete = "DELETE FROM pics WHERE unique_id='$uniquePicName'";
-     $result = mysqli_query($conn, $queryDelete);
 
-     if (!$result) {
-         die ("Error: Could not delete image!" . mysqli_error($conn));
+     //This executes the delete database entry query:
+     $sqlDelete = 'DELETE FROM pics WHERE unique_id=?';
+     $stmt = $pdo->prepare($sqlDelete);
+     $stmt->execute([$uniquePicName]);
+    //Checks if file was deleted:
+     if (!$stmt) {
+         die ("Error: Could not delete image!");
      } else {
          $successMsg = "Image Deleted!";
          echo $successMsg;
@@ -79,34 +78,35 @@ function deleteImg() {
 }
 //---------------------------------SEARCH IMAGES FUNCTION--------------------------------------------------//
 //Called when the user hits the Search Images button from the form on index.php(the button name='searchinput');
-function imgSearch() {
-//-------------------WHEN USER PRESSES DELETE BUTTON ON AN IMG----------------------//
-    global $conn;
+function imgSearch($pdo) {
     //Calls the Delete Image function (from functions.php) if the user presses the delete button on the retrieved images:
     if (isset($_POST['submitDelete'])) {
-            deleteImg();
+            deleteImg($pdo);
     }
-//--------------------------DISPLAYS SEARCH RESULTS IF SEARCH HAS BEEN INPUTTED---------------------------//
-     if (isset($_GET['searchinput'])) {
+     //DISPLAYS SEARCH RESULTS IF SEARCH HAS BEEN INPUTTED:
+    if (isset($_GET['searchinput'])) {
          //this holds the keyword(s) the user inputed to search:
          $searchInput = $_GET['searchinput'];
          //explode $searchInput by spaces to separate words and put them in an array ($searchTerms) to compare for a match in description field:
          $searchTerms = explode(" ", $searchInput);
-        // loop through $searchTerms to search for each in name/description fields and grabs anchor for echoing the matching image(s):
-        foreach ($searchTerms as $i) {
-           $query = "SELECT id, name, description, anchor FROM pics WHERE name LIKE '%$i%' OR description LIKE '%$i%' ";
-           $result = mysqli_query($conn, $query);
+         // loop through $searchTerms to search for each in name/description fields and grabs anchor for echoing the matching image(s):
+         $searchArray = [];
+         foreach ($searchTerms as $i) {
+           $search = "%$i%";
+           $sql = "SELECT id, name, description, anchor FROM pics WHERE name LIKE ? OR description LIKE ? ";
+           $stmt = $pdo->prepare($sql);
+           $stmt->execute([$search, $search]);
          }
-         if (!$result) {
-           die("Database Query Failed!" . mysqli_error($conn));
+         if (!$stmt) {
+           die("Database Query Failed!");
          } else {
               //Test if a match was found by fetching $result as an array and testing if it is null:
-              $row = mysqli_fetch_assoc($result);
-              if ($row == NULL) {
+              $imgMatches = $stmt->fetchAll();
+
+              if ($imgMatches == NULL) {
                  echo "<h2>No Match Found</h2>.";
               } else {
-                   //If match found, then get the rows returned in an associative array and echo the anchor field from each row to display the image:
-                   while ($row = mysqli_fetch_assoc($result)) {
+                    foreach($imgMatches as $row){
                        $imgId = $row['id']; //pulls id to pass into update description button.
                        $searchResult = $row['anchor'];
                        //echoes the img container around the matching anchor to include update description function:
@@ -122,6 +122,6 @@ function imgSearch() {
                     }
                 }
           }
-    }
+     }
 }
 ?>
