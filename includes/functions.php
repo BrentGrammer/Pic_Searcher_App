@@ -1,43 +1,36 @@
 <?php
-
-
-//This function displays the image library in a gallery format and is called on index.php and gets necessary data from the database to echo the anchor information for the uploaded images;
-
-//NOTE: After converting the app to use PDO, the $pdo object from dbconn.php needs to be passed in each time a function on this page is called.
+//This function displays the image library in a gallery format and is called on index.php and gets necessary data from the database to insert into the echoed html information for the images;
+//NOTE: Since the app uses PDO, the $pdo object from dbconn.php needs to be passed in each time a function on this page is called.
 function displayImageGallery($pdo) {
-    $sql = "SELECT id, description, anchor FROM pics;";
+    $sql = "SELECT id, `path`, description, unique_id FROM pics;";
     $stmt = $pdo->query($sql);
-//grabs anchor column (data originally inserted on upload.php in the $anchor variable) data and echoes it onto the index.php page (the html code that displays the image followed by a <br>);
+
     while ($row = $stmt->fetch()) {
-      $imgAnchor = $row['anchor'];
       $imgId = $row['id'];
+      $path = $row['path'];
+      $description = $row['description'];
+      $unique_id = $row['unique_id'];
 
 //Echoes the anchor html to display pic and change description form inside a <div> for styling:
-      echo "<div class='imgContainer'>";
-          echo $imgAnchor; //echoes the anchor html code stored in the database;
+      echo "<div class='imgContainer'>
 
-/*$imgAnchor echoes:
-              <div class="gallery">
-              <form action="?=deletedpic" method="POST">
-                   <button type="submit" name="submit" class="deleteSubmit" value="$picNameNew"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+              <div class=\"gallery\">
+              <form action=\"?=deletedpic\" method=\"POST\">
+                   <button type=\"submit\" name=\"submitDelete\" class=\"submitDelete\" value=\"$unique_id\"><i class=\"fa fa-window-close\" aria-hidden=\"true\"></i></button>
               </form>
 
-                  <a href="$picDestination">
-                  <img class="searchable" src="$picDestination" alt="$description" width="300" height="200">
+                  <a href=\"$path\">
+                  <img class=\"searchable\" src=\"$path\" alt=\"($description)\" width=\"300\" height=\"200\">
                   </a>
-                  <div class="desc">($description)</div>
+                  <div class=\"desc\">$description</div>
                </div>
-*/
-//the following code echoes html for the Modify Description button.  It concatenates the corresponding id number of the
-//image to the value property for storing in $_POST on updatepic.php - this can then be used to match the modification with the
-//image id. this was included in the function to have access to the scope of $imgId;
-        echo '
-                  <div class="updateDesc">
-                  <form action="updatepic.php" method="POST">
-                            <button id="updateButton" type="submit" name="submit" value="' . $imgId . '"' . '>Change Description</button>
+
+                  <div class=\"updateDesc\">
+                  <form action=\"updatepic.php\" method=\"POST\">
+                            <button id=\"updateButton\" type=\"submit\" name=\"submit\" value=\"$imgId\">Change Description</button>
                         </form>
                     </div>
-            </div>';
+            </div>";
     }
 }
 //---------------------------------DELETE FUNCTION (used on index.php)------------------------------//
@@ -63,10 +56,9 @@ function deleteImg($pdo) {
               echo "File does not exist and could not be deleted!";
             }
       }
-
      //This executes the delete database entry query:
-     $sqlDelete = 'DELETE FROM pics WHERE unique_id=?';
-     $stmt = $pdo->prepare($sqlDelete);
+     $sql = 'DELETE FROM pics WHERE unique_id=?';
+     $stmt = $pdo->prepare($sql);
      $stmt->execute([$uniquePicName]);
     //Checks if file was deleted:
      if (!$stmt) {
@@ -89,11 +81,11 @@ function imgSearch($pdo) {
          $searchInput = $_GET['searchinput'];
          //explode $searchInput by spaces to separate words and put them in an array ($searchTerms) to compare for a match in description field:
          $searchTerms = explode(" ", $searchInput);
-         // loop through $searchTerms to search for each in name/description fields and grabs anchor for echoing the matching image(s):
+         // loop through $searchTerms to search for each in name/description fields and grabs data for echoing the matching image(s):
          $searchArray = [];
          foreach ($searchTerms as $i) {
            $search = "%$i%";
-           $sql = "SELECT id, name, description, anchor FROM pics WHERE name LIKE ? OR description LIKE ? ";
+           $sql = "SELECT id, name, `path`, description, unique_id FROM pics WHERE name LIKE ? OR description LIKE ? ";
            $stmt = $pdo->prepare($sql);
            $stmt->execute([$search, $search]);
          }
@@ -101,25 +93,37 @@ function imgSearch($pdo) {
            die("Database Query Failed!");
          } else {
               //Test if a match was found by fetching $result as an array and testing if it is null:
-              $imgMatches = $stmt->fetchAll();
+              $imgMatches = $stmt->fetchAll(); //Note: fetchAll() needed to be used with the LIKE query. fetch() doesn't work.
 
               if ($imgMatches == NULL) {
                  echo "<h2>No Match Found</h2>.";
               } else {
                     foreach($imgMatches as $row){
                        $imgId = $row['id']; //pulls id to pass into update description button.
-                       $searchResult = $row['anchor'];
-                       //echoes the img container around the matching anchor to include update description function:
-                       echo "<div class='imgContainer'>";
-                           echo $searchResult; //Echoes the anchor column data for the image from the database.
-                       echo '
-                             <div class="updateDesc">
-                             <form action="updatepic.php" method="POST">
-                                       <button id="updateButton" type="submit" name="submit" value="' . $imgId . '"' . '>Change Description</button>
-                                   </form>
-                               </div>
-                       </div>';
-                    }
+                       $path = $row['path'];
+                       $description = $row['description'];
+                       $unique_id = $row['unique_id'];
+
+                       echo "<div class='imgContainer'>
+
+                               <div class=\"gallery\">
+                                 <form action=\"?=deletedpic\" method=\"POST\">
+                                      <button type=\"submit\" name=\"submitDelete\" class=\"submitDelete\" value=\"$unique_id\"><i class=\"fa fa-window-close\" aria-hidden=\"true\"></i></button>
+                                 </form>
+
+                                  <a href=\"$path\">
+                                     <img class=\"searchable\" src=\"$path\" alt=\"($description)\" width=\"300\" height=\"200\">
+                                  </a>
+                                     <div class=\"desc\">$description</div>
+                                 </div>
+
+                                  <div class=\"updateDesc\">
+                                     <form action=\"updatepic.php\" method=\"POST\">
+                                         <button id=\"updateButton\" type=\"submit\" name=\"submit\" value=\"$imgId\">Change Description</button>
+                                     </form>
+                                  </div>
+                             </div>";
+                      }
                 }
           }
      }

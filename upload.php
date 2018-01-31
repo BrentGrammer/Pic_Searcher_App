@@ -63,26 +63,6 @@ if (isset($_POST['submit'])) {
           exit(); //Stops script.
       }
 
-    //following $anchor variable holds html code inserted into anchor column in db, which will be echoed into gallery.php for
-    //image display gallery.
-      $anchor = "<div class=\"gallery\">
-                    <form class=\"deleteForm\" action=\"?=deletedpic\" method=\"POST\">
-                         <button type=\"submit\" name=\"submitDelete\" class=\"submitDelete\" value=\"$picNameNew\" title=\"Delete\"><i class=\"fa fa-window-close\" aria-hidden=\"true\"></i></button>
-                    </form>
-
-                    <a href=\"$picDestination\">
-                       <img class=\"searchable\" src=\"$picDestination\" width=\"300\" height=\"200\">
-                    </a>
-                    <div class=\"desc\">($description)</div>
-                 </div>";
-
-    //Note: the images are all given a class of "searchable" in case it is needed for future reference to grab elements by class for searching
-    //the above variable $anchor should contain a string result similar to this:
-
-
-
-    //FINAL Note: The anchor column in the pics table now has all of the information needed to insert the image html data into gallery.php;
-
 //----------------END OF MOVING IMG FILES TO UPLOADS----------------------//
 
 //---------FOLLOWING CODE INSERTS THE IMAGE AND DESCRIPTION DATA INTO THE DATABASE-----//
@@ -91,11 +71,11 @@ if (isset($_POST['submit'])) {
 //variables: $picName=the original name of the image uploaded, $picDestination=the folder location and name of where the image was moved to(uploads folder)
 //$description=the text description the user put in the input on index.php, $picNameNew=the unique id generated to prevent overwriting.
 
-    $sql = "INSERT INTO pics(name,path,description,unique_id,anchor) ";
+    $sql = "INSERT INTO pics(name,path,description,unique_id) ";
     //values to be inserted into db columns are represented by the variables $(query is concatenated to follow best practices and for future editing ease):
-    $sql .= "VALUES (?,?,?,?,?);";
+    $sql .= "VALUES (?,?,?,?);";
     $stmt = $pdo->prepare($sql);
-    $result = $stmt->execute([$picName,$picDestination,$description,$picNameNew,$anchor]);
+    $result = $stmt->execute([$picName,$picDestination,$description,$picNameNew]);
 
     //tests if the query went through:
     if ($result) {

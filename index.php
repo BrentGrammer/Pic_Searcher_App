@@ -56,13 +56,13 @@ include "includes/dbconn.php"; ?>
                        deleteImg($pdo);
                      }
                      //Calls function to display the image library onto the page ($pdo object passed in):
-                      displayImageGallery($pdo); //Echos anchor column w/delete icon and form for updating description from functions.php;
+                      displayImageGallery($pdo); //Echos anchor html w/delete icon and form for updating description from functions.php;
                      }
                   /*displayImageGallery() echoes the following onto the page:
                       <div class='imgContainer'>
                            <div class="gallery">
                                <form action="?=deletedpic" method="POST">
-                                    <button type="submit" name="submit" class="deleteSubmit" value="$picNameNew"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+                                    <button type="submit" name="submitDelete" class="submitDelete" value="$picNameNew"><i class="fa fa-window-close" aria-hidden="true"></i></button>
                                </form>
 
                                <a href="$picDestination">

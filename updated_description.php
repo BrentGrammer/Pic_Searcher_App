@@ -4,24 +4,14 @@
 //-----------THIS RUNS WHEN THE USER CLICKS TO UPDATE DESCRIPTION ON UPDATEPIC.PHP------------//
 if (isset($_POST['updateDesc'])) {
 
-   $imgId = $_POST['updateDesc'];   //this is the passed in value held in $idNum from the first isset if statement;
+   $imgId = $_POST['updateDesc'];   //this is the passed in value held in $idNum from the first isset if statement from updatepic.php.;
    $newDesc = $_POST['newDesc'];    //this is the new user description entered in the textarea;
    //This updates the database with the new description and description caption shown in gallery.php:
-
-   $sql = "UPDATE pics
-           SET anchor = CONCAT
-           (SUBSTR(anchor, 1, LOCATE('\"desc\">', anchor)+6),
-           '($newDesc',
-           SUBSTR(anchor, LOCATE('\)<', anchor))
-         ) WHERE id= ? ;";
-   $stmt = $pdo->prepare($sql);
-   $result1 = $stmt->execute([$imgId]);
-
    $sql = "UPDATE pics SET description= ? WHERE id= ? ;";
    $stmt = $pdo->prepare($sql);
-   $result2 = $stmt->execute([$newDesc, $imgId]);
+   $result = $stmt->execute([$newDesc, $imgId]);
    //check if description was updated:
-   if (!$result1 || !$result2) {
+   if (!$result) {
       die ("Query Failed - Image Description not updated!");
    } else {
         //Echoes success message and option to return to gallery;

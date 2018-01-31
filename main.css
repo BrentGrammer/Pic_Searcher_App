@@ -45,7 +45,7 @@ div.gallery img:hover {
 
   /*div.gallery:hover {
       border: 1px solid #777;
-    } & */ 
+    } & */
 
 div.desc {
     padding: 15px;
@@ -58,7 +58,7 @@ div.updateDesc {
     width: 100%;
 }
 
-/*Change Description button on Index gallery*/
+/*Change Description button on Index.php gallery*/
 #updateButton {
     width: 95%;
     margin-left: 5px;
@@ -70,7 +70,7 @@ div.updateDesc {
     display: inline-block;
 }
 
-/* Delete Button */
+/* Delete Button in top right corner of images*/
 .submitDelete {
     opacity: 0;
     display: inline-block;
@@ -93,7 +93,7 @@ div.gallery:hover .submitDelete {
     color: buttonface;
     background: none;
 }
-
+/*Border change on hover X delete icon */
 i.fa-window-close:hover {
     border: 1px solid #777;
 }
