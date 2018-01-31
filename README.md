@@ -8,7 +8,8 @@ The purpose of this application is to create a searchable library of image files
 Languages Used: PHP, SQL, HTML
 
 ## Tasks/Goals to Complete:
-- consider parring down anchor column and just storing user inputs which can be inserted into echo statements to create the html code on the fly. 
+- consider parring down anchor column and just storing user inputs which can be inserted into echo statements to create the html code on the fly.
+- Convert mysqli code to PDO and use prepared statements to protect against SQL injections.
 - Sanitize and validate user inputs on index.php and user searches; (') throws an error.
 - Add no match found message if no matches are found for the image search on searchinput.php
 - Security precautions against SQL injections and XSS.
