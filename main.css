@@ -11,6 +11,7 @@
     color: buttontext;
     text-decoration: none;
     -webkit-appearance: button;
+    cursor: pointer;
 }
 
 /* Div row containing all the images and description button elements.  display:flex arranges all child elements in flex layout */
@@ -79,6 +80,7 @@ div.updateDesc {
     border: none;
     top: 50px;
     left: 75%;
+    cursor: pointer;
 }
 
 /*This reveals the Delete button on mouseover of the gallery div*/
@@ -96,4 +98,5 @@ div.gallery:hover .submitDelete {
 /*Border change on hover X delete icon */
 i.fa-window-close:hover {
     border: 1px solid #777;
+
 }

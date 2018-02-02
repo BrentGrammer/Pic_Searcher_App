@@ -13,73 +13,37 @@ include "includes/dbconn.php"; ?>
     </head>
 
     <body>
+      
+      <?php
+           //checks if $_GET isset by header() function in logout.php to display logout msg:
+           if(isset($_GET['logout'])) {
+              echo "You have been logged out.";
+           }
+      ?>
 
-            <form action="upload.php" method="POST" enctype="multipart/form-data">
-               UPLOAD IMAGE:
-                  <input type="file" name="userpic" required>
-                  <br/>
-                Enter Searchable Description:
-                  <input type="text" name="description" placeholder="Enter Description Here...">
-                  <br/>
-                  <button type="submit" name="submit">UPLOAD</button>
+      <!-- LOGIN FORM -->
+      <div class="divLogin">
+          <h4>LOGIN</h4>
+          <form class="loginform" action="includes/login.php" method="POST">
+              USERNAME:<input name="username" type="text" placeholder="Enter username"/>
+              PASSWORD:<input name="password" type="password" placeholder="Enter password"/>
+              <button name="login" type="submit">Login</button>
+          </form>
+      </div>
 
-            </form>
+      <!-- UPLOAD PIC -->
+    <!-- <div class = "divUploadForm">
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+             UPLOAD IMAGE:
+                <input name="userpic" type="file" required>
+                <br/>
+              Enter Searchable Description:
+                <input name="description" type="text"  placeholder="Enter Description Here...">
+                <br/>
+                <button name="submit" type="submit">UPLOAD</button>
+         </form>
+    </div> -->
 
-            <h1>Image Gallery</h1>
 
-            <div id="searchBar">
-              <!-- SEARCH BAR Note: GET method is better for searches in case user wants to copy URL to save the search-->
-               <form action="?=searchresults" method="GET">
-                    <label for="searchInput"><i  class="fa fa-search" aria-hidden="true"></i></label>
-                    <input type="text" name='searchinput' placeholder="Enter Search Terms Here..." required />
-                    <!--Displays a styled link to view full gallery if Search has been made -->
-                    <?php if (isset($_GET['submit'])) {
-                                  echo "<a href='index.php' class='buttonlink'>VIEW ALL</a>";
-                          } ?>
-                    <button type='submit' name='submit' id="searchInput">SEARCH IMAGES</button>
-               </form>
-            </div>
-
-            <div id="galleryWrapper">
-                 <?php
-
-                 if (isset($_GET['submit'])){
-                 imgSearch($pdo);
-                 }
-
-                 //------------------DISPLAYS CURRENT IMAGE LIBRARY FROM DATABASE----------------//
-                 //Image gallery does not display if a Search has been submitted:
-                 if (!isset($_GET['submit'])){
-
-                     //Calls function to delete the image if the delete button is pressed by user:
-                     if (isset($_POST['submitDelete'])) {
-                       deleteImg($pdo);
-                     }
-                     //Calls function to display the image library onto the page ($pdo object passed in):
-                      displayImageGallery($pdo); //Echos anchor html w/delete icon and form for updating description from functions.php;
-                     }
-                  /*displayImageGallery() echoes the following onto the page:
-                      <div class='imgContainer'>
-                           <div class="gallery">
-                               <form action="?=deletedpic" method="POST">
-                                    <button type="submit" name="submitDelete" class="submitDelete" value="$picNameNew"><i class="fa fa-window-close" aria-hidden="true"></i></button>
-                               </form>
-
-                               <a href="$picDestination">
-                                   <img class="searchable" src="$picDestination" alt="$description" width="300" height="200">
-                               </a>
-                               <div class="desc">
-                                  ($description)
-                               </div>
-                           </div>
-                           <div class="updateDesc">
-                               <form action="updatepic.php" method="POST">
-                                  <button id="updateButton" type="submit" name="submit" value="' . $imgId . '"' . '>Change Description</button>
-                                  </form>
-                           </div>
-                      </div>;
-                      */
-                   ?>
-            </div>
     </body>
 </html>

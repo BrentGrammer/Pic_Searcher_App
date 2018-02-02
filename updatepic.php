@@ -47,6 +47,6 @@ if (isset($_POST['submit'])) {
       </form>
 
 
-      <a href="index.php" class="buttonlink">BACK TO GALLERY</a>
+      <a href="gallery.php" class="buttonlink">BACK TO GALLERY</a>
     </body>
 </html>

@@ -16,7 +16,7 @@ Languages Used: PHP, SQL, HTML
 - consider parring down anchor column and just storing user inputs which can be inserted into echo statements to create the html code on the fly.
 - Add a user prompt to confirm delete image function
 - Style UI and forms - Add Bootstrap Framework
-- Allow for multiple inputs in the index page?
+- Allow for multiple inputs in the gallery page for mass uploads?
 - Remove debugging code
 
 

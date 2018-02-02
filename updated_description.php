@@ -30,6 +30,6 @@ if (isset($_POST['updateDesc'])) {
      <link rel='stylesheet' href='main.css' type='text/css' />
    </head>
    <body>
-       <a href='index.php' class='buttonlink'>BACK TO GALLERY</a>
+       <a href='gallery.php' class='buttonlink'>BACK TO GALLERY</a>
    </body>
  </html>
