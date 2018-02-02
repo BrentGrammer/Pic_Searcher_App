@@ -44,5 +44,6 @@ Languages Used: PHP, SQL, HTML
 - Image files successfully upload to a specified directory (/uploads)
 - The Database is updated successfully after user submits data
 
-**Note:** *The structure of the database columns is: id,name,path,description,unique_id,anchor
-The database name is 'picsearcherapp'.  The table name is 'pics'.*
+**Note:** *The structure of the database columns is: id,name,path,description,unique_id
+The database name is 'picsearcherapp'.  The table name is 'pics'.
+users table is under construction.*
