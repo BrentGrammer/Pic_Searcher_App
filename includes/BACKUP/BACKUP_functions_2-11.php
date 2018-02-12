@@ -1,55 +1,5 @@
 <?php
-//
-// $img_HTML = "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 ml-0 mr-0 pl-0 pr-0 thumbnail'>
-//
-//          <div class='img_div position-relative'>
-//             <div class='deletePic position-absolute w-100 pull-right'>
-//                 <input type=\"checkbox\" class='delete_chkbox pull-right' aria-label='Close' name='deletePics[]' value=\"$imgId\">
-//             </div>
-//
-//             <!--Add extra div here?-->
-//                 <a href=\"$path\" target='_blank'>
-//                   <img src=\"$path\" alt=\"$description\" class='img-fluid w-100 h-100 rounded-top'>
-//                 </a>
-//
-//             </div>
-//
-//             <div class='caption divCaption'>
-//                 <button class='desc w-100 rounded-bottom' data-toggle='modal' data-target='#updatepic_$imgId' title='Click to Change' type='button'>
-//                   <p class='text-center'>$description</p>
-//                 </button>
-//             </div>
-//          </div> <!--Wrapper closing div-->
-//
-//          <!-- UPDATE DESCRIPTION MODAL POPUP -->
-//
-//           <div class='modal fade' id='updatepic_$imgId'>
-//               <div class='modal-dialog' role='document'>
-//
-//                 <div class='modal-content'>
-//                    <div class='modal-header'>
-//                       <h3 class='modal-title'>Update Description</h3>
-//                         <button type='button' class='close' data-dismiss='modal'>
-//                           <span aria-hidden='true'>&times;</span>
-//                         </button>
-//                     </div>
-//
-//                     <div class='modal-body'>
-//                       <form action='updated_description.php' method='POST'>
-//                          <div class='form-group'>
-//                            <textarea class='form-control' name='newDesc'>$description</textarea>
-//                            <button class='form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
-//                          </div>
-//                       </form>
-//                      </div>
-//
-//                      <div class='modal-footer'>
-//                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
-//                      </div>
-//                  </div>
-//
-//                </div>
-//             </div> <!--Modal closing div-->";
+
 
 //--------------------------DISPLAY GALLERY-----------------------------//
 
@@ -67,9 +17,9 @@ function displayImageGallery($pdo) {
       $path = $row['path'];
       $description = $row['description'];
 
-//Echoes the html to display img, change description form and popup modal:
-      //echo $img_HTML; //debugging
-      echo "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 ml-0 mr-0 pl-0 pr-0 thumbnail'>
+// Echoes the html to display img, change description form and popup modal:
+
+      echo  "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 ml-0 mr-0 pl-0 pr-0 thumbnail'>
 
                <div class='img_div position-relative'>
                   <div class='deletePic position-absolute w-100 pull-right'>
@@ -104,9 +54,9 @@ function displayImageGallery($pdo) {
                           </div>
 
                           <div class='modal-body'>
-                            <form action='updated_description.php' method='POST'>
+                            <form id='form_update_desc' action='updated_description.php' method='POST'>
                                <div class='form-group'>
-                                 <textarea class='form-control' name='newDesc'>$description</textarea>
+                                 <textarea class='form-control' name='newDesc' maxlength='255'>$description</textarea>
                                  <button class='form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
                                </div>
                             </form>
@@ -119,7 +69,6 @@ function displayImageGallery($pdo) {
 
                      </div>
                   </div> <!--Modal closing div-->";
-
     }
 }
 //---------------------------------DELETE FUNCTION (used on gallery.php)------------------------------//
@@ -361,33 +310,6 @@ function sanitize_string($str, $str_is_email = null, $htmlentities = null) {
                  return $str; //return the sanitized string.
 
 }
-
-// upload
-// registration
-// login
-// img search in functions.php
-//
-//
-// $username  = strip_tags(trim($username));
-// $firstname = strip_tags(trim($firstname));
-// $lastname  = strip_tags(trim($lastname));
-// //Prevents user entering html code that displays on the form:
-// $username  = htmlspecialchars($username);
-// $firstname = htmlspecialchars($firstname);
-// $lastname  = htmlspecialchars($lastname);
-// //trims and sanitizes email and validates with filter_var():
-// $email     = strip_tags(trim($email));
-// $email     = filter_var($email, FILTER_SANITIZE_EMAIL);
-// $email     = filter_var($email, FILTER_VALIDATE_EMAIL);
-//
-// $picName     = htmlentities(trim($picName), ENT_QUOTES); //encode single/dbl quotes as well
-// $description = htmlentities(trim($description), ENT_QUOTES);
-//
-// $newDesc = trim($newDesc);
-// //Encodes html tags just in case since it will be echoed in the html code throughout the site:
-// $newDesc = htmlentities($newDesc, ENT_QUOTES);
-
-
 
 
 

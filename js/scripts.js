@@ -10,6 +10,36 @@ function confirm_action(msg) {
 // -- JQuery functions -- //
 $(document).ready(function() {
 
+//---------------UPDATE DESCRIPTION/CAPTION MODAL--------------------//
+//when form is submitted, default action is stopped, and submitted input values are collected:
+$('.form_upd_caption').submit(function(e) {
+      e.preventDefault();
+
+      // Grabs submitted values and imgId to process and insert into db on updated_description.php:
+      // ($(this) = the form element that is the parent of the submit button (.form_upd_caption):
+      var newCaption = $(this).find('.newCaption').val();
+      var imgId      = $(this).find('.btn_upd_caption').val(); //(the unique id for img is in the value of the button)
+
+      // Sends submitted data to $_POST['newCaption', 'imgIdNum'] to be processed on updated_description.php and sent to db:
+      $.post('updated_description.php', {
+        newCaption: newCaption,
+        imgIdNum:   imgId
+        });
+
+       var captionId = "#caption_" + imgId;
+
+       // Get updated description from db and load it into the caption html on gallery.php:
+        $(captionId).load('updated_description.php #newCaption');
+
+        // concat the id with imgId to grab the modal window to close it:
+        var modal_Id = '#updatepic_' + imgId;
+        // Use .modal('hide') to close the modal after the submit:
+        $(modal_Id).modal('hide');
+
+                 });
+
+
+
 //---------------------EDIT LIBRARY BUTTON-----------------------//
 
 $('#btn_edit_library').click(function() {
@@ -26,9 +56,12 @@ $('#btn_edit_library').click(function() {
         $(this).text("CANCEL");
       } else {
           $(this).text("EDIT LIBRARY");
-      };
+        };
 
   });
+
+
+
 
 //------------------DELETE SELECTED PICS-------------------------//
 
@@ -44,19 +77,19 @@ $(function() {
      $("#btn_delete_pics").click(function() {
 
       // When delete button pressed, this grabs and loops through the checked boxes from the Div wrapper id containing them on gallery.php:
-        $('#delete-chkbox-wrapper input:checked').each(function() {
-            // the value of the checkbox holds the unique $imgId from insertion to the db:
-            var picId = $(this).val();
+               $('#delete-chkbox-wrapper input:checked').each(function() {
+                    // the value of the checkbox holds the unique $imgId from insertion to the db:
+                    var picId = $(this).val();
 
-            var formInsert = "<input type='hidden' name='imgIds[]' value='" + picId + "'>"
-            // Append formInsert for each selection with the imgId value which will be submitted:
-            $('#form_del_pics').append(formInsert);
+                    var formInsert = "<input type='hidden' name='imgIds[]' value='" + picId + "'>"
+                    // Append formInsert for each selection with the imgId value which will be submitted:
+                    $('#form_del_pics').append(formInsert);
 
-                              });
+                                    });
 
-                       });// <--Delete button click event closing
+               });// <--Delete button click event closing
 
-                  });// <--IIFE closing
+});// <--IIFE closing
 
 
 // Adds a new input for the user to upload additional images when upload another img button clicked on upload.php:
@@ -71,10 +104,7 @@ $('#btn_add_upload').click(function() {
     $('#form_upload_inputs').append(formInsert);
 
 
-});
-
-
-
+                  });
 
 
 });//<---closing for $(document).ready method at the beginning of file.

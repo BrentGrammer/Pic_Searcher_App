@@ -35,7 +35,7 @@ function displayImageGallery($pdo) {
 
                   <div class='caption divCaption'>
                       <button class='desc w-100 rounded-bottom' data-toggle='modal' data-target='#updatepic_$imgId' title='Click to Change' type='button'>
-                        <p class='text-center'>$description</p>
+                        <p id='caption_$imgId' class='img_caption text-center'>$description</p>
                       </button>
                   </div>
                </div> <!--Wrapper closing div-->
@@ -54,10 +54,10 @@ function displayImageGallery($pdo) {
                           </div>
 
                           <div class='modal-body'>
-                            <form action='updated_description.php' method='POST'>
+                            <form class='form_upd_caption' action='updated_description.php' method='POST'>
                                <div class='form-group'>
-                                 <textarea class='form-control' name='newDesc' maxlength='255'>$description</textarea>
-                                 <button class='form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
+                                 <textarea class='newCaption form-control' name='newDesc' maxlength='255'>$description</textarea>
+                                 <button class='btn_upd_caption form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
                                </div>
                             </form>
                            </div>
@@ -170,7 +170,7 @@ function imgSearch($pdo) {
 
                                        <div class='caption divCaption'>
                                            <button class='desc w-100 rounded-bottom' data-toggle='modal' data-target='#updatepic_$imgId' title='Click to Change' type='button'>
-                                             <p class='text-center'>$description</p>
+                                             <p id='caption_$imgId' class='img_caption text-center'>$description</p>
                                            </button>
                                        </div>
                                     </div> <!--Wrapper closing div-->
@@ -189,10 +189,10 @@ function imgSearch($pdo) {
                                                </div>
 
                                                <div class='modal-body'>
-                                                 <form action='updated_description.php' method='POST'>
+                                                 <form class='form_upd_caption' action='updated_description.php' method='POST'>
                                                     <div class='form-group'>
-                                                      <textarea class='form-control' name='newDesc'>$description</textarea>
-                                                      <button class='form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
+                                                      <textarea class='newCaption form-control' name='newDesc' maxlength='255'>$description</textarea>
+                                                      <button class='btn_upd_caption form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
                                                     </div>
                                                  </form>
                                                 </div>
