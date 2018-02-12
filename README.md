@@ -10,17 +10,53 @@ Languages Used: PHP, SQL, HTML
 
 ## Tasks/Goals to Complete:
 
-- Fix Delete tooltip not showing on the delete buttons
-- Add registration form and functionality
-- Validation and sanitization of login form data: Set up user password ecnryption using crypt() and salt/blowfish before inserting it into the user db.
-- consider parring down anchor column and just storing user inputs which can be inserted into echo statements to create the html code on the fly.
-- Add a user prompt to confirm delete image function
-- Style UI and forms - Add Bootstrap Framework
+- fix spacing between dropdown account options and menu button on gallery.php
+
+- Change size of thumbnail for mobile screens (xs/s settings or use css media queries)
+
+- Use Bootstrap navbars for forms and search bars for styling.
+
+- Make email and firstname and lastname optional to expedite registration process?  Would need to create an if firstname empty condition to use username in the greeting on gallery.php
+
+- Add Forgot password function
+
+- Add pagination for image gallery page (limit results to maybe 25-50pics per page)
+
+- Bug: Delete tooltip not showing on the delete buttons
+
+- Prevent multiple submissions of same pic file? to protect against overloading database.  Limit number of pics for each user (check the number of rows in the pics table with an if statement on upload.php before proceeding with upload process)
+
+- Allow user to return to updatepic.php if description is too long (values are lost currently when returning to page), so they can update the description quickly without have to go back to gallery.php.  Poss. Solution - assign a 'SESSION' variable
+
+- Add function to hide and show description on the gallery page (maybe create a settings page).
+
 - Allow for multiple inputs in the gallery page for mass uploads?
-- Remove debugging code
+
+- Allow for select all or multiple images functionality on gallery.php for deletion.
+
+- Change delete img button to an anchor to eliminate the sloppy border
+
+- Remove updated description confirmation on updated_description.php and just take user back to the gallery showing the new description.
+
+- Refactor the procedure to get user data based on username and assign session variables into a function for use in registration.php and login.php
+
+- Message to user on login.php and registration.php of what legal characters user can use for username/name (because striptags() and htmlspecialchars() are used etc.)
+
+- Add compatibility for older browsers using methods from: https://www.w3schools.com/html/html5_browsers.asp
+
+- Remove remaining debugging code
 
 
 ## Completed Tasks:
+- User can now select images to delete with checkboxes.
+- Fixed bug - delete checkbox position in top right of img now stays constant in all screen sizes.
+- Username/Password Incorrect(login.php and index.php) and Username Taken(registration.php) errors now display if the user submits invalid login or registration data.
+- Fields now stay filled in on error on Registration Form (registration.php)
+- User is now redirected to gallery.php and logged in automatically after registering.
+- Confirm messages now are prompted to user to Delete Account/Delete Pic/Log out.
+- User submitted data on the searchImg() from functions.php, upload.php, updatepic.php/updated_description.php, login.php and registration.php is now sanitized before being used in the Database (htmlentities() is used and string limits are set).
+- Registration form and system is functional (registration.php); Usernames and Emails are checked in the database to prevent duplicate entries.
+- User password secured on registration.php by using password_hash() with BLOWFISH Hash format.
 - Update description and search functionality are now linked to the logged in user path to prevent user pulling up other user pics from the database.
 - Added functioning user login form and system
 - User table created to store user info
@@ -46,4 +82,4 @@ Languages Used: PHP, SQL, HTML
 
 **Note:** *The structure of the database columns is: id,name,path,description,unique_id
 The database name is 'picsearcherapp'.  The table name is 'pics'.
-users table is under construction.*
+users table structure is user_id, username, user_password, user_firstname, user_lastname, user_email, user_role.*

@@ -1,6 +1,7 @@
 <?php
 
 
+
 //--------------------------DISPLAY GALLERY-----------------------------//
 
 //This function displays the image library in a gallery format and is called on gallery.php and gets necessary data from the database to insert into the echoed html information for the images;
@@ -17,106 +18,101 @@ function displayImageGallery($pdo) {
       $path = $row['path'];
       $description = $row['description'];
 
-// Echoes the html to display img, change description form and popup modal:
+//Echoes the anchor html to display pic and change description form inside a <div> for styling:
+      echo "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 ml-0 mr-0 pl-0 pr-0 thumbnail'>
 
-      echo  "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 ml-0 mr-0 pl-0 pr-0 thumbnail'>
+                 <div class='img_div position-relative'>
 
-               <div class='img_div position-relative'>
-                  <div class='deletePic position-absolute w-100 pull-right'>
-                      <input type=\"checkbox\" class='delete_chkbox pull-right' aria-label='Close' name='deletePics[]' value=\"$imgId\">
-                  </div>
+                     <div class='deletePic_btn position-absolute w-100 pull-right'>
+                        <form action=\"?=deletedpic\" method=\"POST\">
+                           <button type=\"submit\" name=\"submitDelete\" class='close' aria-label='Close' onClick=\"return confirm('Delete Pic?');\" value=\"$imgId\">
+                              <span aria-hidden='true'>&times;</span>
+                           </button>
+                        </form>
+                     </div>
 
-                  <!--Add extra div here?-->
+
                       <a href=\"$path\" target='_blank'>
-                        <img src=\"$path\" alt=\"$description\" class='img-fluid w-100 h-100 rounded-top'>
+                        <img src=\"$path\" alt=\"($description)\" class='img-fluid w-100 h-100 rounded-top'>
                       </a>
+
 
                   </div>
 
                   <div class='caption divCaption'>
+
                       <button class='desc w-100 rounded-bottom' data-toggle='modal' data-target='#updatepic_$imgId' title='Click to Change' type='button'>
                         <p class='text-center'>$description</p>
                       </button>
-                  </div>
-               </div> <!--Wrapper closing div-->
 
-               <!-- UPDATE DESCRIPTION MODAL POPUP -->
+                   </div>
+          </div>
 
-                <div class='modal fade' id='updatepic_$imgId'>
-                    <div class='modal-dialog' role='document'>
-
-                      <div class='modal-content'>
-                         <div class='modal-header'>
-                            <h3 class='modal-title'>Update Description</h3>
+                 <!-- UPDATE DESCRIPTION MODAL POPUP -->
+                   <div class='modal fade' id='updatepic_$imgId'>
+                        <div class='modal-dialog' role='document'>
+                          <div class='modal-content'>
+                            <div class='modal-header'>
+                              <h3 class='modal-title'>Update Description</h3>
                               <button type='button' class='close' data-dismiss='modal'>
                                 <span aria-hidden='true'>&times;</span>
                               </button>
+                            </div>
+                            <div class='modal-body'>
+                              <form action='updated_description.php' method='POST'>
+                                 <div class='form-group'>
+                                   <textarea class='form-control' name='newDesc'>$description</textarea>
+                                   <button class='form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
+                                 </div>
+                              </form>
+                            </div>
+                            <div class='modal-footer'>
+                              <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
+                            </div>
                           </div>
-
-                          <div class='modal-body'>
-                            <form action='updated_description.php' method='POST'>
-                               <div class='form-group'>
-                                 <textarea class='form-control' name='newDesc' maxlength='255'>$description</textarea>
-                                 <button class='form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
-                               </div>
-                            </form>
-                           </div>
-
-                           <div class='modal-footer'>
-                             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
-                           </div>
-                       </div>
-
-                     </div>
-                  </div> <!--Modal closing div-->";
+                          </div>
+                        </div>";
     }
 }
 //---------------------------------DELETE FUNCTION (used on gallery.php)------------------------------//
 //CALLED WHEN USER PRESSES DELETE BUTTON ON AN IMG (gallery.php): Note: the button html is inside the displayImageGallery() on this page (functions.php):
-
 function deleteImg($pdo) {
-     // Submitted imgId(matching with unique key in db) values collected from checked boxes on gallery.php (they are string values in an array):
-     $imgIds = $_POST['imgIds'];
+     //Assigns user primary id key to match with image path:
+     $user = $_SESSION['user_id']; //($_SESSION value is accessed from the login.php include on gallery.php where this func is called)
 
-      // DELETING THE FILE FROM /UPLOADS Loop through the imgIds in $_POST - remove from db and delete file:
-      for ($i=0; $i < count($imgIds); $i++) {
+     $imgId = $_POST['submitDelete'];
 
-         $picId = $imgIds[$i];
-
-         //Gets the real path for the img file from the database for the file:
-         $sqlPath = 'SELECT `path` FROM pics WHERE id = ?';
-         $stmt = $pdo->prepare($sqlPath);
-         $stmt->execute([$picId]);
-         //Path field fetched in assoc array (default method set in dbconn.php)
-         while ($row = $stmt->fetch()) {
-             $realPath = $row['path'];
-             //Checks if the file exists and then deletes it from uploads folder:
-             if (file_exists($realPath)) {
-                  unlink($realPath);
-              } else {
-                  echo "File does not exist and could not be deleted!";
-                }
-          }
-         //This executes the delete database entry query:
-         $sql = 'DELETE FROM pics WHERE id=?';
-         $stmt = $pdo->prepare($sql);
-         $stmt->execute([$picId]);
-        //Checks if file was deleted:
-         if (!$stmt) {
-             die ("Error: Could not delete image!");
-         }
-                          // debugging: need to unset $_post???
-     } // <--for loop closing.
-
-}// <--deleteImg() function closing.
-
+  //----------------------------DELETING THE FILE FROM /UPLOADS----------------------------------//
+     //Gets the real path for the img file from the database for the file:
+     $sqlPath = 'SELECT `path` FROM pics WHERE id=?';
+     $stmt = $pdo->prepare($sqlPath);
+     $stmt->execute([$imgId]);
+     //Path field fetched in assoc array (default method set in dbconn.php)
+     while ($row = $stmt->fetch()) {
+         $realPath = $row['path'];
+         //Checks if the file exists and then deletes it from uploads folder:
+         if (file_exists($realPath)) {
+              unlink($realPath);
+          } else {
+              echo "File does not exist and could not be deleted!";
+            }
+      }
+     //This executes the delete database entry query:
+     $sql = 'DELETE FROM pics WHERE id=?';
+     $stmt = $pdo->prepare($sql);
+     $stmt->execute([$imgId]);
+    //Checks if file was deleted:
+     if (!$stmt) {
+         die ("Error: Could not delete image!");
+     }
+}
 //---------------------------------SEARCH IMAGES FUNCTION--------------------------------------------------//
 //Called when the user hits the Search Images button from the form on gallery.php(the button name='searchinput');
 function imgSearch($pdo) {
   //Assigns user primary id key to match with image path:
   $user = $_SESSION['user_id']; //($_SESSION value is accessed from the login.php include on gallery.php where this func is called)
-    //Calls the Delete Image function (from functions.php):
-    if (isset($_POST['deletePics'])) {
+    //Calls the Delete Image function (from functions.php) if the user presses the delete button on the retrieved images:
+    if (isset($_POST['submitDelete'])) {
             deleteImg($pdo);
     }
      //DISPLAYS SEARCH RESULTS IF SEARCH HAS BEEN INPUTTED:
@@ -156,54 +152,57 @@ function imgSearch($pdo) {
 
                            echo "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 ml-0 mr-0 pl-0 pr-0 thumbnail'>
 
-                                    <div class='img_div position-relative'>
-                                       <div class='deletePic position-absolute w-100 pull-right'>
-                                           <input type=\"checkbox\" class='delete_chkbox pull-right' aria-label='Close' name='deletePics[]' value=\"$imgId\">
-                                       </div>
+                                      <div class='img_div position-relative'>
 
-                                       <!--Add extra div here?-->
+                                          <div class='deletePic_btn position-absolute w-100 pull-right'>
+                                             <form action=\"?=deletedpic\" method=\"POST\">
+                                                <button type=\"submit\" name=\"submitDelete\" class='close' aria-label='Close' onClick=\"return confirm('Delete Pic?');\" value=\"$imgId\">
+                                                   <span aria-hidden='true'>&times;</span>
+                                                </button>
+                                             </form>
+                                          </div>
+
+
                                            <a href=\"$path\" target='_blank'>
-                                             <img src=\"$path\" alt=\"$description\" class='img-fluid w-100 h-100 rounded-top'>
+                                             <img src=\"$path\" alt=\"($description)\" class='img-fluid w-100 h-100 rounded-top'>
                                            </a>
+
 
                                        </div>
 
                                        <div class='caption divCaption'>
+
                                            <button class='desc w-100 rounded-bottom' data-toggle='modal' data-target='#updatepic_$imgId' title='Click to Change' type='button'>
                                              <p class='text-center'>$description</p>
                                            </button>
-                                       </div>
-                                    </div> <!--Wrapper closing div-->
 
-                                    <!-- UPDATE DESCRIPTION MODAL POPUP -->
+                                        </div>
+                               </div>
 
-                                     <div class='modal fade' id='updatepic_$imgId'>
-                                         <div class='modal-dialog' role='document'>
-
-                                           <div class='modal-content'>
-                                              <div class='modal-header'>
-                                                 <h3 class='modal-title'>Update Description</h3>
+                                      <!-- UPDATE DESCRIPTION MODAL POPUP -->
+                                        <div class='modal fade' id='updatepic_$imgId'>
+                                             <div class='modal-dialog' role='document'>
+                                               <div class='modal-content'>
+                                                 <div class='modal-header'>
+                                                   <h3 class='modal-title'>Update Description</h3>
                                                    <button type='button' class='close' data-dismiss='modal'>
                                                      <span aria-hidden='true'>&times;</span>
                                                    </button>
+                                                 </div>
+                                                 <div class='modal-body'>
+                                                   <form action='updated_description.php' method='POST'>
+                                                      <div class='form-group'>
+                                                        <textarea class='form-control' name='newDesc'>$description</textarea>
+                                                        <button class='form-control btn btn-primary' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
+                                                      </div>
+                                                   </form>
+                                                 </div>
+                                                 <div class='modal-footer'>
+                                                   <button type='button' class='btn btn-primary' data-dismiss='modal'>Cancel</button>
+                                                 </div>
                                                </div>
-
-                                               <div class='modal-body'>
-                                                 <form action='updated_description.php' method='POST'>
-                                                    <div class='form-group'>
-                                                      <textarea class='form-control' name='newDesc'>$description</textarea>
-                                                      <button class='form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
-                                                    </div>
-                                                 </form>
-                                                </div>
-
-                                                <div class='modal-footer'>
-                                                  <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
-                                                </div>
-                                            </div>
-
-                                          </div>
-                                       </div> <!--Modal closing div-->";
+                                               </div>
+                                             </div>";
                           }
                     }
                }
@@ -310,6 +309,33 @@ function sanitize_string($str, $str_is_email = null, $htmlentities = null) {
                  return $str; //return the sanitized string.
 
 }
+
+// upload
+// registration
+// login
+// img search in functions.php
+//
+//
+// $username  = strip_tags(trim($username));
+// $firstname = strip_tags(trim($firstname));
+// $lastname  = strip_tags(trim($lastname));
+// //Prevents user entering html code that displays on the form:
+// $username  = htmlspecialchars($username);
+// $firstname = htmlspecialchars($firstname);
+// $lastname  = htmlspecialchars($lastname);
+// //trims and sanitizes email and validates with filter_var():
+// $email     = strip_tags(trim($email));
+// $email     = filter_var($email, FILTER_SANITIZE_EMAIL);
+// $email     = filter_var($email, FILTER_VALIDATE_EMAIL);
+//
+// $picName     = htmlentities(trim($picName), ENT_QUOTES); //encode single/dbl quotes as well
+// $description = htmlentities(trim($description), ENT_QUOTES);
+//
+// $newDesc = trim($newDesc);
+// //Encodes html tags just in case since it will be echoed in the html code throughout the site:
+// $newDesc = htmlentities($newDesc, ENT_QUOTES);
+
+
 
 
 

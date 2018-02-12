@@ -16,6 +16,7 @@ $opt = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,      //sets default fetch mode to fetch_assoc;
     PDO::ATTR_EMULATE_PREPARES   => false,                 //Allows for use of Limit and turns off Emulation mode;
 ];
+
 $pdo = new PDO($dsn, $user, $password, $opt);
 
 //Uncomment the following to test the connection:

@@ -1,10 +1,11 @@
-<?php include 'includes/dbconn.php'; ?>
-<?php include 'includes/functions.php'; ?>
+<?php include 'includes/header.php'; ?>
 
 <?php
-
-//Checks the submit button from index.php to get the img id number;
+var_dump($_SESSION); //debugging
+//Checks the submit button from gallery.php (from update desc form echoed by displayImageGallery() from functions.php) to get the img id number;
 if (isset($_POST['submit'])) {
+
+
 //following code assigns the id# of the image being modified from the submit value from gallery.php to a variable;
    $imgId = $_POST['submit'];
    $idNum = $imgId;  //fixed a bug where $imgId was being reassigned an empty value from $_POST['submit'] when the updateDesc button was set;
@@ -21,24 +22,13 @@ if (isset($_POST['submit'])) {
    }
  }
 
+
 ?>
 
 <!-- Note: the id number of the image being modified is stored in $_POST['submit']; -->
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Update Description</title>
-    <!--Font Awesome from Bootstrap CDN  -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel='stylesheet' href='main.css' type='text/css' />
-  </head>
-    <body>
+<!--Update Pic Page content NOT NEEDED WITH MODAL POPUP ON INDEX?-->
       <h1>Update Image Description</h1>
-
-
-
 
        <form action="updated_description.php" method="POST">
             <!--description is echoed from querying the current img desc -->
@@ -48,5 +38,5 @@ if (isset($_POST['submit'])) {
 
 
       <a href="gallery.php" class="buttonlink">BACK TO GALLERY</a>
-    </body>
-</html>
+
+<?php include "includes/footer.php";?>

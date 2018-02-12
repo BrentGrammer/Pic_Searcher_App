@@ -1,49 +1,44 @@
-<?php //includes the database connection code to connect to the database:
-include "includes/dbconn.php"; ?>
-<?php include "includes/functions.php"; ?>
+<?php include 'includes/header.php'; ?>
 
-<!DOCTYPE html>
+<!-- INDEX HOME PAGE CONTENT -->
 
-<html>
-    <head>
-        <!--Font Awesome from Bootstrap CDN  -->
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel='stylesheet' href='main.css' type='text/css' />
-
-    </head>
-
-    <body>
-      
-      <?php
-           //checks if $_GET isset by header() function in logout.php to display logout msg:
-           if(isset($_GET['logout'])) {
-              echo "You have been logged out.";
-           }
-      ?>
-
-      <!-- LOGIN FORM -->
-      <div class="divLogin">
-          <h4>LOGIN</h4>
-          <form class="loginform" action="includes/login.php" method="POST">
-              USERNAME:<input name="username" type="text" placeholder="Enter username"/>
-              PASSWORD:<input name="password" type="password" placeholder="Enter password"/>
-              <button name="login" type="submit">Login</button>
-          </form>
-      </div>
-
-      <!-- UPLOAD PIC -->
-    <!-- <div class = "divUploadForm">
-        <form action="upload.php" method="POST" enctype="multipart/form-data">
-             UPLOAD IMAGE:
-                <input name="userpic" type="file" required>
-                <br/>
-              Enter Searchable Description:
-                <input name="description" type="text"  placeholder="Enter Description Here...">
-                <br/>
-                <button name="submit" type="submit">UPLOAD</button>
-         </form>
-    </div> -->
+        <div class="container text-center mx-auto">
+            <?php
+                 //checks if $_GET isset by header() function in logout.php to display logout msg:
+                 if(isset($_GET['logout'])) {
+                    echo "You have been logged out.";
+                 }
+            ?>
+          <div class='row'>
+            <h1 class="font-italic display-4 w-100">PIC <img class='d-inline img-responsive' src="img/magnifyred.png">BROWSER</h1>
+          </div>
+            <!-- LOGIN FORM -->
 
 
-    </body>
-</html>
+                <div>
+                  <!-- displays error msg if username/password incorrect: -->
+                  <?php
+                    loginError();
+                  ?>
+                </div>
+               <div class='row text-center'>
+                <form class="form-group" action="login.php" method="POST">
+                  <div>
+                    <label class='d-block w-100'>USERNAME: </label> <input class='d-inline-block w-100' name="username" type="text" placeholder="Enter username" value="<?php loginFill('username'); ?>"/>
+                    <label class='d-block w-100'>PASSWORD: </label> <input class='d-inline-block w-100' name="password" type="password" placeholder="Enter password"/>
+
+                    <button class='btn btn-primary d-inline-block mt-1 w-100' name="login" type="submit">Login</button>
+                  </div>
+                </form>
+              </div>
+
+
+                  <div class='row'>
+                            <!-- LINK TO REGISTRATION PAGE -->
+                        <h3 class='d-block w-100'>NEW USER?</h3>
+                        <h3 class='d-block w-100'><a href="registration.php">REGISTER HERE</a></h3>
+                  </div>
+          </div>
+
+
+<?php include "includes/footer.php";?>
