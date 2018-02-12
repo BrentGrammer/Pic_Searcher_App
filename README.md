@@ -2,7 +2,7 @@
 
 
 ### Current version:
-The purpose of this application is to create a searchable library of image files uploaded by the user. This is accomplished by the user uploading images on the home page to a library which is stored in a database managed with SQL/MySQL and accessed using PHP.  The user can then input search terms on the Gallery page (loacted on index.php), which will be queried to compare with full or partial matches (by word) in the database (a comparison is made to the description and name fields).  When a match is found, html code for the anchor contents of the image (also stored in the database to be echoed onto the Gallery page) will be retrieved and echoed onto the page (index.php - the results are shown after hiding the image library).  Please see list of Tasks to complete for further development.
+The purpose of this application is to create a quickly and easily searchable library of image files uploaded by the user. This is accomplished by the user uploading images on the home page to a library which is stored in a database managed with SQL/MySQL and accessed using PHP.  The user can then input search terms on the Gallery page (loacted on index.php), which will be queried to compare with full or partial matches (by word) in the database (a comparison is made to the description and name fields).  When a match is found, html code for the anchor contents of the image (also stored in the database to be echoed onto the Gallery page) will be retrieved and echoed onto the page (index.php - the results are shown after hiding the image library).  Please see list of Tasks to complete for further development.
 
 The way the app works is users log in and their uploaded images are stored in a directory uploads/[userid] where [userid] corresponds to the primary key field of user info in the users table.  Now that the uploaded pics from different users are uploaded and organized into directories based on their unique primary key in the db, the path is stored in the pics table in the database and is pulled to echo the images for whichever user is logged in.
 
@@ -37,6 +37,8 @@ Built using: PHP, SQL, Javascript/JQuery
 - Change delete img button to an anchor to eliminate the sloppy border
 
 - Remove updated description confirmation on updated_description.php and just take user back to the gallery showing the new description.
+
+- Add album functionality
 
 - Refactor the procedure to get user data based on username and assign session variables into a function for use in registration.php and login.php
 
