@@ -6,7 +6,7 @@ The purpose of this application is to create a searchable library of image files
 
 The way the app works is users log in and their uploaded images are stored in a directory uploads/[userid] where [userid] corresponds to the primary key field of user info in the users table.  Now that the uploaded pics from different users are uploaded and organized into directories based on their unique primary key in the db, the path is stored in the pics table in the database and is pulled to echo the images for whichever user is logged in.
 
-Languages Used: PHP, SQL, HTML
+Built using: PHP, SQL, Javascript/JQuery
 
 ## Tasks/Goals to Complete:
 
