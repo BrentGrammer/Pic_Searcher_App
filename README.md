@@ -1,4 +1,4 @@
-# PIC SEARCHER APP
+# PIC BROWSER APP
 
 
 ### Current version:
