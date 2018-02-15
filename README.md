@@ -2,9 +2,12 @@
 
 
 ### Current version:
-The purpose of this application is to create a quickly and easily searchable library of image files uploaded by the user. This is accomplished by the user uploading images on the home page to a library which is stored in a database managed with SQL/MySQL and accessed using PHP.  The user can then input search terms on the Gallery page (loacted on index.php), which will be queried to compare with full or partial matches (by word) in the database (a comparison is made to the description and name fields).  When a match is found, html code for the anchor contents of the image (also stored in the database to be echoed onto the Gallery page) will be retrieved and echoed onto the page (index.php - the results are shown after hiding the image library).  Please see list of Tasks to complete for further development.
+The purpose of this application is to create a quickly and easily searchable library of image files uploaded by the user.
 
-The way the app works is users log in and their uploaded images are stored in a directory uploads/[userid] where [userid] corresponds to the primary key field of user info in the users table.  Now that the uploaded pics from different users are uploaded and organized into directories based on their unique primary key in the db, the path is stored in the pics table in the database and is pulled to echo the images for whichever user is logged in.
+See the Pic Browser App wiki for pictures and explanation of how to use the app.
+
+The user uploads images on the home page to a library which is stored in a database.  The user can then input search terms on the Gallery page, which will be queried to compare with full or partial matches (by word) in the database (a comparison is made to the description and name fields).  When a match is found, html code for the anchor contents of the image (also stored in the database to be echoed onto the Gallery page) will be retrieved and echoed onto the page (index.php - the results are shown after hiding the image library).  Please see list of Tasks to complete for further development.
+
 
 Built using: PHP, SQL, Javascript/JQuery
 
