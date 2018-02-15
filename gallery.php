@@ -75,8 +75,8 @@
                 </div> <!-- closing row div -->
 
                 <!-- EDIT LIBRARY -->
-                <div class="row justify-content-center">
-                  <button type="button" id="btn_edit_library" class="btn btn-secondary">EDIT LIBRARY</button>
+                <div class="row d-flex justify-content-center">
+                  <button type="button" id="btn_edit_library" class="btn btn-secondary mb-1">EDIT LIBRARY</button>
                 </div>
 
             </div> <!-- container closing div -->
