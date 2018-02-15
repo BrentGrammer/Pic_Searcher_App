@@ -1,11 +1,13 @@
 <?php
 
 
+
 //--------------------------DISPLAY GALLERY-----------------------------//
 
 //This function displays the image library in a gallery format and is called on gallery.php and gets necessary data from the database to insert into the echoed html information for the images;
 //NOTE: Since the app uses PDO, the $pdo object from dbconn.php needs to be passed in each time a function on this page is called.
 function displayImageGallery($pdo) {
+    global $image_HTML;
     //Assigns the primary id key of logged in user from users table to match with the path in pics table:
     $user = $_SESSION['user_id']; //($_SESSION value is accessible from login.php include on gallery.php where this func is called)
     //Queries the pics table to pull the user's images data based on the path (the path is named after the primary id key of the user in the users table):
@@ -19,56 +21,57 @@ function displayImageGallery($pdo) {
 
 // Echoes the html to display img, change description form and popup modal:
 
-      echo  "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 ml-0 mr-0 pl-0 pr-0 thumbnail'>
+      echo   "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 thumbnail'>
 
-               <div class='img_div position-relative'>
-                  <div class='deletePic position-absolute w-100 pull-right'>
-                      <input type=\"checkbox\" class='delete_chkbox pull-right' aria-label='Close' name='deletePics[]' value=\"$imgId\">
-                  </div>
+                                <div class='img_div position-relative'>
 
-                  <!--Add extra div here?-->
-                      <a href=\"$path\" target='_blank'>
-                        <img src=\"$path\" alt=\"$description\" class='img-fluid w-100 h-100 rounded-top'>
-                      </a>
+                                    <div class='chkbox_del_div position-absolute w-100 pull-right'>
+                                       <input type='checkbox' class='delete_chkbox pull-right' aria-label='Close' name='deletePics[]' value=\"$imgId\">
+                                    </div>
 
-                  </div>
+                                    <a class='img_anchor h-100' href=\"$path\" target='_blank'>
+                                       <img src=\"$path\" alt=\"$description\" class='img-fluid w-100 h-100 rounded-top'>
+                                    </a>
 
-                  <div class='caption divCaption'>
-                      <button class='desc w-100 rounded-bottom' data-toggle='modal' data-target='#updatepic_$imgId' title='Click to Change' type='button'>
-                        <p id='caption_$imgId' class='img_caption text-center'>$description</p>
-                      </button>
-                  </div>
-               </div> <!--Wrapper closing div-->
+                                  </div>
 
-               <!-- UPDATE DESCRIPTION MODAL POPUP -->
+                                  <div class='caption divCaption'>
+                                      <button class='desc w-100 rounded-bottom' data-toggle='modal' data-target='#updatepic_$imgId' title='Click to Change' type='button'>
+                                         <p id='caption_$imgId' class='img_caption text-center'>$description</p>
+                                      </button>
+                                  </div>
+                               </div> <!--Wrapper closing div-->
 
-                <div class='modal fade' id='updatepic_$imgId'>
-                    <div class='modal-dialog' role='document'>
+                               <!-- UPDATE DESCRIPTION MODAL POPUP -->
 
-                      <div class='modal-content'>
-                         <div class='modal-header'>
-                            <h3 class='modal-title'>Update Description</h3>
-                              <button type='button' class='close' data-dismiss='modal'>
-                                <span aria-hidden='true'>&times;</span>
-                              </button>
-                          </div>
+                                <div class='modal fade' id='updatepic_$imgId' role='dialogue'>
+                                    <div class='modal-dialog'>
 
-                          <div class='modal-body'>
-                            <form class='form_upd_caption' action='updated_description.php' method='POST'>
-                               <div class='form-group'>
-                                 <textarea class='newCaption form-control' name='newDesc' maxlength='255'>$description</textarea>
-                                 <button class='btn_upd_caption form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
-                               </div>
-                            </form>
-                           </div>
+                                      <div class='modal-content'>
+                                         <div class='modal-header'>
+                                             <h3 class='modal-title w-100 pl-1 pull-right'>Update Description</h3>
+                                             <button type='button' class='close d-inline-block pl-0 ml-0' data-dismiss='modal'>
+                                                <span ml-0 pl-0 aria-hidden='true'>&times;</span>
+                                              </button>
 
-                           <div class='modal-footer'>
-                             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
-                           </div>
-                       </div>
+                                          </div>
 
-                     </div>
-                  </div> <!--Modal closing div-->";
+                                          <div class='modal-body'>
+                                            <form class='form_upd_caption' action='updated_description.php' method='POST'>
+                                               <div class='form-group'>
+                                                 <textarea class='newCaption form-control' name='newDesc' maxlength='255'>$description</textarea>
+                                                 <button class='btn_upd_caption form-control btn btn-primary' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
+                                               </div>
+                                             </form>
+                                          </div>
+
+                                           <div class='modal-footer'>
+                                             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
+                                           </div>
+                                       </div>
+
+                                     </div>
+                                  </div> <!--Modal closing div-->";
     }
 }
 //---------------------------------DELETE FUNCTION (used on gallery.php)------------------------------//
@@ -154,59 +157,61 @@ function imgSearch($pdo) {
                            $description = $row['description'];
                            //$unique_id = $row['unique_id'];
 
-                           echo "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 ml-0 mr-0 pl-0 pr-0 thumbnail'>
+                           echo   "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 thumbnail'>
 
-                                    <div class='img_div position-relative'>
-                                       <div class='deletePic position-absolute w-100 pull-right'>
-                                           <input type=\"checkbox\" class='delete_chkbox pull-right' aria-label='Close' name='deletePics[]' value=\"$imgId\">
-                                       </div>
+                                                     <div class='img_div position-relative'>
 
-                                       <!--Add extra div here?-->
-                                           <a href=\"$path\" target='_blank'>
-                                             <img src=\"$path\" alt=\"$description\" class='img-fluid w-100 h-100 rounded-top'>
-                                           </a>
+                                                         <div id='chkbox_del_div' class='position-absolute w-100 pull-right'>
+                                                            <input type='checkbox' class='delete_chkbox pull-right' aria-label='Close' name='deletePics[]' value=\"$imgId\">
+                                                         </div>
 
-                                       </div>
+                                                         <a class='h-100' href=\"$path\" target='_blank'>
+                                                            <img src=\"$path\" alt=\"$description\" class='img-fluid w-100 h-100 rounded-top'>
+                                                         </a>
 
-                                       <div class='caption divCaption'>
-                                           <button class='desc w-100 rounded-bottom' data-toggle='modal' data-target='#updatepic_$imgId' title='Click to Change' type='button'>
-                                             <p id='caption_$imgId' class='img_caption text-center'>$description</p>
-                                           </button>
-                                       </div>
-                                    </div> <!--Wrapper closing div-->
+                                                       </div>
 
-                                    <!-- UPDATE DESCRIPTION MODAL POPUP -->
+                                                       <div class='caption divCaption'>
+                                                           <button class='desc w-100 rounded-bottom' data-toggle='modal' data-target='#updatepic_$imgId' title='Click to Change' type='button'>
+                                                              <p id='caption_$imgId' class='img_caption text-center'>$description</p>
+                                                           </button>
+                                                       </div>
+                                                    </div> <!--Wrapper closing div-->
 
-                                     <div class='modal fade' id='updatepic_$imgId'>
-                                         <div class='modal-dialog' role='document'>
+                                                    <!-- UPDATE DESCRIPTION MODAL POPUP -->
 
-                                           <div class='modal-content'>
-                                              <div class='modal-header'>
-                                                 <h3 class='modal-title'>Update Description</h3>
-                                                   <button type='button' class='close' data-dismiss='modal'>
-                                                     <span aria-hidden='true'>&times;</span>
-                                                   </button>
-                                               </div>
+                                                     <div class='modal fade' id='updatepic_$imgId' role='dialogue'>
+                                                         <div class='modal-dialog'>
 
-                                               <div class='modal-body'>
-                                                 <form class='form_upd_caption' action='updated_description.php' method='POST'>
-                                                    <div class='form-group'>
-                                                      <textarea class='newCaption form-control' name='newDesc' maxlength='255'>$description</textarea>
-                                                      <button class='btn_upd_caption form-control' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
-                                                    </div>
-                                                 </form>
-                                                </div>
+                                                           <div class='modal-content'>
+                                                              <div class='modal-header'>
+                                                                  <h3 class='modal-title w-100 pl-1 pull-right'>Update Description</h3>
+                                                                  <button type='button' class='close d-inline-block pl-0 ml-0' data-dismiss='modal'>
+                                                                     <span ml-0 pl-0 aria-hidden='true'>&times;</span>
+                                                                   </button>
 
-                                                <div class='modal-footer'>
-                                                  <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
-                                                </div>
-                                            </div>
+                                                               </div>
 
-                                          </div>
-                                       </div> <!--Modal closing div-->";
+                                                               <div class='modal-body'>
+                                                                 <form class='form_upd_caption' action='updated_description.php' method='POST'>
+                                                                    <div class='form-group'>
+                                                                      <textarea class='newCaption form-control' name='newDesc' maxlength='255'>$description</textarea>
+                                                                      <button class='btn_upd_caption form-control btn btn-primary' type='submit' name='updateDesc' value=$imgId>UPDATE</button>
+                                                                    </div>
+                                                                  </form>
+                                                               </div>
+
+                                                                <div class='modal-footer'>
+                                                                  <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
+                                                                </div>
+                                                            </div>
+
+                                                          </div>
+                                                       </div> <!--Modal closing div-->";
                           }
                     }
                }
+
           } else {
                   Echo "<script>alert('Search string is too long! Enter a shorter search string (255 characters max).')</script>";
             }
@@ -280,7 +285,7 @@ function loginError() {
           //if username is found in db, but password does not verify on login.php then $_SESSION username is still saved (and is not a ' '):
           echo "Password does not match.";
           }
-}
+                       }
 
 
 //-----------------------------Sanitize function-----------------------------//
@@ -309,7 +314,9 @@ function sanitize_string($str, $str_is_email = null, $htmlentities = null) {
 
                  return $str; //return the sanitized string.
 
-}
+                    }
+
+
 
 
 

@@ -3,7 +3,7 @@
 <?php notLoggedIn(); //From functions.php include: displays msg if user tries to access page and is not logged in.?>
 
 <!-- GALLERY PAGE CONTENT-->
-
+<a href="upload.php">UPLOAD IMAGES</a>
 
     <!-- NAV BAR -->
 
@@ -46,57 +46,51 @@
 
             <!-- - - - - - -     IMAGE GALLERY SECTION - - - - - - - - - - -->
 
-            <div class="container">
-              <div class="row">
-                  <!-- UPLOAD -->
-                  <div class="d-flex justify-content-center justify-content-md-start col-md-3">
-                    <a class="btn btn-primary" href="upload.php">UPLOAD</a>
-                  </div>
-
-                  <!-- SEARCH BAR -->
-                  <div class="col-md-6 text-center">
-                    <form  class="" action="?=searchresults" method="GET">
-                       <!-- SEARCH ICON -->
-                       <label class="" for="searchInput"><img class="" src='img/search_icon.png' class='icon_search' aria-hidden='true'/></label>
-                       <!-- SEARCH TXT INPUT -->
-                       <input id='search_text_input' type="text" class='align-middle pl-1' name='searchinput' placeholder="Search Terms" required />
-                       <!-- SEARCH SUBMIT BTN -->
-                       <button class="btn btn-primary" type='submit' name='submit' id="searchInput">SEARCH</button>
-                     </form>
-                  </div>
-
-                   <!-- BACK TO GALLERY LINK IF SEARCH SUBMIT -->
-                   <div class="col-md-3 d-flex justify-content-center justify-content-md-end">
-                     <?php if (isset($_GET['submit'])) {
-                                   echo "<a href='gallery.php' class='btn btn-danger'>BACK TO GALLERY</a>";
-                               }
-                     ?>
-                   </div>
-                </div> <!-- closing row div -->
-
-                <!-- EDIT LIBRARY -->
-                <div class="row justify-content-center">
-                  <button type="button" id="btn_edit_library" class="btn btn-secondary">EDIT LIBRARY</button>
-                </div>
-
-            </div> <!-- container closing div -->
-
-
-
-<!-- Select Pics and Delete (hidden until Edit Library clicked) -->
+      <p class="text-center display-4">Image Gallery</p>
 
       <div class="container">
+
+        <div class="row">
+          <nav class='navbar w-100'>
+
+              <!--EDIT LIBRARY/DELETE SELECTED PICS FORM-->
+             <div class='col-md-4 navbar-nav d-inline-block align-center'>
+                 <button type="button" id="btn_edit_library" class="btn btn-primary pull-left">EDIT LIBRARY</button>
+             </div>
+
+               <!-- SEARCH BAR DIV -->
+              <div class="col-md-8 navbar-nav d-inline-block">
+                   <form class='w-100' action="?=searchresults" method="GET">
+                      <div class='form-group pull-right mt-3'>
+                          <!-- label for makes the magnifying glass clickable and execute a search -->
+                          <label for="searchInput"><img src='img/search_icon.png' class='d-inline-block icon_search' aria-hidden='true'/></label>
+                          <input id='search_text_input' type="text" class='form-control d-inline-block w-50' name='searchinput' placeholder="Enter Search Terms" required />
+
+                          <button class="btn btn-secondary d-block" type='submit' name='submit'  id="searchInput">SEARCH IMAGES</button>
+                      </div>
+                      <!--Displays a styled link to view full gallery if Search has been made -->
+                      <?php if (isset($_GET['submit'])) {
+                                    echo "<a href='gallery.php' class='buttonlink'>BACK TO GALLERY</a>";
+                                }
+                      ?>
+
+                    </form>
+               </div>
+
+           </nav>
+         </div>
+
          <div class='row mb-2'>
 
             <form id="form_del_pics" class='d-inline-block w-100 row' action="?=deletedpic" method="POST">
 
               <div class='container'>
                 <div class='row'>
-                   <div class="col-md-4 flex-last align-middle ml-3">
+                   <div class="col-md-4 flex-last align-middle">
                        <label for='chkbox_select_all' id="select_all_label" class='aling-middle pt-2 w-100'><input id='chkbox_select_all' class='align-middle' type='checkbox' /> SELECT ALL</label>
                    </div>
 
-                   <div class="col-md-4 flex-first ml-3">
+                   <div class="col-md-4 flex-first">
                      <button id='btn_delete_pics' class="btn btn-danger form-control w-100" type="submit" name="deletePics">DELETE SELECTED</button>
                    </div>
                 </div>
@@ -107,10 +101,8 @@
          </div>
 
             <!-- IMAGE GALLERY ROW DIV (still inside top container) -->
-
-
-        <!--the div is given an id for JQuery to grab the checked delete chkbox selections-->
-         <div id="delete-chkbox-wrapper" class="row">
+                            <!--the div is given an id for JQuery to grab the checked delete chkbox selections-->
+         <div id="delete-chkbox-wrapper" class="row text-center">
             <?php
             //If user clicks on search button in search bar:
             if (isset($_GET['submit'])){

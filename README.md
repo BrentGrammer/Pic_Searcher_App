@@ -10,6 +10,10 @@ Built using: PHP, SQL, Javascript/JQuery
 
 ## Tasks/Goals to Complete:
 
+- Fix gallery styling and ui layout: https://www.youtube.com/watch?v=rvlvpX-rbgc
+
+- Make popup modal for uploading images
+
 - fix spacing between dropdown account options and menu button on gallery.php
 
 - Change size of thumbnail for mobile screens (xs/s settings or use css media queries)
@@ -48,8 +52,15 @@ Built using: PHP, SQL, Javascript/JQuery
 
 - Remove remaining debugging code
 
+- update var keywords in js code to be let or const (to avoid potential hoisting problems)
+
 
 ## Completed Tasks:
+
+- Gallery page menu items now incorporate flexbox and are responsive.
+- User can now select delete pic checkbox easier by clicking anywhere in the image in EDIT LIBRARY MODE.
+- Added Select All checkbox for deleting pics on Edit Library button click.
+- User can now update descriptions/captions dynamically (AJAX/JQuery used on popup modal)
 - User can now select images to delete with checkboxes.
 - Fixed bug - delete checkbox position in top right of img now stays constant in all screen sizes.
 - Username/Password Incorrect(login.php and index.php) and Username Taken(registration.php) errors now display if the user submits invalid login or registration data.

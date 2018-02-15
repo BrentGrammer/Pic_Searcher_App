@@ -12,7 +12,6 @@
           <div class='row'>
             <h1 class="font-italic display-4 w-100">PIC <img class='d-inline img-responsive' src="img/magnifyred.png">BROWSER</h1>
           </div>
-            <!-- LOGIN FORM -->
 
 
                 <div>
@@ -21,16 +20,25 @@
                     loginError();
                   ?>
                 </div>
-               <div class='row text-center'>
-                <form class="form-group" action="login.php" method="POST">
-                  <div>
-                    <label class='d-block w-100'>USERNAME: </label> <input class='d-inline-block w-100' name="username" type="text" placeholder="Enter username" value="<?php loginFill('username'); ?>"/>
-                    <label class='d-block w-100'>PASSWORD: </label> <input class='d-inline-block w-100' name="password" type="password" placeholder="Enter password"/>
 
-                    <button class='btn btn-primary d-inline-block mt-1 w-100' name="login" type="submit">Login</button>
-                  </div>
-                </form>
-              </div>
+              <!-- LOGIN FORM -->
+             <div class='row text-center'>
+               <div class='container'>
+                 <div class='card card-body bg-light d-inline-block'>
+                  <form action="login.php" method="POST">
+                    <div class='form-group'>
+                      <label class='#'>USERNAME: </label>
+                      <input class='#' name="username" type="text" placeholder="Enter username" value="<?php loginFill('username'); ?>"/>
+                    </div>
+                    <div class='form-group'>
+                      <label class=''>PASSWORD: </label>
+                      <input class='' name="password" type="password" placeholder="Enter password"/>
+                    </div>
+                    <button class='btn btn-primary w-100 d-block mt-1' name="login" type="submit">Login</button>
+                  </form>
+                </div>
+               </div>
+             </div>
 
 
                   <div class='row'>

@@ -142,8 +142,8 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
                 </div>
 
 
-                  <button id="btn_add_upload" class="btn btn-link"><i class="fa fa-plus"></i>Add Another Image</button>
-                  <button name="submit" type="submit">UPLOAD</button>
+                  <button id="btn_add_upload" class="btn btn-link btn-primary"><i class="fa fa-plus"></i>Add Another Image</button>
+                  <button class='btn btn-primary form-control' name="submit" type="submit">UPLOAD IMAGES</button>
 
                   <?php
                   //debugging test
@@ -152,6 +152,10 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
                         //echo "post global description";
                         //var_dump($_POST['description']);?>
            </form>
+
+           <a class="btn btn-secondary" href="gallery.php" role="button">BACK TO GALLERY</a>
+
+
        </div>
 
 <?php include 'includes/footer.php'; ?>

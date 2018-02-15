@@ -46,44 +46,42 @@
 
             <!-- - - - - - -     IMAGE GALLERY SECTION - - - - - - - - - - -->
 
-            <div class="container">
-              <div class="row">
-                  <!-- UPLOAD -->
-                  <div class="d-flex justify-content-center justify-content-md-start col-md-3">
-                    <a class="btn btn-primary" href="upload.php">UPLOAD</a>
-                  </div>
 
-                  <!-- SEARCH BAR -->
-                  <div class="col-md-6 text-center">
-                    <form  class="" action="?=searchresults" method="GET">
-                       <!-- SEARCH ICON -->
-                       <label class="" for="searchInput"><img class="" src='img/search_icon.png' class='icon_search' aria-hidden='true'/></label>
-                       <!-- SEARCH TXT INPUT -->
-                       <input id='search_text_input' type="text" class='align-middle pl-1' name='searchinput' placeholder="Search Terms" required />
-                       <!-- SEARCH SUBMIT BTN -->
-                       <button class="btn btn-primary" type='submit' name='submit' id="searchInput">SEARCH</button>
-                     </form>
-                  </div>
 
-                   <!-- BACK TO GALLERY LINK IF SEARCH SUBMIT -->
-                   <div class="col-md-3 d-flex justify-content-center justify-content-md-end">
-                     <?php if (isset($_GET['submit'])) {
-                                   echo "<a href='gallery.php' class='btn btn-danger'>BACK TO GALLERY</a>";
-                               }
-                     ?>
-                   </div>
-                </div> <!-- closing row div -->
+      <div class="container">
 
-                <!-- EDIT LIBRARY -->
-                <div class="row justify-content-center">
-                  <button type="button" id="btn_edit_library" class="btn btn-secondary">EDIT LIBRARY</button>
-                </div>
+               <!-- SEARCH BAR DIV -->
 
-            </div> <!-- container closing div -->
+
+               <a class="btn btn-primary col-md-3 d-inline-block" href="upload.php">UPLOAD</a>
+
+            <form  class="d-inline-block col-md-9 text-md-left pl-0" action="?=searchresults" method="GET">
+
+
+                   <!-- label for makes the magnifying glass clickable and execute a search -->
+                   <label class="col-md-1" for="searchInput"><img class="" src='img/search_icon.png' class='d-inline-block icon_search' aria-hidden='true'/></label>
+                   <input id='search_text_input' type="text" class='form-control d-inline-block col-10 col-md-8' name='searchinput' placeholder="Search Terms" required />
+
+                   <button class="btn btn-primary col-md-3 d-inline-block" type='submit' name='submit' id="searchInput">SEARCH</button>
+
+
+               <!--Displays a styled link to view full gallery if Search has been made -->
+               <?php if (isset($_GET['submit'])) {
+                             echo "<a href='gallery.php' class='buttonlink'>BACK TO GALLERY</a>";
+                         }
+               ?>
+
+             </form>
+
+
+              <!--EDIT LIBRARY/DELETE SELECTED PICS FORM-->
+              <div class="text-center w-100">
+                 <button type="button" id="btn_edit_library" class="btn btn-secondary">EDIT LIBRARY</button>
+              </div>
 
 
 
-<!-- Select Pics and Delete (hidden until Edit Library clicked) -->
+         </div>
 
       <div class="container">
          <div class='row mb-2'>
