@@ -14,11 +14,9 @@ Built using: PHP, SQL, Javascript/JQuery
 
 - Make popup modal for uploading images
 
-- fix spacing between dropdown account options and menu button on gallery.php
-
 - Change size of thumbnail for mobile screens (xs/s settings or use css media queries)
 
-- Use Bootstrap navbars for forms and search bars for styling.
+- Widen the Search Input field on gallery.php
 
 - Make email and firstname and lastname optional to expedite registration process?  Would need to create an if firstname empty condition to use username in the greeting on gallery.php
 
@@ -26,21 +24,11 @@ Built using: PHP, SQL, Javascript/JQuery
 
 - Add pagination for image gallery page (limit results to maybe 25-50pics per page)
 
-- Bug: Delete tooltip not showing on the delete buttons
-
 - Prevent multiple submissions of same pic file? to protect against overloading database.  Limit number of pics for each user (check the number of rows in the pics table with an if statement on upload.php before proceeding with upload process)
 
 - Allow user to return to updatepic.php if description is too long (values are lost currently when returning to page), so they can update the description quickly without have to go back to gallery.php.  Poss. Solution - assign a 'SESSION' variable
 
 - Add function to hide and show description on the gallery page (maybe create a settings page).
-
-- Allow for multiple inputs in the gallery page for mass uploads?
-
-- Allow for select all or multiple images functionality on gallery.php for deletion.
-
-- Change delete img button to an anchor to eliminate the sloppy border
-
-- Remove updated description confirmation on updated_description.php and just take user back to the gallery showing the new description.
 
 - Add album functionality
 
