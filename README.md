@@ -45,6 +45,7 @@ Built using: PHP, SQL, Javascript/JQuery
 
 - update var keywords in js code to be let or const (to avoid potential hoisting problems)
 
+- Make a demo account and disable the delete account button with msg
 
 ## Completed Tasks:
 

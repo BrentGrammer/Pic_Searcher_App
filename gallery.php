@@ -9,7 +9,7 @@
 
         <nav class="navbar navbar-toggleable-sm" role="navigation">
            <div class="container-fluid">
-            <div class="row w-100">
+            <div class="row mx-auto">
 
                 <div class="col-lg-9 col-md-8">
                   <p class="navbar-text d-1 text-muted pt-0"> <span class="navbar-brand h3 d-inline-block">Welcome <?php echo $_SESSION['firstname'] ?>!</span> <span class="d-inline-block">You can now upload images and view/search/edit your image collection.</span></p>
@@ -48,18 +48,18 @@
 
             <div class="container">
               <div class="row">
-                  <!-- UPLOAD -->
-                  <div class="d-flex justify-content-center justify-content-md-start col-md-3">
+                  <!-- UPLOAD --> <!-- mb-1 mx-md-auto pb-1 -->
+                  <div class="d-flex justify-content-center justify-content-md-start col-md-3 mb-1 my-md-auto">
                     <a class="btn btn-primary" href="upload.php">UPLOAD</a>
                   </div>
 
                   <!-- SEARCH BAR -->
-                  <div class="col-md-6 text-center">
+                  <div class="col-md-6 text-center my-auto">
                     <form  class="" action="?=searchresults" method="GET">
                        <!-- SEARCH ICON -->
-                       <label class="" for="searchInput"><img class="" src='img/search_icon.png' class='icon_search' aria-hidden='true'/></label>
+                       <label class="mx-auto" for="searchInput"><img id="search_icon" src='img/search_icon.png' aria-hidden='true'/></label>
                        <!-- SEARCH TXT INPUT -->
-                       <input id='search_text_input' type="text" class='align-middle pl-1' name='searchinput' placeholder="Search Terms" required />
+                       <input id='search_text_input' type="text" class='align-middle pl-1' name='searchinput' size="35" placeholder="Search Terms" required />
                        <!-- SEARCH SUBMIT BTN -->
                        <button class="btn btn-primary" type='submit' name='submit' id="searchInput">SEARCH</button>
                      </form>

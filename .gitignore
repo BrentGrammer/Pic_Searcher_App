@@ -1,4 +1,15 @@
 notes.txt
+
 /uploads
+
 /backup
+
 test.php
+
+/vendor/
+
+composer.json
+
+composer.lock
+
+/classes

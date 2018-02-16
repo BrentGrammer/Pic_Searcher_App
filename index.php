@@ -32,8 +32,9 @@
                     </div>
                     <div class='form-group'>
                       <label class=''>PASSWORD: </label>
-                      <input class='' name="password" type="password" placeholder="Enter password"/>
+                      <input name="password" type="password" placeholder="Enter password"/>
                     </div>
+                    <a href='forgotpw.php?forgot=<?php echo uniqid(true); ?>'>Forgot Password?</a>
                     <button class='btn btn-primary w-100 d-block mt-1' name="login" type="submit">Login</button>
                   </form>
                 </div>

@@ -1,26 +1,22 @@
 /* Additional custom CSS Settings outside of Bootstrap: */
 
-/*@media(maxwidth: 768px) {
-
-     #search_text_input {
-        width: 100px;
-     }
+/* Increase size of Search Icon to match text-input height: */
+#search_icon {
+  height: 30px;
+  width: 30px;
 }
 
-/*Sets a standard height for the images to display so they are the same sizes in the gallery. */
+/* Increase size of search text input */
+#search_text_input {
+  line-height: 28px;
+}
+
+/*Sets a standard height for the images to display so they are the same sizes in the gallery (img have h-100 class). */
 .img_div {
 
   height: 225px;
 
 }
-
-/* this moved the checkbox over to eliminate the space between it's right border and the right border of the image.
-it was removed because it looks like part of the pic is missing rather than a checkbox being on it.
-.chkbox_del_div {
-
-  margin-left: 1px;
-}
-*/
 
 /* Increases size of checkboxes on gallery.php page shown when edit library btn clicked: */
 .delete_chkbox {
@@ -46,23 +42,16 @@ it was removed because it looks like part of the pic is missing rather than a ch
     display: none;
 
 }
-/* Delete x button revealed when hovering over the image container on gallery page */
-/*.thumbnail:hover .close {
-  display: inline-block;
-}
+
 /* wraps long word in the description caption on the gallery page */
 .desc {
 
   word-wrap: break-word;
 
 }
-/* sets the div containing the caption to as wide as the thumbnail - w-100 was not stretching the
-caption button background all the way for some reason */
-/*.divCaption {
-  width: 225px;
-} */
 
-/* Add upload icon on upload.php */
+
+/* Sizing Add upload icon on upload.php */
 .fa-plus-square {
 
   font-size: 25px;

@@ -129,10 +129,10 @@ if (isset($_POST['submit'])) {
 <!-- Registration Page Content -->
 
       <div class="container text-center">
-        <div class="row">
+        <div class="row d-flex justify-content-center">
 
 
-          <h1>REGISTER</h1>
+          <h2>REGISTER</h2>
              <!-- username or email taken msg displays if duplicate found in db: -->
              <?php if (isset($usernameErr)) {
                      echo $usernameErr;
@@ -148,16 +148,17 @@ if (isset($_POST['submit'])) {
 
 
              <form class="form-group" action="registration.php" method="POST">
-                 <label class='d-inline-block w-100'>Create Username: </label> <input class="#" type="text" name="username" maxlength="30" placeholder="Enter desired username..." value="<?php formFill('username'); ?>" required>
-                 <label class='d-inline-block w-100'>First Name: </label> <input class="#" type="text" name="firstname" maxlength="30" placeholder="Enter Firstname..." value="<?php formFill('firstname'); ?>" required>
-                 <label class='d-inline-block w-100'>Last Name: </label> <input class="#" type="text" name="lastname" maxlength="50" placeholder="Enter Lastname..." value="<?php formFill('lastname'); ?>" required>
-                 <label class='d-inline-block w-100'>Create Password: </label> <input class="#" type="password" name="password" minlength="5" maxlength="30"placeholder="Enter desired password..." value="<?php formFill('password'); ?>" required>
-                 <label class='d-inline-block w-100'>Email: </label> <input class="#" type="email" name="email" maxlength="50" placeholder="Enter your Email Address..." value="<?php formFill('email'); ?>" required>
+                 <label class='d-inline-block w-100'>Create Username: </label> <input class="#" type="text" name="username" maxlength="30" size="25" placeholder="Enter desired username..." value="<?php formFill('username'); ?>" required>
+                 <label class='d-inline-block w-100'>First Name: </label> <input class="#" type="text" name="firstname" maxlength="30" size="25" placeholder="Enter Firstname..." value="<?php formFill('firstname'); ?>" required>
+                 <label class='d-inline-block w-100'>Last Name: </label> <input class="#" type="text" name="lastname" maxlength="50" size="25" placeholder="Enter Lastname..." value="<?php formFill('lastname'); ?>" required>
+                 <label class='d-inline-block w-100'>Create Password: </label> <input class="#" type="password" name="password" minlength="5" size="25" maxlength="30"placeholder="Enter desired password..." value="<?php formFill('password'); ?>" required>
+                 <label class='d-inline-block w-100'>Email: </label> <input class="#" type="email" name="email" size="25" maxlength="50" placeholder="Enter your Email Address..." value="<?php formFill('email'); ?>" required>
 </div>
-<div class="row">
 
+<div class="row d-flex justify-content-center">
 
                  <button class="btn btn-primary" type="submit" name="submit">REGISTER</button>
+
                 <!-- optional link back to home login page (index.php): -->
                  <a href='index.php'>GO BACK TO THE HOME PAGE</a>
 </div>
