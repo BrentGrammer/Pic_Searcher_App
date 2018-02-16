@@ -49,6 +49,7 @@ Built using: PHP, SQL, Javascript/JQuery
 
 ## Completed Tasks:
 
+- Added forgot password feature using PHPMailer with Composer
 - Added a wiki with photos of the app and description of functionality.
 - Gallery page menu items now incorporate flexbox and are responsive.
 - User can now select delete pic checkbox easier by clicking anywhere in the image in EDIT LIBRARY MODE.
