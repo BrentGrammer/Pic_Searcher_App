@@ -1,4 +1,5 @@
 # PIC BROWSER APP
+![Application Pic](https://github.com/BrentGrammer/Pic_Searcher_App/blob/master/img/apppic.JPG)
 
 
 ### Current version:
