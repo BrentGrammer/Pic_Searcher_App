@@ -22,19 +22,22 @@
                 </div>
 
               <!-- LOGIN FORM -->
-             <div class='row text-center'>
+             <div class='d-flex justify-content-center'>
                <div class='container'>
                  <div class='card card-body bg-light d-inline-block'>
                   <form action="login.php" method="POST">
                     <div class='form-group'>
-                      <label class='#'>USERNAME: </label>
-                      <input class='#' name="username" type="text" placeholder="Enter username" value="<?php loginFill('username'); ?>"/>
+                      <label class="mt-2">USERNAME: </label>
+                      <input class="mt-2" name="username" type="text" placeholder="Enter username" value="<?php loginFill('username'); ?>"/>
                     </div>
                     <div class='form-group'>
-                      <label class=''>PASSWORD: </label>
-                      <input name="password" type="password" placeholder="Enter password"/>
+                      <label class="mt-1">PASSWORD: </label>
+                      <input class="mt-1" name="password" type="password" placeholder="Enter password"/>
+                      <!-- FORGOT PASSWORD -->
+                      <div class="mt-1">
+                         <a href='forgot_pw.php?forgot=<?php echo uniqid(true); ?>'>Forgot Password?</a>
+                      </div>
                     </div>
-                    <a href='forgotpw.php?forgot=<?php echo uniqid(true); ?>'>Forgot Password?</a>
                     <button class='btn btn-primary w-100 d-block mt-1' name="login" type="submit">Login</button>
                   </form>
                 </div>

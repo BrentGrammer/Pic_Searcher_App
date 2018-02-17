@@ -40,7 +40,7 @@ if (isset($_POST['newCaption'])) {
 }
 ?>
 
-<!-- This is pulled via Ajax/JQuery to echo the updated description onto gallery.php -->
+<!-- This is grabbed by Ajax/JQuery to echo the updated description onto gallery.php -->
 
 <div id='newCaption'>
     <?php

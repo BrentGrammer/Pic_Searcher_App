@@ -19,17 +19,6 @@ if (isset($_POST['submit'])) {
   $lastname  =  sanitize_string($lastname);
   $email     =  sanitize_string($email, true); //this runs the email filters validate and sanitize.
 
-  //$firstname = strip_tags(trim($firstname));
-  //$lastname  = strip_tags(trim($lastname));
-  //Prevents user entering html code that displays on the form:
-  //$username  = htmlspecialchars($username);
-  //$firstname = htmlspecialchars($firstname);
-  //$lastname  = htmlspecialchars($lastname);
-  //trims and sanitizes email and validates with filter_var():
-  //$email     = strip_tags(trim($email));
-  //$email     = filter_var($email, FILTER_SANITIZE_EMAIL);
-  //$email     = filter_var($email, FILTER_VALIDATE_EMAIL);
-
 //This reassigns the sanitized user input to $_POST for keeping it filled out in the form fields if one field has an error:
   $_POST['username']  = $username;
   $_POST['firstname'] = $firstname;
@@ -80,12 +69,7 @@ if (isset($_POST['submit'])) {
            //Alternative simpler method using the password_hash() function and Blowfish algorithm passed in:
            $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12) );
            //(If this method is used, then the $salt and crypt() function is not needed) //debugging
-              //OLD VERSION USING CRYPT():
-            //Assigns a salt string to use with crypt() for password encryption-- uses BLOWFISH hashing - 10 cycles:
-            //$salt = '$2y$10$usecrazyfstringwithh22';
-            //$password is reassigned to the encrypted value:
-            //$password = crypt($password, $salt);
-            //Inserts the user submitted registration values into the users table:
+
             $sql = "INSERT INTO users (username, user_password, user_firstname, user_lastname, user_email) ";
             $sql .= "VALUES (:username, :password, :firstname, :lastname, :email);";
             $stmt = $pdo->prepare($sql);
@@ -151,7 +135,7 @@ if (isset($_POST['submit'])) {
                  <label class='d-inline-block w-100'>Create Username: </label> <input class="#" type="text" name="username" maxlength="30" size="25" placeholder="Enter desired username..." value="<?php formFill('username'); ?>" required>
                  <label class='d-inline-block w-100'>First Name: </label> <input class="#" type="text" name="firstname" maxlength="30" size="25" placeholder="Enter Firstname..." value="<?php formFill('firstname'); ?>" required>
                  <label class='d-inline-block w-100'>Last Name: </label> <input class="#" type="text" name="lastname" maxlength="50" size="25" placeholder="Enter Lastname..." value="<?php formFill('lastname'); ?>" required>
-                 <label class='d-inline-block w-100'>Create Password: </label> <input class="#" type="password" name="password" minlength="5" size="25" maxlength="30"placeholder="Enter desired password..." value="<?php formFill('password'); ?>" required>
+                 <label class='d-inline-block w-100'>Create Password: </label> <input class="#" type="password" name="password" minlength="5" size="25" maxlength="30" placeholder="Enter desired password..." value="<?php formFill('password'); ?>" required>
                  <label class='d-inline-block w-100'>Email: </label> <input class="#" type="email" name="email" size="25" maxlength="50" placeholder="Enter your Email Address..." value="<?php formFill('email'); ?>" required>
 </div>
 

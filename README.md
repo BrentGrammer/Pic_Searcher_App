@@ -13,17 +13,12 @@ Built using: PHP, SQL, Javascript/JQuery
 
 ## Tasks/Goals to Complete:
 
-
+- Bug: PHPMailer sending duplicate emails from reset password submit on forgot_pw.php - the issue is with reloading the page
+when $emailSent is set and the message to check email is loaded-this refreshes the page and runs the script to send the email again.
 
 - Make popup modal for uploading images
 
 - Change size of thumbnail for mobile screens (xs/s settings or use css media queries)
-
-- Widen the Search Input field on gallery.php
-
-- Make email and firstname and lastname optional to expedite registration process?  Would need to create an if firstname empty condition to use username in the greeting on gallery.php
-
-- Add Forgot password function
 
 - Add pagination for image gallery page (limit results to maybe 25-50pics per page)
 
@@ -43,13 +38,13 @@ Built using: PHP, SQL, Javascript/JQuery
 
 - Remove remaining debugging code
 
-- update var keywords in js code to be let or const (to avoid potential hoisting problems)
+- Update var keywords in js code to be let or const (to avoid potential hoisting problems)
 
-- Make a demo account and disable the delete account button with msg
+- Make a demo account and disable the delete account button with notification message.
 
 ## Completed Tasks:
 
-- Added forgot password feature using PHPMailer with Composer
+- Added forgot password and reset password feature using PHPMailer with Composer
 - Added a wiki with photos of the app and description of functionality.
 - Gallery page menu items now incorporate flexbox and are responsive.
 - User can now select delete pic checkbox easier by clicking anywhere in the image in EDIT LIBRARY MODE.

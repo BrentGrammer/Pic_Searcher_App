@@ -7,6 +7,7 @@ function confirm_action(msg) {
           return confirm(msg);
       }
 
+
 // -- JQuery functions -- //
 
 $(document).ready(function() {
