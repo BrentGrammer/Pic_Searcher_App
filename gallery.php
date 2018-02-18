@@ -5,8 +5,8 @@
 
   <!-- NAV BAR -->
   <nav class="navbar navbar-toggleable-sm navbar-light" role="navigation">
-     <div class="container-fluid border-bottom border-secondary">
-       <div class="row">
+     <div class="container-fluid border-bottom border-secondary justify-content-center">
+       <div class="row justify-content-center">
           <div class="col-lg-9 col-md-8">
             <p class="navbar-text d-1 text-muted pt-0"> <span class="navbar-brand h3 d-inline-block">Welcome <?php echo $_SESSION['firstname'] ?>!</span> <span class="d-inline-block">You can now upload images and view/search/edit your image collection.</span></p>
           </div>

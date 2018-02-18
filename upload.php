@@ -141,10 +141,10 @@ $description    = the text description the user put in the input on gallery.php,
 
          <div class="form-group" id='form_upload_inputs'>
           <input name="userpic[]" type="file" required>
-          <!-- <div class="form-group"> -->
-            <label>Enter Description (searchable): </label>
-            <input class="form-control" name="description[]" type="text" size="35" placeholder="Enter Description Here...">
-          <!-- </div> -->
+          <div class="form-group">
+            <!-- <label>Enter Description (searchable): </label> -->
+            <input class="form-control" name="description[]" type="text" size="35" placeholder="Enter Searchable Description Here...">
+          </div>
         </div>
       </div>
       <div class="form-group">

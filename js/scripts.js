@@ -142,10 +142,11 @@ $('#chkbox_select_all').change(function(e) {
 $('#btn_add_upload').click(function() {
 
     var formInsert =  "<div class='form-group'> \
-                         <input name='userpic[]' type='file' required> \
-                         <a href='#' class='rem_upload_input btn btn-link pull-right'>Remove</a> \
-                         <label>Enter Description (searchable): </label> \
-                         <input class='form-control' name='description[]' type='text' size='35' placeholder='Enter Description Here...'> \
+                        <div class='row'> \
+                         <input class='d-inline' name='userpic[]' type='file' required> \
+                         <a href='#' class='d-inline rem_upload_input btn btn-link pull-right'>Remove</a> \
+                         </div> \
+                         <input class='form-control' name='description[]' type='text' size='35' placeholder='Enter Searchable Description Here...'> \
                       </div>";
 
     $('#form_upload_inputs').append(formInsert);
@@ -153,8 +154,8 @@ $('#btn_add_upload').click(function() {
     // Option to remove Added Upload input div:
     $('.rem_upload_input').click(function() {
 
-          let added_input = $(this).parent();
-          //console.log($(this).parent());
+          let added_input = $(this).closest("div.form-group");
+
           $(added_input).remove();
 
           });
