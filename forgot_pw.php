@@ -6,11 +6,6 @@
 
 <?php
 
-// For debugging and testing:
-// $mail = new PHPMailer;
-// echo get_class($mail);
-
-
 // Check if the user has clicked on forgot pw link on index.php:
 if(!isset($_GET['forgot'])) {
    header('Location: index.php');
@@ -31,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = sanitize_string($email, true);
 
      // Check if user email exists in db:
-     $sql = "SELECT user_email FROM users WHERE user_email = ?";
+     $sql = "SELECT username,user_email FROM users WHERE user_email = ?";
      $stmt = $pdo->prepare($sql);
      $result = $stmt->execute([$email]);
 
@@ -39,7 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         die('Query Failed!');
      }
-
+     // assign var to username to put in email:
+     while ($row = $stmt->fetch()) {
+       $username = $row['username'];
+     }
      // Check if num of rows returned in 0 (no match for email in db):
      // (Note: this is a method of the pdo $stmt object)
      $count = $stmt->rowcount();
@@ -86,18 +84,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                $mail->setFrom('brentonmarquez@gmail.com');
                $mail->addAddress($email);
 
-               $mail->Subject = 'Reset Password';
+               $mail->Subject = 'Reset Password and Username Info';
 
                // Send email that puts the token inserted into db into $_GET['token'] on reset_pw.php and user email into $_GET['email']:
-               $mail->Body = 'Click this link to reset your password:
-                       <a href="http://localhost/picsearcher/reset_pw.php?email='.$email.'&token='.$token.' ">http://localhost/picsearcher/reset.php?email='.$email.'&token='.$token.'</a>';
-
+               $mail->Body = '
+                        <h1>Here is the information to reset your Pic Browser password</h1>  (If you did not expect this email, then disregard it.)<br>
+                        Click this link to reset your password:
+                        <a href="http://localhost/picsearcher/reset_pw.php?email='.$email.'&token='.$token.' ">http://localhost/picsearcher/reset.php?email='.$email.'&token='.$token.'</a>
+                         Your username is: ' .$username;
                // Sends the email:
                $mail->send();
 
              //Create a flag to display html msg in body:
               if ($mail->send()) {
-          
+
                  $emailSent = true;
 
               } else {

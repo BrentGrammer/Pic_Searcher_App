@@ -1,11 +1,10 @@
 <?php include 'includes/header.php'; ?>
-
 <?php notLoggedIn(); //From functions.php include: Checks if user is logged in and prevents access if not. ?>
 
 <?php
 
-//the following code runs when the user hits the 'UPLOAD' submit button on gallery.php
-//All of the code is inserting user submitted data into the db for pulling to search and display:
+// the following code runs when the user hits the 'UPLOAD' submit button on gallery.php
+// All of the code is inserting user submitted data into the db for pulling to search and display:
 
 if (isset($_POST['submit'])) { //debugging set this back to submit when done testing
 
@@ -16,8 +15,8 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
     // Assign variables to each piece of data in the submitted file and form arrays ($_POST and $_FILES):
     // text description input:
 
-
-    // Note: $_FILES['userpic'] will always have 5 keys.  Count the number of items in ['name'] instead to get the number of submitted files to iterate through:
+    // Note: $_FILES['userpic'] will always have 5 keys.  Count the number of items in ['name'] instead to get the number of
+    // submitted files to iterate through:
     // Assign variable to count() for better performance before running the for loop:
     for ($i = 0, $c = count($userpic['name']); $i < $c; $i++) {
 
@@ -31,8 +30,6 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
 
       //sanitize pic file name for echoing in error messages if errors:
       $picName     = htmlentities(trim($picName), ENT_QUOTES); //encode single/dbl quotes as well
-
-
 
         // TODO: allow the user to stay on upload page to correct the description:
         // Limits the length of the entered description to 255 characters:
@@ -99,10 +96,13 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
 
     //---------FOLLOWING CODE INSERTS THE IMAGE AND DESCRIPTION DATA INTO THE DATABASE-----//
 
-    //$query to hold the query to insert the data into the table 'pics' is created and assigned (database connection is established by including 'includes/dbconn.php' at the top of this file)
-    //Variable reference: $picName=the original name of the image uploaded, $picDestination=the folder location and name of where the image was moved to(uploads folder)
-    //$description=the text description the user put in the input on gallery.php, $picNameNew=the unique id generated to prevent overwriting.
-
+/*
+Variable reference:
+$picName        = the original name of the image uploaded
+$picDestination = the folder location and name of where the image was moved to(uploads folder).
+$description    = the text description the user put in the input on gallery.php, $picNameNew=the unique id generated to prevent
+                  overwriting.
+*/
     //Sanitizes original image filename and user entered description before insertion into db for storing:
         //$picName     = htmlentities(trim($picName), ENT_QUOTES); //encode single/dbl quotes as well
         $description = htmlentities(trim($description), ENT_QUOTES);
@@ -128,34 +128,34 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
 
 ?>
 
+<!-- UPLOAD PIC -->
+<div class="container text-center">
+  <div class="row d-flex justify-content-center">
+   <div class="card">
+    <div class="container">
+     <div class="card-header">
+       <h3>Upload Your Images: </h3>
+     </div>
+     <div class="card-body">
+     <form id='form_upload_inputs' action="upload.php" method="POST" enctype="multipart/form-data">
 
-      <!-- UPLOAD PIC -->
-      <div class = "container text-center">
-          <form action="upload.php" method="POST" enctype="multipart/form-data">
-               <label class="display-4 font-italic">Upload Your Images: </label>
+         <div class="form-group" id='form_upload_inputs'>
+          <input name="userpic[]" type="file" required>
+          <!-- <div class="form-group"> -->
+            <label>Enter Description (searchable): </label>
+            <input class="form-control" name="description[]" type="text" size="35" placeholder="Enter Description Here...">
+          <!-- </div> -->
+        </div>
+      </div>
+      <div class="form-group">
+            <button id="btn_add_upload" class="btn btn-link btn-primary form-group form-control"><i class="fa fa-plus"></i>Add Another Image</button>
+            <button class='btn btn-primary form-control' name="submit" type="submit">UPLOAD IMAGES</button>
+      </div>
 
-               <div id='form_upload_inputs'>
-                  <input name="userpic[]" type="file" required>
-
-                <label>Enter Description (searchable): </label>
-                  <input name="description[]" type="text"  placeholder="Enter Description Here...">
-                </div>
-
-
-                  <button id="btn_add_upload" class="btn btn-link btn-primary"><i class="fa fa-plus"></i>Add Another Image</button>
-                  <button class='btn btn-primary form-control' name="submit" type="submit">UPLOAD IMAGES</button>
-
-                  <?php
-                  //debugging test
-                        //echo "files userpic global: ";
-                        //var_dump($_FILES['userpic']);
-                        //echo "post global description";
-                        //var_dump($_POST['description']);?>
-           </form>
-
-           <a class="btn btn-secondary" href="gallery.php" role="button">BACK TO GALLERY</a>
-
-
-       </div>
-
+      </form>
+     <a class="btn btn-secondary" href="gallery.php" role="button">BACK TO GALLERY</a>
+    </div>
+   </div>
+  </div>
+ </div>
 <?php include 'includes/footer.php'; ?>

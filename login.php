@@ -40,8 +40,6 @@ if(isset($_POST['login'])) {
             $_SESSION['username'] = $db_username;
             $_SESSION['password'] = null;
 
-            //$msg = "Password does not match.";
-
          } else {
         //If no username match in db, then a space is used as a flag for loginError() in functions.php to echo an error msg on index.php:
            $_SESSION['username'] = ' ';

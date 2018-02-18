@@ -149,7 +149,7 @@ function imgSearch($pdo) {
                   $imgMatches = $stmt->fetchAll(); //Note: fetchAll() needed to be used with the LIKE query. fetch() doesn't work.
 
                   if ($imgMatches == NULL) {
-                     echo "<h2>No Match Found</h2>.";
+                     echo "<div class='container d-flex justify-content-center'><h2>No Match Found</h2></div>";
                   } else {
                         foreach($imgMatches as $row){
                            $imgId = $row['id']; //pulls id to pass into update description button.
@@ -157,15 +157,15 @@ function imgSearch($pdo) {
                            $description = $row['description'];
                            //$unique_id = $row['unique_id'];
 
-                           echo   "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 thumbnail'>
+                           echo  "<div class='wrapper col-sm-6 col-md-4 col-lg-3 mb-1 thumbnail'>
 
                                                      <div class='img_div position-relative'>
 
-                                                         <div id='chkbox_del_div' class='position-absolute w-100 pull-right'>
+                                                         <div class='chkbox_del_div position-absolute w-100 pull-right'>
                                                             <input type='checkbox' class='delete_chkbox pull-right' aria-label='Close' name='deletePics[]' value=\"$imgId\">
                                                          </div>
 
-                                                         <a class='h-100' href=\"$path\" target='_blank'>
+                                                         <a class='img_anchor h-100' href=\"$path\" target='_blank'>
                                                             <img src=\"$path\" alt=\"$description\" class='img-fluid w-100 h-100 rounded-top'>
                                                          </a>
 
@@ -280,12 +280,12 @@ function loginError() {
 
         //a flag of a space ' ' is set to $_SESSION username in login.php to indicate that user submitted username does not match any in the db:
         if ( (isset($_SESSION['username'])) && ($_SESSION['username'] === ' ') ) {
-             echo "Username does not exist! Please enter existing username or Register.";
+             echo "<p class='text-danger'>Username does not exist! Please enter existing username or Register.</p>";
         } else if (isset($_SESSION['username'])) {
           //if username is found in db, but password does not verify on login.php then $_SESSION username is still saved (and is not a ' '):
-          echo "Password does not match.";
+          echo "<p class='text-danger'>Password does not match.</p>";
           }
-                       }
+}
 
 
 //-----------------------------Sanitize function-----------------------------//

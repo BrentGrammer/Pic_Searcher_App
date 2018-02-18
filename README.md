@@ -14,6 +14,10 @@ Built using: PHP, SQL, Javascript/JQuery
 
 ## Tasks/Goals to Complete:
 
+- Make demo version that disables the upload buttons on the upload page.
+
+- Change Database name to pic_browser_app and update the dbconn.php connection data
+
 - Bug: PHPMailer sending duplicate emails from reset password submit on forgot_pw.php - the issue is with reloading the page
 when $emailSent is set and the message to check email is loaded-this refreshes the page and runs the script to send the email again.
 
@@ -72,7 +76,6 @@ when $emailSent is set and the message to check email is loaded-this refreshes t
 - Working Delete Icon Buttons in the gallery and search results page.
 - Added required attribute to file upload input to protect against empty db entries.
 - Styled the Gallery page with Flexbox layout in CSS and Font Awesome icons from Bootstrap.
-- Added search functionality where the description and name fields are queried with standard WHERE/LIKE statements in searchinput.php
 - Added update description functionality the user can now update the description gallery.php and updatepic.php and it is updated in the database.
 - Refactoring with some of the query code blocks into functions (put in functions.php) to clean up code format
 - User description successfully inserted into alt attribute of image in the anchor column of 'pics' table on the database

@@ -141,14 +141,27 @@ $('#chkbox_select_all').change(function(e) {
 
 $('#btn_add_upload').click(function() {
 
-    var formInsert =  "<div> \
+    var formInsert =  "<div class='form-group'> \
                          <input name='userpic[]' type='file' required> \
+                         <a href='#' class='rem_upload_input btn btn-link pull-right'>Remove</a> \
                          <label>Enter Description (searchable): </label> \
-                         <input name='description[]' type='text'  placeholder='Enter Description Here...'> \
+                         <input class='form-control' name='description[]' type='text' size='35' placeholder='Enter Description Here...'> \
                       </div>";
 
     $('#form_upload_inputs').append(formInsert);
 
+    // Option to remove Added Upload input div:
+    $('.rem_upload_input').click(function() {
+
+          let added_input = $(this).parent();
+          //console.log($(this).parent());
+          $(added_input).remove();
+
+          });
+
                   });
 
-});//<---closing for $(document).ready method at the beginning of file.
+
+//------------- closing for $(document).ready method at the beginning of file -----------//
+
+}); //<---closing document.ready

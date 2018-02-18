@@ -111,11 +111,8 @@ if (isset($_POST['submit'])) {
 ?>
 
 <!-- Registration Page Content -->
-
-      <div class="container text-center">
+      <div class="container">
         <div class="row d-flex justify-content-center">
-
-
           <h2>REGISTER</h2>
              <!-- username or email taken msg displays if duplicate found in db: -->
              <?php if (isset($usernameErr)) {
@@ -124,37 +121,42 @@ if (isset($_POST['submit'])) {
                    if (isset($emailErr)) {
                      echo $emailErr;
                    }
-
               ?>
-                </div>
-
-<div class="row">
-
-
-             <form class="form-group" action="registration.php" method="POST">
-                 <label class='d-inline-block w-100'>Create Username: </label> <input class="#" type="text" name="username" maxlength="30" size="25" placeholder="Enter desired username..." value="<?php formFill('username'); ?>" required>
-                 <label class='d-inline-block w-100'>First Name: </label> <input class="#" type="text" name="firstname" maxlength="30" size="25" placeholder="Enter Firstname..." value="<?php formFill('firstname'); ?>" required>
-                 <label class='d-inline-block w-100'>Last Name: </label> <input class="#" type="text" name="lastname" maxlength="50" size="25" placeholder="Enter Lastname..." value="<?php formFill('lastname'); ?>" required>
-                 <label class='d-inline-block w-100'>Create Password: </label> <input class="#" type="password" name="password" minlength="5" size="25" maxlength="30" placeholder="Enter desired password..." value="<?php formFill('password'); ?>" required>
-                 <label class='d-inline-block w-100'>Email: </label> <input class="#" type="email" name="email" size="25" maxlength="50" placeholder="Enter your Email Address..." value="<?php formFill('email'); ?>" required>
-</div>
-
-<div class="row d-flex justify-content-center">
-
-                 <button class="btn btn-primary" type="submit" name="submit">REGISTER</button>
-
-                <!-- optional link back to home login page (index.php): -->
-                 <a href='index.php'>GO BACK TO THE HOME PAGE</a>
-</div>
-                 <?php
-                     //Registration Error Message displays if db insertion fails:
-                      if (isset($message)) {
-                          echo $message;
-                          //displays link to login page ($message is set only after the registration process runs):
-                          echo "<a href='index.php'>GO BACK TO THE HOME PAGE</a>";
-                        }
-                 ?>
-             </form>
         </div>
+
+        <div class="row d-flex justify-content-center">
+          <form class="form-group" action="registration.php" method="POST">
+            <div class="form-group">
+              <label class='d-inline-block w-100'>Create Username: </label> <input class="form-control" type="text" name="username" maxlength="30" size="25" placeholder="Enter desired username..." value="<?php formFill('username'); ?>" required>
+            </div>
+            <div class="form-group">
+              <label class='d-inline-block w-100'>First Name: </label> <input class="form-control" type="text" name="firstname" maxlength="30" size="25" placeholder="Enter Firstname..." value="<?php formFill('firstname'); ?>" required>
+            </div>
+            <div class="form-group">
+              <label class='d-inline-block w-100'>Last Name: </label> <input class="form-control" type="text" name="lastname" maxlength="50" size="25" placeholder="Enter Lastname..." value="<?php formFill('lastname'); ?>" required>
+            </div>
+            <div class="form-group">
+              <label class='d-inline-block w-100'>Create Password: </label> <input class="form-control" type="password" name="password" minlength="5" size="25" maxlength="30" placeholder="Enter desired password..." value="<?php formFill('password'); ?>" required>
+            </div>
+            <div class="form-group">
+              <label class='d-inline-block w-100'>Email: </label> <input class="form-control" type="email" name="email" size="25" maxlength="50" placeholder="Enter your Email Address..." value="<?php formFill('email'); ?>" required>
+            </div>
+            <button class="btn btn-primary form-control" type="submit" name="submit">REGISTER</button>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+           <!-- optional link back to home login page (index.php): -->
+           <a class="btn btn-danger" href='index.php'>GO BACK TO THE HOME PAGE</a>
+        </div>
+          <?php
+             //Registration Error Message displays if db insertion fails:
+              if (isset($message)) {
+                  echo $message;
+                  //displays link to login page ($message is set only after the registration process runs):
+                  echo "<a href='index.php'>GO BACK TO THE HOME PAGE</a>";
+                }
+          ?>
+      </form>
+  </div>
 
 <?php include "includes/footer.php";?>

@@ -49,10 +49,10 @@ if (isset($_POST['submit']) && $token_length > 49) {
             if (!$result) {
               die('There was an error.  Password was not reset.');
             } else {
-                  $success_msg = 'Password was reset.  <a class="btn-link btn-success" href="index.php">Click Here to Login</a>';
+                  $success_msg = 'Password was reset.  <a class="btn btn-success" href="index.php">Click Here to Login</a>';
               }
 
-      } /*<-- if password = confirm_pw if statement closing.*/
+      } /*<-- if (password === confirm_pw) if statement closing.*/
         else {
            $pw_match_err = "Passwords do not match.";
         }
@@ -84,7 +84,7 @@ if (isset($_POST['submit']) && $token_length > 49) {
          <button type="submit" name="submit" class="btn btn-primary w-100">Reset Password</button>
       </div>
       <div>
-         <p><?php if(isset($success_msg)) {echo $success_msg;} ?></p>
+         <p class="text-success"><?php if(isset($success_msg)) {echo $success_msg;} ?></p>
          <p class="text-danger"><?php if(isset($pw_match_err)) {echo $pw_match_err;} ?></p>
       </div>
        </form>
@@ -92,12 +92,5 @@ if (isset($_POST['submit']) && $token_length > 49) {
    </div>
  </div>
 </div>
-
-
-
-
-
-
-
 
 <?php include "includes/footer.php";?>

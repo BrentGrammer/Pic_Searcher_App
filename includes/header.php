@@ -1,4 +1,4 @@
-<?php ob_start(); //prevents header() errors ?>
+<?php ob_start(); //prevents header()/redirect errors ?>
 <?php session_start(); //this allows access to logged in user data in $_SESSION ?>
 <?php include "includes/dbconn.php"; ?>
 <?php include "includes/functions.php"; ?>
