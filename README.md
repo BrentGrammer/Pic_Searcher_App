@@ -14,11 +14,7 @@ Built using: PHP, SQL, Javascript/JQuery
 
 ## Tasks/Goals to Complete:
 
-- Fix upload form spacing and styling
-
-- Make demo version that disables the upload buttons on the upload page.
-
-- Change Database name to pic_browser_app and update the dbconn.php connection data
+- Make demo version that disables the upload buttons on the upload page, or deletes user demo account after ten minutes and recreates a fresh one.
 
 - Bug: PHPMailer sending duplicate emails from reset password submit on forgot_pw.php - the issue is with reloading the page
 when $emailSent is set and the message to check email is loaded-this refreshes the page and runs the script to send the email again.

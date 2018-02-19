@@ -32,16 +32,16 @@
 
   <div class="container mt-2">
     <div class="row">
-        <!-- UPLOAD --> <!-- mb-1 mx-md-auto pb-1 -->
+        <!-- UPLOAD BUTTON --> <!-- mb-1 mx-md-auto pb-1 -->
         <div class="d-flex justify-content-center justify-content-md-start col-md-3">
-          <a class="my-auto btn btn-primary" href="upload.php">UPLOAD</a>
+          <a class="mb-md-auto mt-md-2 my-lg-auto btn btn-primary" href="upload.php">UPLOAD</a>
         </div>
         <!-- SEARCH BAR -->
         <div class="col-md-6 text-center">
           <form action="?=searchresults" method="GET">
             <div class="form-inline my-2 form-group justify-content-center">
               <!-- SEARCH TXT INPUT -->
-              <input class="form-control" id='search_text_input' type="text" name='searchinput' size="35" placeholder="Search Terms" required />
+              <input class="form-control" id='search_text_input' type="text" name='searchinput' size="35" placeholder="Search Images" required />
               <!-- SEARCH SUBMIT BTN -->
               <button class="btn btn-primary form-control" type='submit' name='submit'>SEARCH</button>
              </div>
@@ -50,7 +50,7 @@
          <!-- BACK TO GALLERY LINK IF SEARCH SUBMIT -->
          <div class="col-md-3 d-flex justify-content-center justify-content-md-end">
            <?php if (isset($_GET['submit'])) {
-                         echo "<a href='gallery.php' class='btn btn-danger my-auto'>BACK TO GALLERY</a>";
+                         echo "<a href='gallery.php' class='btn btn-danger mb-md-auto mt-md-2 my-lg-auto'>BACK TO GALLERY</a>";
                      }
            ?>
          </div>

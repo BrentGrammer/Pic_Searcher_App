@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
   $username  =  sanitize_string($username);
   $firstname =  sanitize_string($firstname);
   $lastname  =  sanitize_string($lastname);
-  $email     =  sanitize_string($email, true); //this runs the email filters validate and sanitize.
+  $email     =  sanitize_string($email, true); //this runs the built-in php email filters which validate and sanitize emails.
 
 //This reassigns the sanitized user input to $_POST for keeping it filled out in the form fields if one field has an error:
   $_POST['username']  = $username;

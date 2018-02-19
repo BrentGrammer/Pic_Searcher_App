@@ -1,10 +1,9 @@
 <?php include 'includes/header.php'; ?>
-<?php notLoggedIn(); //From functions.php include: Checks if user is logged in and prevents access if not. ?>
+<?php notLoggedIn(); //From includes/functions.php: Checks if user is logged in and prevents access if not. ?>
 
 <?php
 
 // the following code runs when the user hits the 'UPLOAD' submit button on gallery.php
-// All of the code is inserting user submitted data into the db for pulling to search and display:
 
 if (isset($_POST['submit'])) { //debugging set this back to submit when done testing
 
@@ -16,8 +15,8 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
     // text description input:
 
     // Note: $_FILES['userpic'] will always have 5 keys.  Count the number of items in ['name'] instead to get the number of
-    // submitted files to iterate through:
-    // Assign variable to count() for better performance before running the for loop:
+    // Iterate through and validate/insert the submitted upload image files and description inputs:
+    // Assign variable to count() inside the parameter for better performance before running the for loop:
     for ($i = 0, $c = count($userpic['name']); $i < $c; $i++) {
 
       $description = $_POST['description'][$i];
@@ -27,6 +26,11 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
       $picSize = $userpic['size'][$i];
       $picError = $userpic['error'][$i];
       $picType = $userpic['type'][$i];
+
+      // Verifies if the file is an image file - this is a more secure PHP function to use.
+      if(!exif_imagetype($picTmpName)) {
+         die('The image file is invalid.  Upload a valid image file.  Note: file size limit is 20MB.');
+      }
 
       //sanitize pic file name for echoing in error messages if errors:
       $picName     = htmlentities(trim($picName), ENT_QUOTES); //encode single/dbl quotes as well
@@ -45,7 +49,7 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
 
         //limits the length of the image file name to 255 characters and stops script if img filename too large;
         if (strlen($picName) > 255) {
-            die ("Image file name is too large.  Shorten the Image filename. <br>
+            die ("Image file name is too long.  Shorten the Image filename. <br>
                    <a href='gallery.php'>GO BACK TO GALLERY PAGE</a>");
         }
 
@@ -77,7 +81,7 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
                  move_uploaded_file($picTmpName, $picDestination);
 
                } else {
-                    echo "<h2>Your file($picName) is too big. Max size allowed is 2MB.</h2>";  //if $picSize exceeds 2000000
+                    echo "<h2>Your file($picName) is too big. Max size allowed is 20MB.</h2>";  //if $picSize exceeds 2000000
                     echo "<a href='gallery.php' class='buttonlink'>BACK TO GALLERY</a>";
                     exit(); //Stops rest of script from running.
                 }
@@ -98,14 +102,14 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
     //---------FOLLOWING CODE INSERTS THE IMAGE AND DESCRIPTION DATA INTO THE DATABASE-----//
 
 /*
-Variable reference:
-$picName        = the original name of the image uploaded
-$picDestination = the folder location and name of where the image was moved to(uploads folder).
-$description    = the text description the user put in the input on gallery.php, $picNameNew=the unique id generated to prevent
-                  overwriting.
+*  Variable reference:
+*    $picName        = the original name of the image uploaded
+*    $picDestination = the folder location and name of where the image was moved to(uploads folder).
+*    $description    = the text description the user put in the input on gallery.php, $picNameNew=the unique id generated to prevent
+*                      overwriting.
 */
-    //Sanitizes original image filename and user entered description before insertion into db for storing:
-        //$picName     = htmlentities(trim($picName), ENT_QUOTES); //encode single/dbl quotes as well
+    // Sanitizes original image filename and user entered description before insertion into db:
+        $picName     = htmlentities(trim($picName), ENT_QUOTES); //encode single/dbl quotes as well
         $description = htmlentities(trim($description), ENT_QUOTES);
 
         $sql = "INSERT INTO pics(name,`path`,description,unique_id) ";
@@ -119,8 +123,9 @@ $description    = the text description the user put in the input on gallery.php,
           die ("Database failed to update!");
         }
 
-      } // <--(for loop closing)
+      } // <--(for loop iterating through submitted files/inputs closing)
 
+  // Redirect user to gallery.php and display success in URL:
   header('Location: gallery.php?imageupload=success');
 
 } /*<----closing curly brace for the original if isset statement.*/
@@ -129,7 +134,7 @@ $description    = the text description the user put in the input on gallery.php,
 
 ?>
 
-<!-- UPLOAD PIC -->
+<!-- UPLOAD PIC FORM -->
 <div class="container text-center">
   <div class="row d-flex justify-content-center">
    <div class="card">
@@ -138,25 +143,25 @@ $description    = the text description the user put in the input on gallery.php,
        <h3>Upload Your Images: </h3>
      </div>
      <div class="card-body">
-     <form id='form_upload_inputs' action="upload.php" method="POST" enctype="multipart/form-data">
-
+      <form action="upload.php" method="POST" enctype="multipart/form-data">
          <div class="form-group" id='form_upload_inputs'>
-          <input name="userpic[]" type="file" required>
-          <div class="form-group">
-            <!-- <label>Enter Description (searchable): </label> -->
-            <input class="form-control" name="description[]" type="text" size="35" placeholder="Enter Searchable Description Here...">
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
+             <div>
+               <input name='userpic[]' type='file' required>
+               <!-- This is hidden to keep correct spacing when a new input is added -->
+               <a style="visibility: hidden;" href='#' class='d-hidden rem_upload_input btn btn-link pull-right'>Remove</a>
+             </div>
+             <input class="form-control" name="description[]" type="text" size="35" placeholder="Enter Searchable Description Here...">
+         </div>
+         <div class="form-group">
             <button id="btn_add_upload" class="btn btn-link btn-primary form-group form-control"><i class="fa fa-plus"></i>Add Another Image</button>
             <button class='btn btn-primary form-control' name="submit" type="submit">UPLOAD IMAGES</button>
-      </div>
-
+         </div>
       </form>
-     <a class="btn btn-secondary" href="gallery.php" role="button">BACK TO GALLERY</a>
+         <a class="btn btn-secondary" href="gallery.php" role="button">BACK TO GALLERY</a>
+     </div>
     </div>
    </div>
   </div>
  </div>
+
 <?php include 'includes/footer.php'; ?>

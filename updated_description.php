@@ -6,7 +6,6 @@
 // if .html() was used instead of .text() in the JQuery code, this may not be an issue then.
 ?>
 
-
 <?php
 //-----------THIS RUNS WHEN THE USER CLICKS TO UPDATE DESCRIPTION ON UPDATEPIC.PHP------------//
 if (isset($_POST['newCaption'])) {
@@ -37,11 +36,8 @@ if (isset($_POST['newCaption'])) {
             die ("Query Failed - Image Description not updated!");
          } else {
              //sets the submitted decsription to SESSION to be able to echo it in the <div> on this page:
+             // The echoed text is then pulled with Ajax in scripts.js and inserted into the caption on gallery.php (the JQuery code is under 'UPDATE DESCRIPTION/CAPTION MODAL' in scripts.js)
              $_SESSION['caption'] = $newDesc;
-              //Echoes success message and option to return to gallery;
-              //         echo "<h1>Image Description has been updated!</h1>
-              // <br>";
-              //header("Location: gallery.php?=descriptionUpdated");
            }
      }
 }

@@ -44,8 +44,6 @@ $('.form_upd_caption').submit(function(e) {
 
                  });
 
-
-
 // ---------------------EDIT LIBRARY BUTTON----------------------- //
 
 $('#btn_edit_library').click(function() {

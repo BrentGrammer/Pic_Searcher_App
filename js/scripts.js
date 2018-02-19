@@ -142,7 +142,7 @@ $('#chkbox_select_all').change(function(e) {
 $('#btn_add_upload').click(function() {
 
     var formInsert =  "<div class='form-group'> \
-                        <div class='row'> \
+                        <div> \
                          <input class='d-inline' name='userpic[]' type='file' required> \
                          <a href='#' class='d-inline rem_upload_input btn btn-link pull-right'>Remove</a> \
                          </div> \
