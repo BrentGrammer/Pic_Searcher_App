@@ -3,7 +3,6 @@
 <?php use PHPMailer\PHPMailer\PHPMailer; ?>
 <?php //require './classes/Config.php'; no longer neeeded with "autoload" in composer.json ?>
 
-
 <?php
 
 // Check if the user has clicked on forgot pw link on index.php:
@@ -20,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       } else {
         echo "Please enter an email address.";
       }
-
 
     // (Sanitize and validate email here)
     $email = sanitize_string($email, true);
@@ -59,8 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
        $sql = 'UPDATE users SET token=? WHERE user_email=?';
        $stmt = $pdo->prepare($sql);
        $result = $stmt->execute([$token,$email]);
-
-
 
             // **** CONFIGURE PHPMAILER **** //
 
@@ -113,14 +109,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!-- If the flag for email being sent is set, display the html form markup. Used PHP short hand syntax to allow for cleaner html markup -->
-
 <div class="container d-flex justify-content-center mt-5">
   <div class="row col-md-4">
     <div class="card">
       <div class="card-header text-center">
 
 <?php if (!isset($emailSent)): ?>
-
 
          <h3>Forgot Password?</h3>
          <p>To receive a link to reset your password, enter email address:</p>
@@ -148,11 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    </div>
   </div>
 
-  <?php endIf; ?>
-
-
-
-
-
+<?php endIf; ?>
 
 <?php include "includes/footer.php";?>

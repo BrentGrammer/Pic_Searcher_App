@@ -7,8 +7,8 @@
 $host = "localhost"; //Insert the name of the server.
 $user = "root"; //Insert the Database username.
 $password = ""; //Insert the password for the Database.
-$dbName = "picsearcherapp"; //Insert the name of the database to be connected to.
-$charset = 'utf8mb4'; //Define charset - use utf8mb4 ofer utf8.
+$dbName = "pic_browser_app"; //Insert the name of the database to be connected to.
+$charset = 'utf8mb4'; //Define charset - use utf8mb4 over utf8.
 
 $dsn = "mysql:host=$host;dbname=$dbName;charset=$charset";
 $opt = [

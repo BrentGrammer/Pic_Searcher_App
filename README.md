@@ -14,6 +14,8 @@ Built using: PHP, SQL, Javascript/JQuery
 
 ## Tasks/Goals to Complete:
 
+- Fix upload form spacing and styling
+
 - Make demo version that disables the upload buttons on the upload page.
 
 - Change Database name to pic_browser_app and update the dbconn.php connection data

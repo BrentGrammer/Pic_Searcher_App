@@ -4,34 +4,29 @@
 <!-- GALLERY PAGE CONTENT-->
 
   <!-- NAV BAR -->
-  <nav class="navbar navbar-toggleable-sm navbar-light" role="navigation">
-     <div class="container-fluid border-bottom border-secondary justify-content-center">
-       <div class="row justify-content-center">
-          <div class="col-lg-9 col-md-8">
-            <p class="navbar-text d-1 text-muted pt-0"> <span class="navbar-brand h3 d-inline-block">Welcome <?php echo $_SESSION['firstname'] ?>!</span> <span class="d-inline-block">You can now upload images and view/search/edit your image collection.</span></p>
-          </div>
+  <nav class="navbar navbar-toggleable-sm navbar-light border-bottom border-secondary" role="navigation">
+    <div class="col-lg-9 col-md-8">
+      <p class="navbar-text text-muted"> <span class="navbar-brand h3 d-inline-block">Welcome <?php echo $_SESSION['firstname'] ?>!</span> <span class="d-inline-block">You can now upload images and view/search/edit your image collection.</span></p>
+    </div>
 
-         <!-- ACCOUNT DROPDOWN MENU ON RIGHT - LOGOUT AND DELETE ACCOUNT -->
+   <!-- ACCOUNT DROPDOWN MENU ON RIGHT - LOGOUT AND DELETE ACCOUNT -->
 
-           <div class="dropdown col-lg-3 col-md-4 h-100 d-inline-block mb-3">
-              <button class="btn btn-primary btn-block dropdown-toggle w-100" type="button" id="dropdown_btn" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">ACCOUNT OPTIONS
-              </button>
-              <!-- DROPDOWN MENU -->
-              <div class="dropdown-menu w-100" aria-labelledby="dropdown_btn">
-                  <!-- LOGOUT -->
-                    <form class="dropdown-item" action="includes/logout.php" method="POST">
-                       <button id="btn_logout" class="btn btn-link text-center" type="submit" name="logout" onClick="return confirm_action('Log out?');">LOG OUT</button>
-                    </form>
-                  <!-- DELETE ACCOUNT -->
-                    <form class="dropdown-item" action="delete_user.php" method="POST">
-                      <button id="btn_del_account" class="btn btn-link text-danger text-center" type="submit" name="submit" onClick="return confirm_action('Delete your Account? (This will delete all photos/files and user information.)')">DELETE YOUR ACCOUNT</button>
-                    </form>
-               </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+     <div class="dropdown col-lg-3 col-md-4 h-100 d-inline-block mb-3">
+        <button class="btn btn-primary btn-block dropdown-toggle w-100" type="button" id="dropdown_btn" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">ACCOUNT OPTIONS
+        </button>
+        <!-- DROPDOWN MENU -->
+        <div class="dropdown-menu w-100" aria-labelledby="dropdown_btn">
+           <!-- LOGOUT -->
+           <form class="dropdown-item" action="includes/logout.php" method="POST">
+             <button id="btn_logout" class="btn btn-link text-center" type="submit" name="logout" onClick="return confirm_action('Log out?');">LOG OUT</button>
+           </form>
+           <!-- DELETE ACCOUNT -->
+           <form class="dropdown-item" action="delete_user.php" method="POST">
+             <button id="btn_del_account" class="btn btn-link text-danger" type="submit" name="submit" onClick="return confirm_action('Delete your Account? (This will delete all photos/files and user information.)')">DELETE YOUR ACCOUNT</button>
+           </form>
+         </div>
+      </div>
+    </nav>
 
   <!-- - - - - - -     IMAGE GALLERY SECTION - - - - - - - - - - -->
 

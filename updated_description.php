@@ -1,4 +1,11 @@
-<?php include 'includes/header.php'; ?>
+<?php ob_start(); //prevents header() redirect errors ?>
+<?php session_start(); //this allows access to logged in user data in $_SESSION ?>
+<?php include "includes/dbconn.php"; ?>
+<?php include "includes/functions.php";
+// Note: including header was not used because it added the Pic Browser text to text of the page which interfered with the update description Ajax code in scripts.js
+// if .html() was used instead of .text() in the JQuery code, this may not be an issue then.
+?>
+
 
 <?php
 //-----------THIS RUNS WHEN THE USER CLICKS TO UPDATE DESCRIPTION ON UPDATEPIC.PHP------------//
@@ -41,14 +48,11 @@ if (isset($_POST['newCaption'])) {
 ?>
 
 <!-- This is grabbed by Ajax/JQuery to echo the updated description onto gallery.php -->
-
 <div id='newCaption'>
     <?php
         $newCaption = $_SESSION['caption'];
         echo $newCaption;
     ?>
-
 </div>
-
 
 <?php include "includes/footer.php";?>

@@ -1,8 +1,6 @@
 <?php
 
-
-
-//--------------------------DISPLAY GALLERY-----------------------------//
+//--------------------------DISPLAYS GALLERY-----------------------------//
 
 //This function displays the image library in a gallery format and is called on gallery.php and gets necessary data from the database to insert into the echoed html information for the images;
 //NOTE: Since the app uses PDO, the $pdo object from dbconn.php needs to be passed in each time a function on this page is called.
@@ -257,8 +255,6 @@ function loginFill($fieldName) {
      }
 }
 
-
-
 //--------------------NOT LOGGED IN MSG-----------------------//
 //this runs if the user tries to access a page and is not logged in:
 
@@ -273,7 +269,6 @@ function notLoggedIn() {
     }
 }
 
-
 //----------LOGIN ERROR MESSAGE ON INDEX.PHP IF SUBMITTED USERNAME OR PASSWORD NOT FOUND------------//
 
 function loginError() {
@@ -286,7 +281,6 @@ function loginError() {
           echo "<p class='text-danger'>Password does not match.</p>";
           }
 }
-
 
 //-----------------------------Sanitize function-----------------------------//
 
@@ -315,9 +309,5 @@ function sanitize_string($str, $str_is_email = null, $htmlentities = null) {
                  return $str; //return the sanitized string.
 
                     }
-
-
-
-
 
 ?>

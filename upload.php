@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
            //make sure file error = 0 in the superglobal ($picError is the corr. variable):
            if ($picError === 0) {
               //then check file size in bytes:
-              if ($picSize < 2000000) {
+              if ($picSize < 5000000) {
                 //assign filename a unique name with uniqid function and true parameter - means true time in milliseconds-always unique
                  $picNameNew = uniqid('',true).".".$picActualExt;
 
@@ -84,6 +84,7 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
              } else {
                   echo "There was an error uploading the file: $picName."; //if $picError is not === 0
                   echo "<a href='gallery.php' class='buttonlink'>BACK TO GALLERY</a>";
+                  var_dump($picError); //debugging
                   exit();
               }
          } else {

@@ -7,6 +7,7 @@ function confirm_action(msg) {
           return confirm(msg);
       }
 
+
 // -- JQuery functions -- //
 
 $(document).ready(function() {
@@ -19,22 +20,22 @@ $('.form_upd_caption').submit(function(e) {
 
       // Grabs user submitted description and imgId value in the submit button to put into $_POST on updated_description.php:
       // ($(this) = the form element that is the parent of the submit button (.form_upd_caption):
-      const newCaption = $(this).find('.newCaption').val();
-      const imgId      = $(this).find('.btn_upd_caption').val(); //(the unique id for img is in the value of the button)
+      var newCaption = $(this).find('.newCaption').val();
+      var imgId      = $(this).find('.btn_upd_caption').val(); //(the unique id for img is in the value of the button)
 
       // Sends submitted data to $_POST['newCaption', 'imgIdNum'] to be processed on updated_description.php and sent to db:
       $.post('updated_description.php', {
         newCaption: newCaption,
         imgIdNum:   imgId
-        }, function(data,status) {
-              // Assign a var to the caption to be updated on gallery.php:
-              let captionId = "#caption_" + imgId;
-              // (Need to use passed in data to use the returned data from the.post() funtion and to prevent grabbing #newCaption before it's updated)
-              let updatedCaption = $(data).text();
-              // This grabs the text from updated_desription.php returned from data (updated_destiption.php data returned from .post()):
-              $(captionId).text(updatedCaption); // Inserts user submitted updated caption into corr. img caption on gallery.php.
+        });
 
-            });
+       var captionId = "#caption_" + imgId;
+
+
+       function get_new_caption(){
+       // Get updated description from db and load it into the caption html on gallery.php:
+        $(captionId).load('updated_description.php #newCaption');
+       }
 
         // concat the id with imgId to grab the modal window to close it:
         var modal_Id = '#updatepic_' + imgId;
@@ -42,6 +43,8 @@ $('.form_upd_caption').submit(function(e) {
         $(modal_Id).modal('hide');
 
                  });
+
+
 
 // ---------------------EDIT LIBRARY BUTTON----------------------- //
 

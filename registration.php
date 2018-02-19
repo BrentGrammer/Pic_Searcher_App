@@ -61,7 +61,6 @@ if (isset($_POST['submit'])) {
                       $emailTaken = 0;
                   }
 
-
         //If no match for username or email was found in the db, then code proceeds with registering the new user:
         if (!$usernameTaken && !$emailTaken) {
             //Prepare and encrypt for db insertion:
