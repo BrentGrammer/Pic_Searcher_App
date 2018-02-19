@@ -51,6 +51,7 @@ when $emailSent is set and the message to check email is loaded-this refreshes t
 
 ## Completed Tasks:
 
+- Fixed bug when updating caption on gallery.php with AJAX (function occurs when processing is complete and updates everytime correctly now by using a callback in .post())
 - Added forgot password and reset password feature using PHPMailer with Composer
 - Added a wiki with photos of the app and description of functionality.
 - Gallery page menu items now incorporate flexbox and are responsive.
