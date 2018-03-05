@@ -9,9 +9,6 @@ if(isset($_POST['login'])) {
     //sanitizes the username submitted:
     $username = sanitize_string($username); //from functions.php: runs striptags/trim/htmlspecialchars.
 
-    // $username  = strip_tags(trim($username)); //debugging not needed with sanitize_string() above
-    // $username  = htmlspecialchars($username);
-
     //Pull data associated with $username from the database:
     $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $pdo->prepare($sql);

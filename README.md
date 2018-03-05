@@ -14,10 +14,10 @@ Built using: PHP, SQL, Javascript/JQuery
 
 ## Tasks/Goals to Complete:
 
-- Make demo version that disables the upload buttons on the upload page, or deletes user demo account after ten minutes and recreates a fresh one.
+- Add a progress bar that shows while photos are uploading.
 
 - Bug: PHPMailer sending duplicate emails from reset password submit on forgot_pw.php - the issue is with reloading the page
-when $emailSent is set and the message to check email is loaded-this refreshes the page and runs the script to send the email again.
+when $emailSent is set and the message to check email is loaded-this refreshes the page and runs the script to send the email again.  Possible fix with AJAX/JQuery?
 
 - Make popup modal for uploading images
 
@@ -43,10 +43,11 @@ when $emailSent is set and the message to check email is loaded-this refreshes t
 
 - Update var keywords in js code to be let or const (to avoid potential hoisting problems)
 
-- Make a demo account and disable the delete account button with notification message.
 
 ## Completed Tasks:
 
+- Live Search functionality is now added to gallery.php.  User can type in terms in the search bar and the matching
+results instantly display on the page.
 - Fixed bug when updating caption on gallery.php with AJAX (function occurs when processing is complete and updates everytime correctly now by using a callback in .post())
 - Added forgot password and reset password feature using PHPMailer with Composer
 - Added a wiki with photos of the app and description of functionality.

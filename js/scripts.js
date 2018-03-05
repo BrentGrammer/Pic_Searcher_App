@@ -161,6 +161,23 @@ $('#btn_add_upload').click(function() {
           });
 
                   });
+    
+    
+// ------------------------ LIVE SEARCH ----------------------- //
+
+// This grabs the user key input in the search bar on gallery.php for live search results using .post():
+$("#search_text_input").keyup(function() {
+   // Get the keyed in value from search input:
+   let search = $(this).val();
+   // Post the value to $_POST['search_input'] on live_search.php for querying the db for match:
+   $.post("live_search.php", {
+      search_input: search
+   }, function(data, status) {
+     // Display the returned HTML for match onto the gallery.php page:
+      $('#delete-chkbox-wrapper').html(data);
+   });
+
+});
 
 
 //------------- closing for $(document).ready method at the beginning of file -----------//

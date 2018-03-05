@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
                 //Checks each array of user inputted registration data against db data for username/email match:
                 if ( in_array($username, $dbUsernames) ) {
                     //Assigns message to echo if username match found:
-                    $usernameErr = "REGISTRATION FAILED: Username taken.  Please enter a unique username. <br>";
+                    $usernameErr = "<p class='text-danger'>REGISTRATION FAILED: Username taken.  Please enter a unique username.</p>";
                     $usernameTaken = 1; //Sets a flag is username matched.
                 } else {
                       $usernameTaken = 0;
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
 
                 if ( in_array($email, $dbEmails) ) {
                     //Assigns message to echo if email match found:
-                    $emailErr = "REGISTRATION FAILED: Email already registered.  Please enter a different Email. <br>";
+                    $emailErr = "<p class='text-danger'>REGISTRATION FAILED: Email already registered.  Please enter a different Email.</p>";
                     $emailTaken = 1;  //Sets a flag if email is matched.
 
                 } else {
@@ -112,17 +112,20 @@ if (isset($_POST['submit'])) {
 <!-- Registration Page Content -->
       <div class="container">
         <div class="row d-flex justify-content-center">
-          <h2>REGISTER</h2>
-             <!-- username or email taken msg displays if duplicate found in db: -->
-             <?php if (isset($usernameErr)) {
-                     echo $usernameErr;
-                   }
-                   if (isset($emailErr)) {
-                     echo $emailErr;
-                   }
-              ?>
+          <h2>REGISTER</h2>                 
         </div>
-
+        <!-- username or email taken msg displays if duplicate found in db: -->
+        <div class="text-center">
+                       
+             <?php if (isset($usernameErr)) {
+                echo $usernameErr;
+              }
+              if (isset($emailErr)) {
+                echo $emailErr;
+              }
+             ?>
+        </div>
+        <!-- Register Form -->
         <div class="row d-flex justify-content-center">
           <form class="form-group" action="registration.php" method="POST">
             <div class="form-group">

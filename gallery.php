@@ -41,19 +41,11 @@
           <form action="?=searchresults" method="GET">
             <div class="form-inline my-2 form-group justify-content-center">
               <!-- SEARCH TXT INPUT -->
-              <input class="form-control" id='search_text_input' type="text" name='searchinput' size="35" placeholder="Search Images" required />
-              <!-- SEARCH SUBMIT BTN -->
-              <button class="btn btn-primary form-control" type='submit' name='submit'>SEARCH</button>
+              <input class="form-control" id='search_text_input' type="text" name='searchinput' size="35" placeholder="Search Images" />            
              </div>
            </form>
         </div>
-         <!-- BACK TO GALLERY LINK IF SEARCH SUBMIT -->
-         <div class="col-md-3 d-flex justify-content-center justify-content-md-end">
-           <?php if (isset($_GET['submit'])) {
-                         echo "<a href='gallery.php' class='btn btn-danger mb-md-auto mt-md-2 my-lg-auto'>BACK TO GALLERY</a>";
-                     }
-           ?>
-         </div>
+         
       </div> <!-- closing row div -->
 
       <!-- EDIT LIBRARY -->
@@ -85,15 +77,10 @@
      <!--the div is given an id for JQuery to grab the checked delete chkbox selections-->
      <div id="delete-chkbox-wrapper" class="row">
         <?php
-        //If user clicks on search button in search bar:
-        if (isset($_GET['submit'])){
-        imgSearch($pdo);
-        }
+      
 
         //------------------DISPLAYS CURRENT IMAGE LIBRARY FROM DATABASE----------------//
-        //Image gallery does not display if a Search has been submitted (search uses GET method):
-        if (!isset($_GET['submit'])){
-
+    
            //Calls function to delete the image if the delete button is pressed by user and $_POST-imgIds is not undefined:
            if ( isset($_POST['deletePics']) && (isset($_POST['imgIds'])) ) {
              deleteImg($pdo);
@@ -101,7 +88,7 @@
 
            //Calls function to display the image library onto the page ($pdo object passed in):
             displayImageGallery($pdo); //Echos anchor html w/delete icon and form for updating description from functions.php;
-        }
+        
 
         ?>
       </div>

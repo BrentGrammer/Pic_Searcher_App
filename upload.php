@@ -150,10 +150,10 @@ if (isset($_POST['submit'])) { //debugging set this back to submit when done tes
                <!-- This is hidden to keep correct spacing when a new input is added -->
                <a style="visibility: hidden;" href='#' class='d-hidden rem_upload_input btn btn-link pull-right'>Remove</a>
              </div>
-             <input class="form-control" name="description[]" type="text" size="35" placeholder="Enter Searchable Description Here...">
+             <input class="form-control mb-1" name="description[]" type="text" size="35" placeholder="Enter Searchable Description Here...">
          </div>
          <div class="form-group">
-            <button id="btn_add_upload" class="btn btn-link btn-primary form-group form-control"><i class="fa fa-plus"></i>Add Another Image</button>
+            <button id="btn_add_upload" class="btn btn-link form-group form-control"><i class="fa fa-plus"></i>Add Another Image</button>
             <button class='btn btn-primary form-control' name="submit" type="submit">UPLOAD IMAGES</button>
          </div>
       </form>
