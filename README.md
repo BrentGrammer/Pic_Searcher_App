@@ -7,7 +7,7 @@ The purpose of this application is to create a quickly and easily searchable lib
 
 See the Pic Browser App wiki for pictures and explanation of how to use the app.
 
-The user uploads images on the home page to a library which is stored in a database.  The user can then input search terms on the Gallery page, which will be queried to compare with full or partial matches (by word) in the database (a comparison is made to the description and name fields).  When a match is found, html code for the anchor contents of the image (also stored in the database to be echoed onto the Gallery page) will be retrieved and echoed onto the page (index.php - the results are shown after hiding the image library).  Please see list of Tasks to complete for further development.
+The user uploads images on the home page to a library which is stored in a database.  The user can then input search terms on the Gallery page, which will be queried to compare with full or partial matches in the database (a comparison is made to the description and name fields).  When a match is found, the image results are displayed instantly via AJAX on the gallery page.  Please see list of Tasks to complete for further development.
 
 
 Built using: PHP, SQL, Javascript/JQuery
