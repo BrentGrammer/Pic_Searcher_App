@@ -48,6 +48,7 @@ when $emailSent is set and the message to check email is loaded-this refreshes t
 
 ## Completed Tasks:
 
+- Working online demo version is deployed
 - Live Search functionality is now added to gallery.php.  User can type in terms in the search bar and the matching
 results instantly display on the page.
 - Fixed bug when updating caption on gallery.php with AJAX (function occurs when processing is complete and updates everytime correctly now by using a callback in .post())
