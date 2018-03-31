@@ -10,15 +10,18 @@
     </div>
 
    <!-- ACCOUNT DROPDOWN MENU ON RIGHT - LOGOUT AND DELETE ACCOUNT -->
-
-     <div class="dropdown col-lg-3 col-md-4 h-100 d-inline-block mb-3">
-        <button class="btn btn-primary btn-block dropdown-toggle w-100" type="button" id="dropdown_btn" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">ACCOUNT OPTIONS
-        </button>
+<!-- mb-3 h-100 d-inline-block -->
+     <div class="dropdown pl-0 col-lg-3 col-md-4">
+        <!-- w-100 btn-block -->
+        <a class="btn btn-primary dropdown-toggle btn-block-s-only" href="#" id="dropdown_btn" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">ACCOUNT OPTIONS
+        </a>
         <!-- DROPDOWN MENU -->
-        <div class="dropdown-menu w-100" aria-labelledby="dropdown_btn">
+        <!-- w-100 -->
+        <div class="dropdown-menu" aria-labelledby="dropdown_btn">
            <!-- LOGOUT -->
            <form class="dropdown-item" action="includes/logout.php" method="POST">
-             <button id="btn_logout" class="btn btn-link text-center" type="submit" name="logout" onClick="return confirm_action('Log out?');">LOG OUT</button>
+             <!--  text-center -->
+             <button id="btn_logout" class="btn btn-link" type="submit" name="logout" onClick="return confirm_action('Log out?');">LOG OUT</button>
            </form>
            <!-- DELETE ACCOUNT -->
            <form class="dropdown-item" action="delete_user.php" method="POST">
@@ -41,11 +44,11 @@
           <form action="?=searchresults" method="GET">
             <div class="form-inline my-2 form-group justify-content-center">
               <!-- SEARCH TXT INPUT -->
-              <input class="form-control" id='search_text_input' type="text" name='searchinput' size="35" placeholder="Search Images" />            
+              <input class="form-control" id='search_text_input' type="text" name='searchinput' size="35" placeholder="Search Images" />
              </div>
            </form>
         </div>
-         
+
       </div> <!-- closing row div -->
 
       <!-- EDIT LIBRARY -->
@@ -77,10 +80,10 @@
      <!--the div is given an id for JQuery to grab the checked delete chkbox selections-->
      <div id="delete-chkbox-wrapper" class="row">
         <?php
-      
+
 
         //------------------DISPLAYS CURRENT IMAGE LIBRARY FROM DATABASE----------------//
-    
+
            //Calls function to delete the image if the delete button is pressed by user and $_POST-imgIds is not undefined:
            if ( isset($_POST['deletePics']) && (isset($_POST['imgIds'])) ) {
              deleteImg($pdo);
@@ -88,7 +91,7 @@
 
            //Calls function to display the image library onto the page ($pdo object passed in):
             displayImageGallery($pdo); //Echos anchor html w/delete icon and form for updating description from functions.php;
-        
+
 
         ?>
       </div>

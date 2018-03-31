@@ -27,7 +27,7 @@ function displayImageGallery($pdo) {
                                        <input type='checkbox' class='delete_chkbox pull-right' aria-label='Close' name='deletePics[]' value=\"$imgId\">
                                     </div>
 
-                                    <a class='img_anchor h-100' href=\"$path\" target='_blank'>
+                                    <a class='img_anchor h-100' href=\"$path\" target='_blank' rel='noopener'>
                                        <img src=\"$path\" alt=\"$description\" class='img-fluid w-100 h-100 rounded-top'>
                                     </a>
 

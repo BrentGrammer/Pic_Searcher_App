@@ -48,6 +48,7 @@ when $emailSent is set and the message to check email is loaded-this refreshes t
 
 ## Completed Tasks:
 
+- -Added rel='noopener' to <img> markup in functions.php displayImageGallery() to prevent target='_blank' vulnerabilities with window.opener
 - Working online demo version is deployed
 - Live Search functionality is now added to gallery.php.  User can type in terms in the search bar and the matching
 results instantly display on the page.
