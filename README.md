@@ -43,11 +43,11 @@ when $emailSent is set and the message to check email is loaded-this refreshes t
 
 - Remove remaining debugging code
 
-- Update var keywords in js code to be let or const (to avoid potential hoisting problems)
-
 
 ## Completed Tasks:
 
+- All var keywords in scripts.js are now ES6 const or let keywords.
+- Fixed Bug where event listeners were lost on injected DOM elements after a search text filter entered using event bubbling.  Captions can now be updated after a search text is entered without error.
 - -Added rel='noopener' to <img> markup in functions.php displayImageGallery() to prevent target='_blank' vulnerabilities with window.opener
 - Working online demo version is deployed
 - Live Search functionality is now added to gallery.php.  User can type in terms in the search bar and the matching
