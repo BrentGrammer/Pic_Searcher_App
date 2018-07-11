@@ -14,14 +14,20 @@ $(document).ready(function() {
 // ---------------UPDATE DESCRIPTION/CAPTION MODAL-------------------- //
 
 //when form is submitted, default action is stopped, and submitted input values are collected:
-$('.form_upd_caption').submit(function(e) {
+//$('.form_upd_caption').submit(function(e) {
+    
+    //gallery wrapper is a static div on gallery.php containing the php html output and it catches the submit event bubbled up from the update modal when a search filter is present injecting previously non-existent imgs into the DOM that won't have event listeners attached to their update caption modals.
+    $('#gallery_wrapper').submit(function(e) {
       e.preventDefault();
+      console.log('submit caught');
+        console.log(this);
+        console.log(e.target);
 
       // Grabs user submitted description and imgId value in the submit button to put into $_POST on updated_description.php:
-      // ($(this) = the form element that is the parent of the submit button (.form_upd_caption):
-      const newCaption = $(this).find('.newCaption').val();
-      const imgId      = $(this).find('.btn_upd_caption').val(); //(the unique id for img is in the value of the button)
-
+      //($(e.target) = the form element that is the parent of the submit button (.form_upd_caption):
+      const newCaption = $(e.target).find('.newCaption').val();
+      const imgId      = $(e.target).find('.btn_upd_caption').val(); //(the unique id for img is in the value of the button)
+        
       // Sends submitted data to $_POST['newCaption', 'imgIdNum'] to be processed on updated_description.php and sent to db:
       $.post('updated_description.php', {
         newCaption: newCaption,
@@ -29,7 +35,8 @@ $('.form_upd_caption').submit(function(e) {
         }, function(data,status) {
               // Assign a var to the caption to be updated on gallery.php:
               let captionId = "#caption_" + imgId;
-              // (Need to use passed in data to use the returned data from the.post() funtion and to prevent grabbing #newCaption before it's updated)
+              // (Need to use passed in data to use the returned data from the.post() function and to prevent grabbing #newCaption before it's updated)
+              // data is the returned output from updated_description.php - i.e. the div with the submitted description:
               let updatedCaption = $(data).text();
               // This grabs the text from updated_desription.php returned from data (updated_destiption.php data returned from .post()):
               $(captionId).text(updatedCaption); // Inserts user submitted updated caption into corr. img caption on gallery.php.
@@ -62,8 +69,6 @@ $('#btn_edit_library').click(function() {
            $(this).text("EDIT LIBRARY"); // Changes back to 'EDIT LIBRARY'
         }
 
-
-
   });
 
 
@@ -76,7 +81,7 @@ $('#btn_edit_library').click(function() {
               if (edit_btn_txt == "CANCEL") {
 
               e.preventDefault();
-
+              // prevAll selects all preceeding sibling elements.
               const x = $(this).prevAll(".chkbox_del_div");
               const matching_chkbox = $(x).children(".delete_chkbox");
 
@@ -117,13 +122,11 @@ $(function() {
 
                 });// <--IIFE closing
 
-
-
 // ------------------SELECT ALL CHECKBOXES-------------------------- //
 
 $('#chkbox_select_all').change(function(e) {
-  console.log(e);
-  console.log($(this).prop('checked'));
+//  console.log(e);
+//  console.log($(this).prop('checked'));
 
   var selectAll = $(this).prop('checked');
 
@@ -131,11 +134,6 @@ $('#chkbox_select_all').change(function(e) {
     $('#delete-chkbox-wrapper .delete_chkbox').prop('checked', selectAll);
 
 });
-
-
-
-
-
 
 // --------------------------Adds a new input for the user to upload additional images when upload another img button clicked on upload.php:
 
@@ -174,7 +172,8 @@ $("#search_text_input").keyup(function() {
       search_input: search
    }, function(data, status) {
      // Display the returned HTML for match onto the gallery.php page:
-      $('#delete-chkbox-wrapper').html(data);
+     // inject the output into the static wrapper div to catch the bubbled up submit events on newly injected popup modal forms in the update description script:
+      $('#gallery_wrapper').html(data);
    });
 
 });

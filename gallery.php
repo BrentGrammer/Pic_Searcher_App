@@ -88,12 +88,17 @@
            if ( isset($_POST['deletePics']) && (isset($_POST['imgIds'])) ) {
              deleteImg($pdo);
            }
-
-           //Calls function to display the image library onto the page ($pdo object passed in):
-            displayImageGallery($pdo); //Echos anchor html w/delete icon and form for updating description from functions.php;
-
-
         ?>
+        <!-- Wrapper div created to catch bubbling up of on submit event when description updated on a newly injected image
+             to prevent error. -->
+        <div class='container-fluid'>
+          <div id="gallery_wrapper" class="row">     
+            <?php  
+            //Calls function to display the image library onto the page ($pdo object passed in):
+               displayImageGallery($pdo); //Echos anchor html w/delete icon and form for updating description from      functions.php;
+            ?>
+          </div>
+        </div>
       </div>
 
     </div>
