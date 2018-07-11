@@ -89,7 +89,3 @@ results instantly display on the page.
 - Connection to the database is completed
 - Image files successfully upload to a specified directory (/uploads)
 - The Database is updated successfully after user submits data
-
-**Note:** *The structure of the database columns is: id,name,path,description,unique_id
-The database name is 'picsearcherapp'.  The table name is 'pics'.
-users table structure is user_id, username, user_password, user_firstname, user_lastname, user_email, user_role.*
