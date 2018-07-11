@@ -14,9 +14,10 @@ $(document).ready(function() {
 // ---------------UPDATE DESCRIPTION/CAPTION MODAL-------------------- //
 
 //when form is submitted, default action is stopped, and submitted input values are collected:
-//$('.form_upd_caption').submit(function(e) {
     
-    //gallery wrapper is a static div on gallery.php containing the php html output and it catches the submit event bubbled up from the update modal when a search filter is present injecting previously non-existent imgs into the DOM that won't have event listeners attached to their update caption modals.
+    /* gallery wrapper is a static div on gallery.php containing the php html output and it catches the submit event
+    bubbled up from the update modal when a search filter is present injecting previously non-existent imgs into the DOM
+    that won't have event listeners attached to their update caption modals. */
     $('#gallery_wrapper').submit(function(e) {
       e.preventDefault();
       // Grabs user submitted description and imgId value in the submit button to put into $_POST on updated_description.php:
