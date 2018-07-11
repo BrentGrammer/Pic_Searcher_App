@@ -19,10 +19,6 @@ $(document).ready(function() {
     //gallery wrapper is a static div on gallery.php containing the php html output and it catches the submit event bubbled up from the update modal when a search filter is present injecting previously non-existent imgs into the DOM that won't have event listeners attached to their update caption modals.
     $('#gallery_wrapper').submit(function(e) {
       e.preventDefault();
-      console.log('submit caught');
-        console.log(this);
-        console.log(e.target);
-
       // Grabs user submitted description and imgId value in the submit button to put into $_POST on updated_description.php:
       //($(e.target) = the form element that is the parent of the submit button (.form_upd_caption):
       const newCaption = $(e.target).find('.newCaption').val();
@@ -44,7 +40,7 @@ $(document).ready(function() {
             });
 
         // concat the id with imgId to grab the modal window to close it:
-        var modal_Id = '#updatepic_' + imgId;
+        const modal_Id = '#updatepic_' + imgId;
         // Use .modal('hide') to close the modal after the submit:
         $(modal_Id).modal('hide');
 
@@ -106,40 +102,30 @@ $('#btn_edit_library').click(function() {
 $(function() {
      // (Delete Pics button (#btn_delete_pics) in gallery shown after edit library button is clicked):
      $("#btn_delete_pics").click(function() {
-
-      // When delete button pressed, this grabs and loops through the checked boxes from the Div wrapper id containing them on gallery.php:
-               $('#delete-chkbox-wrapper input:checked').each(function() {
-                    // the value of the checkbox holds the unique $imgId from insertion to the db:
-                    var picId = $(this).val();
-
-                    var formInsert = "<input type='hidden' name='imgIds[]' value='" + picId + "'>" //quotes necessary with variable picId in value?
-                    // Append formInsert for each selection with the imgId value which will be submitted:
-                    $('#form_del_pics').append(formInsert);
-
-                                    });
-
-                          });
-
-                });// <--IIFE closing
+          // When delete button pressed, this grabs and loops through the checked boxes from the Div wrapper id containing them on gallery.php:
+          $('#delete-chkbox-wrapper input:checked').each(function() {
+            // the value of the checkbox holds the unique $imgId from insertion to the db:
+            const picId = $(this).val();
+            const formInsert = "<input type='hidden' name='imgIds[]' value='" + picId + "'>" //quotes necessary with variable picId in value?
+            // Append formInsert for each selection with the imgId value which will be submitted:
+            $('#form_del_pics').append(formInsert);
+          });
+     });
+});// <--IIFE closing
 
 // ------------------SELECT ALL CHECKBOXES-------------------------- //
 
 $('#chkbox_select_all').change(function(e) {
-//  console.log(e);
-//  console.log($(this).prop('checked'));
-
-  var selectAll = $(this).prop('checked');
-
+    const selectAll = $(this).prop('checked');
     // When select all box changes, set the checked prop value of all checkboxes in wrapper to the checked prop value of the select all checkbox:
     $('#delete-chkbox-wrapper .delete_chkbox').prop('checked', selectAll);
-
 });
 
 // --------------------------Adds a new input for the user to upload additional images when upload another img button clicked on upload.php:
 
 $('#btn_add_upload').click(function() {
 
-    var formInsert =  "<div class='form-group'> \
+    const formInsert =  "<div class='form-group'> \
                         <div> \
                          <input class='d-inline' name='userpic[]' type='file' required> \
                          <a href='#' class='d-inline rem_upload_input btn btn-link pull-right'>Remove</a> \
