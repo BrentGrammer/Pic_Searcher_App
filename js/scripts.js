@@ -58,8 +58,7 @@ $(document).ready(function() {
                $(this).text("EDIT LIBRARY"); // Changes back to 'EDIT LIBRARY'
           }
     });
-  //If the EDIT button is labeled CANCEL when <anchor> clicked, disable img link anchor, and instead select checkbox:
-
+    //If the EDIT button is labeled CANCEL when <anchor> clicked, disable img link anchor, and instead select checkbox:
     $('a.img_anchor').click(function(e) {
         const edit_btn_txt = $('#btn_edit_library').text();
         if (edit_btn_txt == "CANCEL") {

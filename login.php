@@ -40,7 +40,7 @@ if(isset($_POST['login'])) {
          } else {
         //If no username match in db, then a space is used as a flag for loginError() in functions.php to echo an error msg on index.php:
            $_SESSION['username'] = ' ';
-           }
+         }
 
           //User directed back to index.php if either pw or username is not correct.
           header("Location: index.php?loggedin=false");

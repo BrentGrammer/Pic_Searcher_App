@@ -133,31 +133,12 @@ function formFill ($fieldName) {
     }
 }
 
-//-------------------USED IN THE LOGIN FORM ON INDEX.PHP IF ENTERED PASSWORD IS INCORRECT:-----------------//
-
-function loginFill($fieldName) {
-
-    if (isset($_SESSION[$fieldName])) {
-
-        $formFields = $_SESSION;
-
-        //sanitize user submitted username (just in case-may not be necessary):
-        foreach ($formFields as $value) {
-
-            htmlspecialchars($value);
-        }
-        //echo the correct username into the login form field:
-        echo $formFields[$fieldName];
-     }
-}
-
 //--------------------NOT LOGGED IN MSG-----------------------//
 //this runs if the user tries to access a page and is not logged in:
 
 function notLoggedIn() {
 
     if (!$_SESSION['username']) {
-
       echo "<h2 class='text-danger'>Cannot access page: You are not logged in!</h2> <br>"; //(if not logged in)
       echo "<h3>Try logging in or registering.</h3> <br>";
       exit("<h1><a href='index.php'>Click Here to Login or Register</a></h1>");
@@ -170,11 +151,11 @@ function notLoggedIn() {
 function loginError() {
 
         //a flag of a space ' ' is set to $_SESSION username in login.php to indicate that user submitted username does not match any in the db:
-        if ( (isset($_SESSION['username'])) && ($_SESSION['username'] === ' ') ) {
-             echo "<p class='text-danger'>Username does not exist! Please enter existing username or Register.</p>";
+        if ((isset($_SESSION['username'])) && ($_SESSION['username'] === ' ')) {
+             echo "<p class='text-danger'>Username or password does not match.</p>";
         } else if (isset($_SESSION['username'])) {
           //if username is found in db, but password does not verify on login.php then $_SESSION username is still saved (and is not a ' '):
-          echo "<p class='text-danger'>Password does not match.</p>";
+          echo "<p class='text-danger'>Username or password does not match.</p>";
           }
 }
 
@@ -187,8 +168,6 @@ function loginError() {
 //        sanitize_string(string, null, true); This runs htmlentities with trim on string.
 
 function sanitize_string($str, $str_is_email = null, $htmlentities = null) {
-
-
     if ($str_is_email !== null) {
         $str     = strip_tags(trim($str));
         $str     = filter_var($str, FILTER_SANITIZE_EMAIL);
@@ -198,12 +177,9 @@ function sanitize_string($str, $str_is_email = null, $htmlentities = null) {
 
             $str = htmlentities(trim($str), ENT_QUOTES);
 
-          } else {
+       } else {
                $str = htmlspecialchars(strip_tags(trim($str)));
-            }
-
-                 return $str; //return the sanitized string.
-
-                    }
-
+       }
+       return $str; //return the sanitized string.
+}
 ?>

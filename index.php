@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <!-- LOGIN FORM -->
+    <!-- LOGIN FORM  -->
      <div class='container d-flex justify-content-center'>
        <div>
          <div class='card card-body bg-light d-inline-block'>
@@ -31,7 +31,7 @@
            <form action="login.php" method="POST">
              <div class='form-group'>
                <label>USERNAME: </label>
-               <input class="form-control" name="username" type="text" placeholder="Enter username" value="<?php loginFill('username'); ?>"/>
+               <input class="form-control" name="username" type="text" placeholder="Enter username" />
              </div>
              <div class='form-group'>
                 <label>PASSWORD: </label>
